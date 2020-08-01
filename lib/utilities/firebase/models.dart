@@ -17,6 +17,7 @@ class FailureCollection {
   static String fieldCrop = 'crop';
   static String fieldEstimatedYield = 'estimatedYield';
   static String fieldReason = 'reason';
+  static String fieldStatus = 'status';
 }
 
 // Yield Prediction without Disease

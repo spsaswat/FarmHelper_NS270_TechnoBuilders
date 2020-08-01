@@ -38,6 +38,7 @@ void reportFailure(
     FailureCollection.fieldEstimatedYield: estimatedYield,
     FailureCollection.fieldReason: fails,
     FailureCollection.fieldUserPhoneNumber: user.phoneNumber,
+    FailureCollection.fieldStatus: 'f',
     FailureCollection.fieldCreated: FieldValue.serverTimestamp(),
   });
 }

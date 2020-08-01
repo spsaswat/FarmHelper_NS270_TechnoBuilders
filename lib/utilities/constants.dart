@@ -5,6 +5,139 @@ const int kPhoneNumberLength = 10;
 const int kOTPLength = 6;
 const String kCountryCode = '+91';
 
+// <editor-fold desc="kCropList" default="collapsed>
+const List<String> kCropList = [
+  'ARHAR (TUR)',
+  'BAJRA',
+  'BANANA',
+  'BARLEY',
+  'CASTOR SEED',
+  'CORIANDER',
+  'DRY CHILLIES',
+  'DRY GINGER',
+  'GARLIC',
+  'GRAM',
+  'GROUNDNUT',
+  'HORSEGRAM',
+  'JOWAR',
+  'JUTE',
+  'KESARI',
+  'LINSEED',
+  'MAIZE',
+  'MASOOR',
+  'MESTA',
+  'MOONG',
+  'ONION',
+  'OTHER KHARIF PULSES',
+  'OTHER RABI PULSES',
+  'PEAS & BEANS (PULSES)',
+  'POTATO',
+  'RAGI',
+  'RAPESEED &MUSTARD',
+  'RICE',
+  'SAFFLOWER',
+  'SANNHAMP',
+  'SESAMUM',
+  'SMALL MILLETS',
+  'SUGARCANE',
+  'SUNFLOWER',
+  'SWEET POTATO',
+  'TOBACCO',
+  'TURMERIC',
+  'URAD',
+  'WHEAT',
+];
+// </editor-fold>
+
+// <editor-fold desc="kMonths" default="collapsed>
+const List<String> kMonths = [
+  'JAN',
+  'FEB',
+  'MAR',
+  'APR',
+  'MAY',
+  'JUN',
+  'JUL',
+  'AUG',
+  'SEP',
+  'OCT',
+  'NOV',
+  'DEC',
+];
+// </editor-fold>
+
+// <editor-fold desc="kSeasons" default="collapsed>
+const List<String> kSeasons = [
+  'AUTUMN',
+  'KHARIF',
+  'RABI',
+  'SUMMER',
+  'WINTER',
+  'TOTAL ',
+  'WHOLE YEAR',
+];
+// </editor-fold>
+
+// <editor-fold desc="kDistricts" default="collapsed>
+const List<String> kDistricts = [
+  'Araria',
+  'Arhasia',
+  'Arval',
+  'Aurangabad',
+  'Banka',
+  'Begusarai',
+  'Bhagalpur',
+  'Bhanka',
+  'Bhojpur',
+  'Buxar',
+  'Darbhanga',
+  'Devghar',
+  'Dumka',
+  'Gadhwa',
+  'Gaya',
+  'Giridih',
+  'Godda',
+  'Gopalganj',
+  'Gumala',
+  'Hazaribagh',
+  'Jamui',
+  'Jehanabad',
+  'Kaimur (Bhabua)',
+  'Katihar',
+  'Khagaria',
+  'Kishanganj',
+  'Lakhisarai',
+  'Lohardanga',
+  'Madhepura',
+  'Madhubani',
+  'Munger',
+  'Muzaffarpur',
+  'Nalanda',
+  'Nawada',
+  'Palamau',
+  'Pashchim Champaran',
+  'Patna',
+  'Purba Champaran',
+  'Purnia',
+  'Ranchi',
+  'Rohtas',
+  'Saharsa',
+  'Sahebganj',
+  'Samastipur',
+  'Saran',
+  'Sheikhpura',
+  'Sheohar',
+  'Singhbhum',
+  'Singhbhur(west)',
+  'Sitamarhi',
+  'Siwan',
+  'Sumal',
+  'Supaul',
+  'Vaishali',
+  'Zamui',
+];
+// </editor-fold>
+
 // UI
 const double kPinBoxSide = 45.0;
 
@@ -30,11 +163,10 @@ const kOptionstyles = TextStyle(
   color: Colors.white,
 );
 
-const kCardDecoration =  BoxDecoration(
+const kCardDecoration = BoxDecoration(
   color: Color(0xFFb6bab7),
   borderRadius: BorderRadius.all(Radius.circular(10.0)),
 );
-
 
 const kLargeText = TextStyle(
   fontSize: 40,
@@ -42,35 +174,5 @@ const kLargeText = TextStyle(
   color: Colors.white,
 );
 
-
 const kActiveIcon = Color(0xFF6eeb60);
 const kInactiveIcon = Color(0xFFb0b0b0);
-
-
-const List<String> cropList = [
-  'wheat',
-  'rice',
-  'barley',
-  'banana'
-];
-
-const List<String> months = [
-  'JAN',
-  'FEB',
-  'MAR',
-  'APR',
-  'MAY',
-  'JUN',
-  'JUL',
-  'AUG',
-  'SEP',
-  'OCT',
-  'NOV',
-  'DEC'
-];
-
-const List<String> season = [
-  'Summer',
-  'Winter',
-  'Rainy'
-];

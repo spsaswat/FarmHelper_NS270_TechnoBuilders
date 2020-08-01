@@ -1,40 +1,40 @@
-import 'package:farmhelper/widgets/button.dart';
-import 'package:flutter/material.dart';
 import 'package:farmhelper/utilities/constants.dart';
+import 'package:farmhelper/widgets/button.dart';
+import 'package:farmhelper/widgets/common_appBar.dart';
+import 'package:farmhelper/widgets/nav_bar.dart';
+import 'package:farmhelper/widgets/round_button.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:farmhelper/widgets/roundbutton.dart';
 
 class EstimateYield extends StatefulWidget {
-  static const String id = 'Estimate';
+  static const String id = 'estimate';
   @override
   _EstimateYieldState createState() => _EstimateYieldState();
 }
 
 class _EstimateYieldState extends State<EstimateYield> {
-
-  String crop = 'wheat';
-  String sesn = 'Summer';
+  String crop = kCropList[0];
+  String season = kSeasons[0];
   int year = 2020;
   int start = 0;
-  String area ;
+  String area;
 
-  DropdownButton<String> dropdown() {
-    List<DropdownMenuItem<String>> cropitems = [];
+  DropdownButton<String> cropsDropdown() {
+    List<DropdownMenuItem<String>> cropItems = [];
 
-    for (String s in cropList) {
+    for (String s in kCropList) {
       var newItem = DropdownMenuItem(
-
         child: Text(s),
         value: s,
       );
-      cropitems.add(newItem);
+      cropItems.add(newItem);
     }
 
     return DropdownButton<String>(
       value: crop,
-      items: cropitems,
+      items: cropItems,
       onChanged: (value) {
         setState(() {
           crop = value;
@@ -43,31 +43,27 @@ class _EstimateYieldState extends State<EstimateYield> {
     );
   }
 
-  DropdownButton<String> seasondropdown(){
+  DropdownButton<String> seasonDropdown() {
+    List<DropdownMenuItem<String>> seasonItems = [];
 
-    List<DropdownMenuItem<String>> seasonitems = [];
-
-    for (String s in season){
+    for (String s in kSeasons) {
       var newItem = DropdownMenuItem(
-
         child: Text(s),
         value: s,
       );
-      seasonitems.add(newItem);
+      seasonItems.add(newItem);
     }
 
     return DropdownButton<String>(
-      value: sesn,
-      items: seasonitems,
-      onChanged: (value){
-      setState(() {
-        sesn = value;
-      });
+      value: season,
+      items: seasonItems,
+      onChanged: (value) {
+        setState(() {
+          season = value;
+        });
       },
     );
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -75,80 +71,21 @@ class _EstimateYieldState extends State<EstimateYield> {
       backgroundColor: Color(0xFFADEFD1),
 //      backgroundColor: Color(0xFFebedeb),
       //color: Color(0xFFebedeb),
-      appBar: AppBar(
-        backgroundColor: Color(0xFF3CB371),
-        title: Text('Farmer Helper'),
-        centerTitle: true,
-
-        actions: <Widget>[
-          PopupMenuButton(
-            color:Color(0xFFC0C0C0),
-            itemBuilder: (context) =>[
-              PopupMenuItem(
-                value: 1,
-                child: Row(
-                  children: <Widget>[
-                    Icon(Icons.account_circle),
-                    Text('Profile'),
-                  ],
-                ),
-              ),
-              PopupMenuItem(
-                value: 1,
-                child: Row(
-                  children: <Widget>[
-                    Icon(Icons.exit_to_app),
-                    Text('Logout'),
-                  ],
-                ),
-              ),
-            ],
-          )
-        ],
-
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: Color(0xFFf2f2f2),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            IconButton(
-              onPressed: (){
-                Navigator.pop(context);
-              },
-              color: kInactiveIcon,
-              iconSize: 25,
-              icon: Icon(Icons.home),
-            ),
-            IconButton(
-              onPressed: (){},
-              color: kInactiveIcon,
-              iconSize:25,
-              icon: Icon(Icons.location_on),
-            ),
-            IconButton(
-              onPressed: (){},
-              color: kInactiveIcon,
-              iconSize: 25,
-              icon: Icon(Icons.chat),
-            ),
-            IconButton(
-              onPressed: (){},
-              color: kInactiveIcon,
-              iconSize: 25,
-              icon: Icon(Icons.settings),
-            ),
-
-          ],
-        ),
-      ),
+      appBar: commonAppBar,
+      bottomNavigationBar: NavBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Text('Estimate Crop Yield', style: kOptionstyles,textAlign: TextAlign.center,),
+          Text(
+            'Estimate Crop Yield',
+            style: kOptionstyles,
+            textAlign: TextAlign.center,
+          ),
           Container(
-            child: Center(child: dropdown()),
+            child: Center(
+              child: cropsDropdown(),
+            ),
           ),
           Row(
             children: <Widget>[
@@ -158,13 +95,16 @@ class _EstimateYieldState extends State<EstimateYield> {
                   child: Container(
                     child: Column(
                       children: <Widget>[
-                        Text(year.toString(),style: kLargeText,textAlign: TextAlign.center,),
+                        Text(
+                          year.toString(),
+                          style: kLargeText,
+                          textAlign: TextAlign.center,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-
                             RoundButton(
-                              onpres: (){
+                              onpres: () {
                                 setState(() {
                                   year--;
                                 });
@@ -175,20 +115,18 @@ class _EstimateYieldState extends State<EstimateYield> {
                               width: 10,
                             ),
                             RoundButton(
-                              onpres: (){
+                              onpres: () {
                                 setState(() {
                                   year++;
                                 });
                               },
                               icon: FontAwesomeIcons.plus,
                             ),
-
                           ],
                         ),
                       ],
                     ),
                     decoration: kCardDecoration,
-
                   ),
                 ),
               ),
@@ -198,16 +136,18 @@ class _EstimateYieldState extends State<EstimateYield> {
                   child: Container(
                     child: Column(
                       children: <Widget>[
-                        Text(months[start],style: kLargeText,textAlign: TextAlign.center,),
+                        Text(
+                          kMonths[start],
+                          style: kLargeText,
+                          textAlign: TextAlign.center,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-
                             RoundButton(
-                              onpres: (){
+                              onpres: () {
                                 setState(() {
-                                  if(start != 0)
-                                  start--;
+                                  if (start != 0) start--;
                                 });
                               },
                               icon: FontAwesomeIcons.minus,
@@ -216,9 +156,9 @@ class _EstimateYieldState extends State<EstimateYield> {
                               width: 10,
                             ),
                             RoundButton(
-                              onpres: (){
+                              onpres: () {
                                 setState(() {
-                                  if(start == 11)
+                                  if (start == 11)
                                     start = 0;
                                   else
                                     start++;
@@ -226,7 +166,6 @@ class _EstimateYieldState extends State<EstimateYield> {
                               },
                               icon: FontAwesomeIcons.plus,
                             ),
-
                           ],
                         ),
                       ],
@@ -238,10 +177,10 @@ class _EstimateYieldState extends State<EstimateYield> {
             ],
           ),
           Container(
-            child: Center(child: seasondropdown()),
+            child: Center(child: seasonDropdown()),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 35.0,right: 35.0),
+            padding: const EdgeInsets.only(left: 35.0, right: 35.0),
             child: TextField(
               keyboardType: TextInputType.number,
               textAlign: TextAlign.center,
@@ -250,16 +189,15 @@ class _EstimateYieldState extends State<EstimateYield> {
               },
               decoration: kBoxfield.copyWith(
                 hintText: 'Enter Field Area',
-
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 35,right: 35),
+            padding: const EdgeInsets.only(left: 35, right: 35),
             child: Button(
               buttonColor: Color(0xFF53d45b),
               buttonText: 'Estimate Yield',
-              onPress: (){},
+              onPress: () {},
             ),
           ),
         ],
@@ -267,5 +205,3 @@ class _EstimateYieldState extends State<EstimateYield> {
     );
   }
 }
-
-

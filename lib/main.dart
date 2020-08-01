@@ -13,15 +13,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: Homescreen.id,
+      initialRoute: HomeScreen.id,
       routes: {
         LanguageScreen.id: (context) => LanguageScreen(),
         PhoneNumberScreen.id: (context) => PhoneNumberScreen(),
         GetOTPScreen.id: (context) => GetOTPScreen(),
-        Homescreen.id: (context) => Homescreen(),
+        HomeScreen.id: (context) => HomeScreen(),
         EstimateYield.id: (context) => EstimateYield(),
       },
     );
   }
 }
-

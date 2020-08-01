@@ -1,9 +1,11 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:farmhelper/screens/phonenumber.dart';
+import 'package:farmhelper/utilities/constants.dart';
 import 'package:farmhelper/utilities/localization/app_language.dart';
 import 'package:farmhelper/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageScreen extends StatefulWidget {
   static const String id = 'language';
@@ -57,9 +59,11 @@ class _LanguageScreenState extends State<LanguageScreen> {
             Button(
               buttonColor: Colors.lightBlueAccent,
               buttonText: 'English',
-              onPress: () {
+              onPress: () async {
                 appLanguage.changeLanguage(Locale('en'));
-                Navigator.push(
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.setBool(kFirstTimeUserSharedPrefsKey, false);
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => PhoneNumberScreen(),
@@ -69,9 +73,11 @@ class _LanguageScreenState extends State<LanguageScreen> {
             Button(
               buttonColor: Colors.blueAccent,
               buttonText: 'हिन्दी',
-              onPress: () {
+              onPress: () async {
                 appLanguage.changeLanguage(Locale('hi'));
-                Navigator.push(
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.setBool(kFirstTimeUserSharedPrefsKey, false);
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => PhoneNumberScreen(),

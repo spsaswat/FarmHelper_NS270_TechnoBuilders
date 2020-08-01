@@ -1,13 +1,14 @@
-import 'package:farmhelper/utilities/constants.dart';
-import 'package:flutter/material.dart';
-import 'package:farmhelper/widgets/common_appBar.dart';
-import 'package:farmhelper/widgets/nav_bar.dart';
-import 'package:farmhelper/widgets/button.dart';
-import 'package:farmhelper/widgets/snackbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farmhelper/screens/homescreen.dart';
+import 'package:farmhelper/utilities/constants.dart';
+import 'package:farmhelper/widgets/button.dart';
+import 'package:farmhelper/widgets/common_appBar.dart';
+import 'package:farmhelper/widgets/nav_bar.dart';
+import 'package:farmhelper/widgets/snackbar.dart';
+import 'package:flutter/material.dart';
 
 final _firestore = Firestore.instance;
+
 class AddDetails extends StatefulWidget {
   static const String id = 'addDetail';
   @override
@@ -15,8 +16,7 @@ class AddDetails extends StatefulWidget {
 }
 
 class _AddDetailsState extends State<AddDetails> {
-
-  String crop,area,fertilizer,season,p,m,q,sttus;
+  String crop, area, fertilizer, season, p, m, q, sttus;
 
   DropdownButton<String> cropsDropdown() {
     List<DropdownMenuItem<String>> cropItems = [];
@@ -66,7 +66,6 @@ class _AddDetailsState extends State<AddDetails> {
     );
   }
 
-
   DropdownButton<String> statusDropdown() {
     List<DropdownMenuItem<String>> seasonItems = [];
 
@@ -94,13 +93,11 @@ class _AddDetailsState extends State<AddDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: commonAppBar,
+      appBar: commonAppBar(context),
       bottomNavigationBar: NavBar(),
       backgroundColor: Color(0xFFebedeb),
-
       body: ListView(
         children: <Widget>[
-
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
@@ -173,7 +170,6 @@ class _AddDetailsState extends State<AddDetails> {
               ),
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 35.0,
@@ -266,34 +262,31 @@ class _AddDetailsState extends State<AddDetails> {
                   } else if (m == null) {
                     showSnackBarMessage(
                       context: context,
-                      snackBarText:
-                      'Please Specify a reason for your faliure',
+                      snackBarText: 'Please Specify a reason for your faliure',
                       backgroundColor: kSnackBarWarningColor,
                     );
+                  } else {
+                    //crop,area,fertilizer,season,p,m,q,sttus;
+                    _firestore.collection('cropdetail').add({
+                      'Area': area,
+                      'Crop': crop,
+                      'Fertilizers': fertilizer,
+                      'Manure': m,
+                      'Pesticides': p,
+                      'Quality': q,
+                      'Season': season,
+                      'Status': sttus,
+                    });
+                    print('Working');
+                    Navigator.popUntil(
+                        context, ModalRoute.withName(HomeScreen.id));
                   }
-                  else
-                    { //crop,area,fertilizer,season,p,m,q,sttus;
-                      _firestore.collection('cropdetail').add({
-                        'Area': area,
-                        'Crop':crop,
-                        'Fertilizers': fertilizer,
-                        'Manure': m,
-                        'Pesticides': p,
-                        'Quality': q,
-                        'Season': season,
-                        'Status': sttus,
-                      });
-                      print('Working');
-                     Navigator.popUntil(context, ModalRoute.withName(HomeScreen.id));
-                    }
                 },
               ),
             ),
           ),
         ],
       ),
-
     );
   }
 }
-

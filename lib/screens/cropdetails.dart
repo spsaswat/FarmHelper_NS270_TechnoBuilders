@@ -1,13 +1,11 @@
+import 'package:farmhelper/screens/addDetails.dart';
+import 'package:farmhelper/utilities/constants.dart';
 import 'package:farmhelper/utilities/informationBrain.dart';
-import 'package:flutter/material.dart';
 import 'package:farmhelper/widgets/common_appBar.dart';
 import 'package:farmhelper/widgets/nav_bar.dart';
-import 'package:farmhelper/utilities/constants.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:farmhelper/widgets/round_button.dart';
-
-import 'package:farmhelper/screens/addDetails.dart';
-
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CropDetails extends StatefulWidget {
   static const String id = 'crops';
@@ -16,20 +14,16 @@ class CropDetails extends StatefulWidget {
 }
 
 class _CropDetailsState extends State<CropDetails> {
-
-
   @override
   void initState() {
-
 //    details();
     super.initState();
   }
 
-
-@override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: commonAppBar,
+      appBar: commonAppBar(context),
       bottomNavigationBar: NavBar(),
       backgroundColor: Color(0xFFebedeb),
       body: ListView(
@@ -42,18 +36,15 @@ class _CropDetailsState extends State<CropDetails> {
               textAlign: TextAlign.center,
             ),
           ),
-
-        cardstreamer(),
+          cardstreamer(),
           RoundButton(
-           icon: FontAwesomeIcons.plus,
-            onPress: (){
+            icon: FontAwesomeIcons.plus,
+            onPress: () {
               Navigator.pushNamed(context, AddDetails.id);
             },
           ),
-
         ],
       ),
     );
   }
 }
-

@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen>
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: commonAppBar,
+        appBar: commonAppBar(context),
         bottomNavigationBar: NavBar(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

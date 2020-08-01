@@ -21,15 +21,18 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AppLanguage appLanguage = AppLanguage();
   await appLanguage.fetchLocale();
+  String initialRoute = await SplashEntryScreen.nextRoute();
   runApp(MyApp(
     appLanguage: appLanguage,
+    initialRoute: initialRoute,
   ));
 }
 
 class MyApp extends StatelessWidget {
   final AppLanguage appLanguage;
+  final String initialRoute;
 
-  MyApp({this.appLanguage});
+  MyApp({this.appLanguage, this.initialRoute});
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<AppLanguage>.value(
@@ -38,7 +41,9 @@ class MyApp extends StatelessWidget {
         builder: (context, value, child) {
           return MaterialApp(
             locale: value.appLocal,
-            initialRoute: SplashEntryScreen.id,
+            home: SplashEntryScreen(
+              nextPageRoute: initialRoute,
+            ),
             routes: {
               SplashEntryScreen.id: (context) => SplashEntryScreen(),
               LanguageScreen.id: (context) => LanguageScreen(),

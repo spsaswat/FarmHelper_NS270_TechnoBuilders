@@ -68,7 +68,7 @@ class _ReportScreenState extends State<ReportScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: commonAppBar,
+      appBar: commonAppBar(context),
       bottomNavigationBar: NavBar(),
       backgroundColor: Color(0xFFebedeb),
       body: ListView(

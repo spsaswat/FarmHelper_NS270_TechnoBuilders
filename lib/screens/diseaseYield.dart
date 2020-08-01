@@ -50,7 +50,7 @@ class _DiseaseYieldState extends State<DiseaseYield> {
         backgroundColor: Color(0xFFADEFD1),
 //      backgroundColor: Color(0xFFebedeb),
         //color: Color(0xFFebedeb),
-        appBar: commonAppBar,
+        appBar: commonAppBar(context),
         bottomNavigationBar: NavBar(),
         body: ListView(
           children: <Widget>[

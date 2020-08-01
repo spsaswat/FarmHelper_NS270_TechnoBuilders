@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 const int kPhoneNumberLength = 10;
 const int kOTPLength = 6;
 const String kCountryCode = '+91';
+const String kFirstTimeUserSharedPrefsKey = 'firstTimeUser';
 
 // <editor-fold desc="kCropList" default="collapsed">
 const List<String> kCropList = [

@@ -1,4 +1,5 @@
 import 'package:farmhelper/screens/get_otp_screen.dart';
+import 'package:farmhelper/screens/homescreen.dart';
 import 'package:farmhelper/screens/language.dart';
 import 'package:farmhelper/utilities/constants.dart';
 import 'package:farmhelper/widgets/snackbar.dart';
@@ -63,7 +64,7 @@ void verifyCodeSent(String smsCode, BuildContext context) {
       verificationId: verificationID, smsCode: smsCode);
   auth.signInWithCredential(_credential).then((AuthResult result) {
     // TODO: Change the next screen root
-    Navigator.pushReplacementNamed(context, LanguageScreen.id);
+    Navigator.pushReplacementNamed(context, HomeScreen.id);
   }).catchError((e) {
     print(e);
   });

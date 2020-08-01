@@ -169,7 +169,12 @@ const kOptionstyles2 = TextStyle(
 );
 
 const kCardDecoration = BoxDecoration(
-  color: Color(0xFFb6bab7),
+//  color: Color(0xFFb6bab7),
+  gradient: LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Color(0xffa8ff78),Color(0xff78ffd6)],
+  ),
   borderRadius: BorderRadius.all(Radius.circular(10.0)),
 );
 

@@ -216,9 +216,20 @@ class _HomeScreenState extends State<HomeScreen>
                               ),
                               clr1: a7.value,
                               clr2: a8.value,
-                              onPress: () {
-                                Navigator.pushNamed(
-                                    context, DiseaseDetectionScreen.id);
+                              onPress: () async {
+                                final detectedDisease =
+                                    await Navigator.pushNamed(
+                                        context, DiseaseDetectionScreen.id);
+                                if (detectedDisease == false) {
+                                  Alert(
+                                    context: context,
+                                    title: 'Crop Status',
+                                    desc: 'Healthy!\nNo worries!',
+                                    type: AlertType.success,
+                                    buttons: [],
+                                    closeFunction: () {},
+                                  ).show();
+                                }
                               },
                             ),
                           ),

@@ -1,5 +1,6 @@
 import 'package:farmhelper/utilities/constants.dart';
 import 'package:farmhelper/utilities/cropDisease.dart';
+import 'package:farmhelper/utilities/firebase/database_helper.dart';
 import 'package:farmhelper/utilities/networking/api_helper.dart';
 import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/common_appBar.dart';
@@ -10,8 +11,8 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class DiseaseYield extends StatefulWidget {
-  final String diseaseName;
-  DiseaseYield({this.diseaseName});
+  final CropDisease cropDisease;
+  DiseaseYield({this.cropDisease});
 
   static const String id = 'dis';
 
@@ -36,9 +37,7 @@ class _DiseaseYieldState extends State<DiseaseYield> {
   void initState() {
     super.initState();
 //    _cropDisease = CropDisease(packedCropDiseaseDetails: widget.diseaseName);
-    _cropDisease = CropDisease(
-        packedCropDiseaseDetails:
-            'Tomato___Spider_mites Two-spotted_spider_mite');
+    _cropDisease = widget.cropDisease;
   }
 
   @override
@@ -213,7 +212,17 @@ class _DiseaseYieldState extends State<DiseaseYield> {
                       );
                       toggleSpinner();
                       if (predictedYield != null) {
-                        // Since, predictedYield is actually is Percentage
+                        // Add parameters and yield to database
+                        addYieldPredictedWithDisease(
+                          _cropDisease.crop,
+                          _cropDisease.disease,
+                          _cropDisease.diseaseCode.toString(),
+                          (area.toDouble() / 100.0).toString(),
+                          stage.toString(),
+                          predictedYield.toString(),
+                        );
+
+                        // Since, predictedYield is actually in Percentage
                         predictedYield *= 100;
 
                         Alert(

@@ -4,6 +4,7 @@ import 'dart:typed_data' show Uint8List;
 
 import 'package:farmhelper/screens/diseaseYield.dart';
 import 'package:farmhelper/utilities/constants.dart';
+import 'package:farmhelper/utilities/cropDisease.dart';
 import 'package:farmhelper/utilities/networking/api_helper.dart';
 import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/snackbar.dart';
@@ -113,14 +114,20 @@ class _DiseaseDetectionScreenState extends State<DiseaseDetectionScreen> {
                         toggleSpinner();
 
                         if (detectedDisease != null) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DiseaseYield(
-                                diseaseName: detectedDisease,
+                          CropDisease cropDisease = CropDisease(
+                              packedCropDiseaseDetails: detectedDisease);
+                          if (cropDisease.diseaseCode < 0) {
+                            Navigator.pop(context, false);
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DiseaseYield(
+                                  cropDisease: cropDisease,
+                                ),
                               ),
-                            ),
-                          );
+                            );
+                          }
                         } else {
                           showSnackBarMessage(
                             context: context,

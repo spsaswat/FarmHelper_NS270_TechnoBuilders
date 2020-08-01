@@ -60,6 +60,29 @@ void addYieldPredictedWithoutDisease(String crop, String district, String year,
   });
 }
 
+void addYieldPredictedWithDisease(
+    String crop,
+    String disease,
+    String diseaseCode,
+    String areaAffected,
+    String stage,
+    String predictedYield) async {
+  FirebaseUser user = await _auth.currentUser();
+  _firestore
+      .collection(
+          '${UsersCollection.collectionName}/${user.phoneNumber}/${YPwDCollection.collectionName}')
+      .add({
+    YPwDCollection.fieldUserPhoneNumber: user.phoneNumber,
+    YPwDCollection.fieldCrop: crop,
+    YPwDCollection.fieldDisease: disease,
+    YPwDCollection.fieldDiseaseCode: diseaseCode,
+    YPwDCollection.fieldAreaAffected: areaAffected,
+    YPwDCollection.fieldStage: stage,
+    YPwDCollection.fieldPredictedYield: predictedYield,
+    YPwDCollection.fieldCreated: FieldValue.serverTimestamp(),
+  });
+}
+
 /*
 References:
   https://stackoverflow.com/questions/51122211/check-if-field-already-exists-in-flutter-firestore (for doesPhoneNumberExists)

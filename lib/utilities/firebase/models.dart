@@ -31,3 +31,16 @@ class YPwoDCollection {
   static String fieldArea = 'area';
   static String fieldPredictedYield = 'predictedYield';
 }
+
+// Yield Prediction with Disease
+class YPwDCollection {
+  static String collectionName = 'yieldWithDisease';
+  static String fieldUserPhoneNumber = 'registeredPhoneNumber';
+  static String fieldCreated = 'created';
+  static String fieldCrop = 'crop';
+  static String fieldDisease = 'disease';
+  static String fieldDiseaseCode = 'diseaseCode';
+  static String fieldAreaAffected = 'area';
+  static String fieldStage = 'stage';
+  static String fieldPredictedYield = 'predictedYield';
+}

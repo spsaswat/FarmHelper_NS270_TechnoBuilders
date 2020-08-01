@@ -1,10 +1,12 @@
 import 'package:farmhelper/screens/estimationScreen.dart';
+import 'package:farmhelper/screens/reportscreen.dart';
 import 'package:farmhelper/utilities/constants.dart';
 import 'package:farmhelper/widgets/cardsButton.dart';
 import 'package:farmhelper/widgets/common_appBar.dart';
 import 'package:farmhelper/widgets/iconContent.dart';
 import 'package:farmhelper/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String id = 'home';
@@ -71,9 +73,17 @@ class HomeScreen extends StatelessWidget {
                           child: CardButton(
                             cardChild: IconContent(
                               icon: Icons.mail,
-                              label: 'Report Crop Failure',
+                              label: 'Report Crop Faliure',
                             ),
-                            onPress: () {},
+                            onPress: () {
+                              Navigator.pushNamed(context, ReportScreen.id);
+                              Alert(
+                                context: context,
+                                title: 'Need Assistance ?',
+                                desc: "Click on the call button in the bottom to avail any support immediately.",
+                              ).show();
+
+                            },
                           ),
                         ),
                       ],

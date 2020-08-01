@@ -162,6 +162,11 @@ const kOptionstyles = TextStyle(
   fontWeight: FontWeight.bold,
   color: Colors.white,
 );
+const kOptionstyles2 = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+  color: Colors.black,
+);
 
 const kCardDecoration = BoxDecoration(
   color: Color(0xFFb6bab7),
@@ -181,3 +186,12 @@ const kInactiveIcon = Color(0xFFb0b0b0);
 const Color kSnackBarWarningColor = Colors.redAccent;
 const Color kSnackBarErrorColor = Colors.orangeAccent;
 // </editor-fold>
+
+const List<String> kFaliures = [
+  'Drought',
+  'Disease',
+  'Floods',
+  'Insects',
+  'Animal Destruction',
+  'Not Listed Here',
+];

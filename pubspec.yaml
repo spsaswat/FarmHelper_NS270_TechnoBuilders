@@ -32,8 +32,11 @@ dependencies:
   animated_text_kit: ^2.2.0
   modal_progress_hud: ^0.1.3
   font_awesome_flutter: ^8.8.1
+  rflutter_alert: 1.0.3
+  url_launcher: ^5.4.11
 
   pin_code_text_field: ^1.6.0
+  http: ^0.12.1
 
   # Firebase dependencies
   firebase_core: ^0.4.5

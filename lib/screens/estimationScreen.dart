@@ -1,4 +1,5 @@
 import 'package:farmhelper/utilities/constants.dart';
+import 'package:farmhelper/utilities/networking/api_helper.dart';
 import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/common_appBar.dart';
 import 'package:farmhelper/widgets/nav_bar.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class EstimateYield extends StatefulWidget {
   static const String id = 'estimate';
@@ -236,7 +238,7 @@ class _EstimateYieldState extends State<EstimateYield> {
               builder: (context) => Button(
                 buttonColor: Color(0xFF53d45b),
                 buttonText: 'Estimate Yield',
-                onPress: () {
+                onPress: () async {
                   if (crop == null) {
                     showSnackBarMessage(
                       context: context,
@@ -262,6 +264,18 @@ class _EstimateYieldState extends State<EstimateYield> {
                           'Please select Field Area greater than Zero',
                       backgroundColor: kSnackBarWarningColor,
                     );
+                  } else {
+                    double predictedYield = await ApiHelper()
+                        .getYieldPrediction(
+                            crop, district, year.toString(), season, area);
+                    Alert(
+                      context: context,
+                      title: 'Predicted Yield',
+                      desc: predictedYield.toString(),
+                      type: AlertType.success,
+                      buttons: [],
+                      closeFunction: () {},
+                    ).show();
                   }
                 },
               ),

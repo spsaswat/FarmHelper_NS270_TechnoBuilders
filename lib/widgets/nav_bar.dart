@@ -1,6 +1,7 @@
 import 'package:farmhelper/screens/homescreen.dart';
 import 'package:farmhelper/utilities/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NavBar extends StatelessWidget {
   NavBar();
@@ -34,10 +35,12 @@ class NavBar extends StatelessWidget {
             icon: Icon(Icons.chat),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              launch("tel://7003814954");
+            },
             color: kInactiveIcon,
             iconSize: 25,
-            icon: Icon(Icons.settings),
+            icon: Icon(Icons.phone),
           ),
         ],
       ),

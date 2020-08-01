@@ -25,7 +25,7 @@ void addRegisteredUserDetails(
         .setData({
       UsersCollection.fieldPhoneNumber: phoneNumber,
       UsersCollection.fieldName: userName,
-      UsersCollection.fieldArea: '1000',
+      UsersCollection.fieldArea: '1000.0',
       UsersCollection.fieldDistrict: district,
       UsersCollection.fieldCreated: FieldValue.serverTimestamp(),
     });

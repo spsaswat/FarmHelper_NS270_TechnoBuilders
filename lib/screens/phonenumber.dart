@@ -5,6 +5,7 @@ import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
   static const String id = 'phone';
@@ -13,8 +14,9 @@ class PhoneNumberScreen extends StatefulWidget {
 }
 
 class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
-  String phoneNumber = '', district;
+  String phoneNumber = '', district, name = '';
 
+  //region districtsDropdown
   DropdownButton<String> districtsDropdown() {
     List<DropdownMenuItem<String>> districtsItems = [];
 
@@ -38,6 +40,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
       },
     );
   }
+  //endregion
 
   @override
   Widget build(BuildContext context) {
@@ -65,9 +68,28 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                 vertical: 8.0,
               ),
               child: TextField(
-                keyboardType: TextInputType.phone,
+                keyboardType: TextInputType.text,
                 textAlign: TextAlign.center,
                 autofocus: true,
+                textCapitalization: TextCapitalization.words,
+                onChanged: (value) {
+                  name = value;
+                },
+                decoration: kBoxfield.copyWith(
+                  hintText:
+                      _appLocalizations.translate('phonenumber.userNameHint'),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 35.0,
+                vertical: 8.0,
+              ),
+              child: TextField(
+                keyboardType: TextInputType.phone,
+                textAlign: TextAlign.center,
+                textInputAction: TextInputAction.done,
                 onChanged: (value) {
                   phoneNumber = value;
                 },
@@ -104,8 +126,17 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   buttonColor: Colors.lightBlueAccent,
                   buttonText:
                       _appLocalizations.translate('phonenumber.register'),
-                  onPress: () {
-                    if (phoneNumber.length != kPhoneNumberLength) {
+                  onPress: () async {
+                    if (name == '') {
+                      showSnackBarMessage(
+                        context: context,
+                        snackBarText: _appLocalizations.translate(
+                            'error.nameValidationSnackbar',
+                            [kPhoneNumberLength.toString()]),
+                        backgroundColor: Colors.redAccent,
+                      );
+                      return;
+                    } else if (phoneNumber.length != kPhoneNumberLength) {
                       showSnackBarMessage(
                         context: context,
                         snackBarText: _appLocalizations.translate(
@@ -124,7 +155,12 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                       return;
                     }
                     registerWithPhoneNumber(
-                        kCountryCode + phoneNumber, district, context);
+                        kCountryCode + phoneNumber, name, district, context);
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    prefs.setString(kUserNameSharedPrefsKey, name);
+                    prefs.setString(kDistrictSharedPrefsKey, district);
+                    prefs.setString(kFieldAreaSharedPrefsKey, '1000.0');
                   },
                 );
               },

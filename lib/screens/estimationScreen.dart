@@ -22,7 +22,7 @@ class EstimateYield extends StatefulWidget {
 }
 
 class _EstimateYieldState extends State<EstimateYield> {
-  String crop, season, district, area;
+  String crop, season, district;
   int year = DateTime.now().year;
   bool showSpinner = false;
 
@@ -266,8 +266,8 @@ class _EstimateYieldState extends State<EstimateYield> {
                     } else {
                       toggleSpinner();
                       double predictedYield =
-                          await ApiHelper.getYieldPrediction(
-                              crop, district, year.toString(), season, '1000');
+                          await ApiHelper.getYieldPrediction(crop, district,
+                              year.toString(), season, '1000.0');
                       toggleSpinner();
                       if (predictedYield != null) {
                         addYieldPredictedWithoutDisease(
@@ -275,7 +275,7 @@ class _EstimateYieldState extends State<EstimateYield> {
                           district,
                           year.toString(),
                           season,
-                          '1000',
+                          '1000.0',
                           predictedYield.toString(),
                         );
                         Alert(

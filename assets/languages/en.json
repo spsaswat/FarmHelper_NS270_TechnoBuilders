@@ -1,6 +1,7 @@
 {
   "phonenumber.phoneNumberHint": "Enter your phone number",
   "phonenumber.register": "Register",
+  "phonenumber.userNameHint": "Enter your name",
 
   "homescreen.welcome": "Welcome, ",
   "homescreen.cropDetailsLabel": "Add/View Crop Details",
@@ -32,10 +33,16 @@
   "diseaseYield.yield.alert.desc": "Predicted yield is {}%.\nYield loss due to disease is {}%.",
 
   "profile.nameTextHint": "Enter your name",
+  "profile.areaTextHint": "Enter the Field Area (in Hectares)",
+  "profile.saveChanges": "Save Changes",
+  "profile.saveChangesSnackbar": "Changes saved successfully!",
+  "profile.title": "Profile",
 
   "error.cropSnackbar": "Please select the Crop Type",
   "error.seasonSnackbar": "Please select the Season",
   "error.districtSnackbar": "Please select your District",
+  "error.nameValidationSnackbar": "Your name cannot be empty!",
+  "error.areaSnackbar": "Please enter the area of your field",
   "error.phoneValidationSnackbar": "Length of Phone Number must be {}",
   "error.otpValidationSnackbar": "The length of the OTP must be {}",
   "error.oops": "Oops! Something went wrong. Please try again.",

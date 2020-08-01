@@ -1,6 +1,7 @@
 {
   "phonenumber.phoneNumberHint": "अपना दूरभाष क्रमांक दर्ज करें",
   "phonenumber.register": "रजिस्टर करें",
+  "phonenumber.userNameHint": "अपना नाम दर्ज करें",
 
   "homescreen.welcome": "स्वागत हे, ",
   "homescreen.cropDetailsLabel": "फसल विवरण जोड़ें / देखें",
@@ -32,10 +33,16 @@
   "diseaseYield.yield.alert.desc": "अनुमानित उपज {}% है।\nरोग के कारण उपज का नुकसान {}% है।",
 
   "profile.nameTextHint": "अपना नाम दर्ज करें",
+  "profile.areaTextHint": "क्षेत्र का क्षेत्रफल दर्ज करें (हेक्टेयर में)",
+  "profile.saveChanges": "परिवर्तनों को संचय करें",
+  "profile.saveChangesSnackbar": "परिवर्तन सफलतापूर्वक संग्रहीत किए गए हैं!",
+  "profile.title": "प्रोफ़ाइल",
 
   "error.cropSnackbar": "कृपया फसल प्रकार चुनें",
   "error.seasonSnackbar": "Please select the Season",
   "error.districtSnackbar": "कृपया अपने जिले का चयन करें",
+  "error.nameValidationSnackbar": "आपका नाम रिक्त नहीं हो सकता है!",
+  "error.areaSnackbar": "कृपया अपने क्षेत्र का क्षेत्रफल दर्ज करें।",
   "error.phoneValidationSnackbar": "फोन नंबर की लंबाई {} होनी चाहिए",
   "error.otpValidationSnackbar": "OTP की लंबाई {} होनी चाहिए",
   "error.oops": "गड़बड़ हो गया। कृपया पुन: प्रयास करें।",
@@ -59,7 +66,6 @@
   "detectedDisease.11.0": " उत्तरी पत्ता ब्लाइट ",
   "detectedDisease.12.0": " कामन राष्ट्र",
   "detectedDisease.13.0": " सर्कोस्पोरा लीफ स्पॉट \n ग्रे लीफ स्पॉट ",
-
 
   "kDistricts.default": "अपना जिला चुनें",
   "kDistricts.Araria": " अररिया ",
@@ -167,7 +173,6 @@
   "kSeasons.WINTER": "WINTER",
   "kSeasons.TOTAL ": "TOTAL ",
   "kSeasons.WHOLE YEAR": "WHOLE YEAR",
-
 
   "test": "test"
 }

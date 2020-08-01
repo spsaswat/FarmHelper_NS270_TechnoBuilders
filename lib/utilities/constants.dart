@@ -5,6 +5,9 @@ const int kPhoneNumberLength = 10;
 const int kOTPLength = 6;
 const String kCountryCode = '+91';
 const String kFirstTimeUserSharedPrefsKey = 'firstTimeUser';
+const String kUserNameSharedPrefsKey = 'userName';
+const String kDistrictSharedPrefsKey = 'district';
+const String kFieldAreaSharedPrefsKey = 'fieldArea';
 
 // <editor-fold desc="kCropList" default="collapsed">
 const List<String> kCropList = [

@@ -1,4 +1,5 @@
 import 'package:farmhelper/screens/cropdetails.dart';
+import 'package:farmhelper/screens/disease_detection_screen.dart';
 import 'package:farmhelper/screens/estimationScreen.dart';
 import 'package:farmhelper/screens/reportscreen.dart';
 import 'package:farmhelper/utilities/constants.dart';
@@ -114,7 +115,10 @@ class HomeScreen extends StatelessWidget {
                               icon: Icons.nature,
                               label: 'Check Crop for Disease',
                             ),
-                            onPress: () {},
+                            onPress: () {
+                              Navigator.pushNamed(
+                                  context, DiseaseDetectionScreen.id);
+                            },
                           ),
                         ),
                       ],

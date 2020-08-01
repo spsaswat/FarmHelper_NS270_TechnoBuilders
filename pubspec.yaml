@@ -42,6 +42,9 @@ dependencies:
   pin_code_text_field: ^1.6.0
   http: ^0.12.1
 
+  # disease detection
+  image_picker: ^0.6.7+4
+
   # Firebase dependencies
   firebase_core: ^0.4.5
   firebase_auth: ^0.16.1

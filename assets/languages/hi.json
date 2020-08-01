@@ -33,7 +33,8 @@
   "diseaseYield.yield.alert.desc": "अनुमानित उपज {}% है।\nरोग के कारण उपज का नुकसान {}% है।",
 
   "profile.nameTextHint": "अपना नाम दर्ज करें",
-  "profile.areaTextHint": "क्षेत्र का क्षेत्रफल दर्ज करें (हेक्टेयर में)",
+  "profile.areaTextHint": "क्षेत्र का क्षेत्रफल दर्ज करें",
+  "profile.areaUnits": "हेक्टेयर",
   "profile.saveChanges": "परिवर्तनों को संचय करें",
   "profile.saveChangesSnackbar": "परिवर्तन सफलतापूर्वक संग्रहीत किए गए हैं!",
   "profile.title": "प्रोफ़ाइल",

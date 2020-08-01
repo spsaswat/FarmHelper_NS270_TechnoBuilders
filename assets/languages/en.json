@@ -33,7 +33,8 @@
   "diseaseYield.yield.alert.desc": "Predicted yield is {}%.\nYield loss due to disease is {}%.",
 
   "profile.nameTextHint": "Enter your name",
-  "profile.areaTextHint": "Enter the Field Area (in Hectares)",
+  "profile.areaTextHint": "Enter the Field Area",
+  "profile.areaUnits": "hectares",
   "profile.saveChanges": "Save Changes",
   "profile.saveChangesSnackbar": "Changes saved successfully!",
   "profile.title": "Profile",

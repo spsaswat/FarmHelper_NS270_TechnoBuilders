@@ -157,6 +157,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               decoration: kBoxfield.copyWith(
                 hintText: AppLocalizations.of(context)
                     .translate('profile.areaTextHint'),
+                suffixText:
+                    AppLocalizations.of(context).translate('profile.areaUnits'),
               ),
             ),
           ),

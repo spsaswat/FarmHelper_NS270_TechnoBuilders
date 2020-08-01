@@ -9,6 +9,7 @@ import 'package:farmhelper/screens/homescreen.dart';
 import 'package:farmhelper/screens/language.dart';
 import 'package:farmhelper/screens/phonenumber.dart';
 import 'package:farmhelper/screens/reportscreen.dart';
+import 'package:farmhelper/screens/splash_screen.dart';
 import 'package:farmhelper/utilities/constants.dart';
 import 'package:farmhelper/utilities/localization/app_language.dart';
 import 'package:farmhelper/utilities/localization/app_localizations.dart';
@@ -37,8 +38,9 @@ class MyApp extends StatelessWidget {
         builder: (context, value, child) {
           return MaterialApp(
             locale: value.appLocal,
-            initialRoute: LanguageScreen.id,
+            initialRoute: SplashEntryScreen.id,
             routes: {
+              SplashEntryScreen.id: (context) => SplashEntryScreen(),
               LanguageScreen.id: (context) => LanguageScreen(),
               PhoneNumberScreen.id: (context) => PhoneNumberScreen(),
               GetOTPScreen.id: (context) => GetOTPScreen(),

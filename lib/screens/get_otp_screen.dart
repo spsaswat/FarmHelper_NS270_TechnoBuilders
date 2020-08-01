@@ -68,7 +68,7 @@ class GetOTPScreen extends StatelessWidget {
                       showSnackBarMessage(
                         context: context,
                         snackBarText: _otpValidation,
-                        backgroundColor: Colors.redAccent,
+                        backgroundColor: kSnackBarWarningColor,
                       );
                       return;
                     }

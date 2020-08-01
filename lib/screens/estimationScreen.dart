@@ -3,6 +3,8 @@ import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/common_appBar.dart';
 import 'package:farmhelper/widgets/nav_bar.dart';
 import 'package:farmhelper/widgets/round_button.dart';
+import 'package:farmhelper/widgets/snackbar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
@@ -15,9 +17,8 @@ class EstimateYield extends StatefulWidget {
 }
 
 class _EstimateYieldState extends State<EstimateYield> {
-  String crop = kCropList[0];
-  String season = kSeasons[0];
-  int year = 2020;
+  String crop, season, district;
+  int year = DateTime.now().year;
   int start = 0;
   String area;
 
@@ -35,6 +36,8 @@ class _EstimateYieldState extends State<EstimateYield> {
     return DropdownButton<String>(
       value: crop,
       items: cropItems,
+      underline: SizedBox(),
+      hint: Text("Select Crop Type"),
       onChanged: (value) {
         setState(() {
           crop = value;
@@ -56,10 +59,36 @@ class _EstimateYieldState extends State<EstimateYield> {
 
     return DropdownButton<String>(
       value: season,
+      hint: Text("Select Season"),
+      underline: SizedBox(),
       items: seasonItems,
       onChanged: (value) {
         setState(() {
           season = value;
+        });
+      },
+    );
+  }
+
+  DropdownButton<String> districtsDropdown() {
+    List<DropdownMenuItem<String>> districtsItems = [];
+
+    for (String s in kDistricts) {
+      var newItem = DropdownMenuItem(
+        child: Text(s),
+        value: s,
+      );
+      districtsItems.add(newItem);
+    }
+
+    return DropdownButton<String>(
+      value: district,
+      hint: Text("Select your District"),
+      underline: SizedBox(),
+      items: districtsItems,
+      onChanged: (value) {
+        setState(() {
+          district = value;
         });
       },
     );
@@ -73,27 +102,64 @@ class _EstimateYieldState extends State<EstimateYield> {
       //color: Color(0xFFebedeb),
       appBar: commonAppBar,
       bottomNavigationBar: NavBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: ListView(
         children: <Widget>[
-          Text(
-            'Estimate Crop Yield',
-            style: kOptionstyles,
-            textAlign: TextAlign.center,
-          ),
-          Container(
-            child: Center(
-              child: cropsDropdown(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Estimate Crop Yield',
+              style: kOptionstyles,
+              textAlign: TextAlign.center,
             ),
           ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    child: Column(
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 35.0,
+              vertical: 8.0,
+            ),
+            child: Container(
+              child: cropsDropdown(),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.lightBlueAccent,
+                ),
+                borderRadius: BorderRadius.circular(32.0),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 35.0,
+              vertical: 8.0,
+            ),
+            child: Container(
+              child: districtsDropdown(),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.lightBlueAccent,
+                ),
+                borderRadius: BorderRadius.circular(32.0),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 25.0,
+              vertical: 8.0,
+            ),
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      'Year',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
                           year.toString(),
@@ -104,7 +170,7 @@ class _EstimateYieldState extends State<EstimateYield> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             RoundButton(
-                              onpres: () {
+                              onPress: () {
                                 setState(() {
                                   year--;
                                 });
@@ -115,7 +181,7 @@ class _EstimateYieldState extends State<EstimateYield> {
                               width: 10,
                             ),
                             RoundButton(
-                              onpres: () {
+                              onPress: () {
                                 setState(() {
                                   year++;
                                 });
@@ -126,61 +192,33 @@ class _EstimateYieldState extends State<EstimateYield> {
                         ),
                       ],
                     ),
-                    decoration: kCardDecoration,
-                  ),
+                  ],
                 ),
               ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          kMonths[start],
-                          style: kLargeText,
-                          textAlign: TextAlign.center,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            RoundButton(
-                              onpres: () {
-                                setState(() {
-                                  if (start != 0) start--;
-                                });
-                              },
-                              icon: FontAwesomeIcons.minus,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            RoundButton(
-                              onpres: () {
-                                setState(() {
-                                  if (start == 11)
-                                    start = 0;
-                                  else
-                                    start++;
-                                });
-                              },
-                              icon: FontAwesomeIcons.plus,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    decoration: kCardDecoration,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Container(
-            child: Center(child: seasonDropdown()),
+              decoration: kCardDecoration,
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 35.0, right: 35.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 35.0,
+              vertical: 8.0,
+            ),
+            child: Container(
+              child: seasonDropdown(),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.lightBlueAccent,
+                ),
+                borderRadius: BorderRadius.circular(32.0),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 35.0,
+              vertical: 8.0,
+            ),
             child: TextField(
               keyboardType: TextInputType.number,
               textAlign: TextAlign.center,
@@ -194,10 +232,39 @@ class _EstimateYieldState extends State<EstimateYield> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 35, right: 35),
-            child: Button(
-              buttonColor: Color(0xFF53d45b),
-              buttonText: 'Estimate Yield',
-              onPress: () {},
+            child: Builder(
+              builder: (context) => Button(
+                buttonColor: Color(0xFF53d45b),
+                buttonText: 'Estimate Yield',
+                onPress: () {
+                  if (crop == null) {
+                    showSnackBarMessage(
+                      context: context,
+                      snackBarText: 'Please select the Crop Type',
+                      backgroundColor: kSnackBarWarningColor,
+                    );
+                  } else if (district == null) {
+                    showSnackBarMessage(
+                      context: context,
+                      snackBarText: 'Please select your District',
+                      backgroundColor: kSnackBarWarningColor,
+                    );
+                  } else if (season == null) {
+                    showSnackBarMessage(
+                      context: context,
+                      snackBarText: 'Please select the Season',
+                      backgroundColor: kSnackBarWarningColor,
+                    );
+                  } else if (area == null) {
+                    showSnackBarMessage(
+                      context: context,
+                      snackBarText:
+                          'Please select Field Area greater than Zero',
+                      backgroundColor: kSnackBarWarningColor,
+                    );
+                  }
+                },
+              ),
             ),
           ),
         ],

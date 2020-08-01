@@ -5,7 +5,7 @@ const int kPhoneNumberLength = 10;
 const int kOTPLength = 6;
 const String kCountryCode = '+91';
 
-// <editor-fold desc="kCropList" default="collapsed>
+// <editor-fold desc="kCropList" default="collapsed">
 const List<String> kCropList = [
   'ARHAR (TUR)',
   'BAJRA',
@@ -49,7 +49,7 @@ const List<String> kCropList = [
 ];
 // </editor-fold>
 
-// <editor-fold desc="kMonths" default="collapsed>
+// <editor-fold desc="kMonths" default="collapsed">
 const List<String> kMonths = [
   'JAN',
   'FEB',
@@ -66,7 +66,7 @@ const List<String> kMonths = [
 ];
 // </editor-fold>
 
-// <editor-fold desc="kSeasons" default="collapsed>
+// <editor-fold desc="kSeasons" default="collapsed">
 const List<String> kSeasons = [
   'AUTUMN',
   'KHARIF',
@@ -78,7 +78,7 @@ const List<String> kSeasons = [
 ];
 // </editor-fold>
 
-// <editor-fold desc="kDistricts" default="collapsed>
+// <editor-fold desc="kDistricts" default="collapsed">
 const List<String> kDistricts = [
   'Araria',
   'Arhasia',
@@ -176,3 +176,8 @@ const kLargeText = TextStyle(
 
 const kActiveIcon = Color(0xFF6eeb60);
 const kInactiveIcon = Color(0xFFb0b0b0);
+
+// <editor-fold desc="SnackBar Colors" default="collapsed">
+const Color kSnackBarWarningColor = Colors.redAccent;
+const Color kSnackBarErrorColor = Colors.orangeAccent;
+// </editor-fold>

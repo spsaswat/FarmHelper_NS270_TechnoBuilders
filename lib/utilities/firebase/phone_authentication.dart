@@ -1,5 +1,6 @@
 import 'package:farmhelper/screens/get_otp_screen.dart';
 import 'package:farmhelper/screens/language.dart';
+import 'package:farmhelper/utilities/constants.dart';
 import 'package:farmhelper/widgets/snackbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ Future registerWithPhoneNumber(String mobile, int n,BuildContext context) async 
         showSnackBarMessage(
           context: context,
           snackBarText: 'Oops! Something went wrong. Please try again.',
-          backgroundColor: Colors.orangeAccent,
+          backgroundColor: kSnackBarErrorColor,
         );
       });
     },
@@ -30,7 +31,7 @@ Future registerWithPhoneNumber(String mobile, int n,BuildContext context) async 
       showSnackBarMessage(
         context: context,
         snackBarText: 'Oops! Something went wrong. Please try again.',
-        backgroundColor: Colors.orangeAccent,
+        backgroundColor: kSnackBarErrorColor,
       );
     },
     codeSent: (String verificationId, [int forceResendingToken]) {
@@ -48,7 +49,7 @@ Future registerWithPhoneNumber(String mobile, int n,BuildContext context) async 
       showSnackBarMessage(
         context: context,
         snackBarText: 'Code retrieval timeout! Please register again.',
-        backgroundColor: Colors.orangeAccent,
+        backgroundColor: kSnackBarErrorColor,
       );
       Navigator.pop(context);
     },

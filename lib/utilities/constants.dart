@@ -215,3 +215,4 @@ const kChatBot = TextStyle(
   backgroundColor: Colors.black12,
 
 );
+

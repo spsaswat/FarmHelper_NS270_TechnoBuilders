@@ -2,7 +2,7 @@ import 'dart:convert' show base64Encode;
 import 'dart:io' show File;
 import 'dart:typed_data' show Uint8List;
 
-import 'package:farmhelper/screens/homescreen.dart';
+import 'package:farmhelper/screens/diseaseYield.dart';
 import 'package:farmhelper/utilities/constants.dart';
 import 'package:farmhelper/utilities/networking/api_helper.dart';
 import 'package:farmhelper/widgets/button.dart';
@@ -10,7 +10,6 @@ import 'package:farmhelper/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 class DiseaseDetectionScreen extends StatefulWidget {
   static const String id = 'disease';
@@ -110,21 +109,18 @@ class _DiseaseDetectionScreenState extends State<DiseaseDetectionScreen> {
 //                        imgLib.decodeImage(_imageFile.readAsBytesSync()));
                         String base64EncodedImg = base64Encode(bytesImg);
                         String detectedDisease =
-                            await ApiHelper().detectDisease(base64EncodedImg);
+                            await ApiHelper.detectDisease(base64EncodedImg);
                         toggleSpinner();
 
                         if (detectedDisease != null) {
-                          Alert(
-                            context: context,
-                            title: 'Detected Disease',
-                            desc: detectedDisease,
-                            type: AlertType.success,
-                            buttons: [],
-                            closeFunction: () => Navigator.popUntil(
-                              context,
-                              ModalRoute.withName(HomeScreen.id),
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DiseaseYield(
+                                diseaseName: detectedDisease,
+                              ),
                             ),
-                          ).show();
+                          );
                         } else {
                           showSnackBarMessage(
                             context: context,

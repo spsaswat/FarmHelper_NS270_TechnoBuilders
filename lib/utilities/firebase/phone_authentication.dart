@@ -45,10 +45,9 @@ Future registerWithPhoneNumber(
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) =>
-              GetOTPScreen(
-                lang: n,
-              ),
+          builder: (context) => GetOTPScreen(
+            lang: n,
+          ),
         ),
       );
     },

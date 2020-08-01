@@ -76,7 +76,7 @@ class _ReportScreenState extends State<ReportScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              'Report a crop faliure',
+              'Report a crop failure',
               style: kOptionstyles2,
               textAlign: TextAlign.center,
             ),
@@ -173,7 +173,7 @@ class _ReportScreenState extends State<ReportScreen> {
                   } else if (fails == null) {
                     showSnackBarMessage(
                       context: context,
-                      snackBarText: 'Please Specify a reason for your faliure',
+                      snackBarText: 'Please Specify a reason for your failure',
                       backgroundColor: kSnackBarWarningColor,
                     );
                   } else {

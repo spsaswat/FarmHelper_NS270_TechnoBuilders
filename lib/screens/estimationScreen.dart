@@ -274,8 +274,8 @@ class _EstimateYieldState extends State<EstimateYield> {
                       );
                     } else {
                       toggleSpinner();
-                      double predictedYield = await ApiHelper()
-                          .getYieldPrediction(
+                      double predictedYield =
+                          await ApiHelper.getYieldPrediction(
                               crop, district, year.toString(), season, area);
                       toggleSpinner();
                       if (predictedYield != null) {

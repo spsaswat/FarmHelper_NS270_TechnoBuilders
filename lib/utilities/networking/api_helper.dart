@@ -3,12 +3,15 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiHelper {
-  final String _yieldPredictionApiURL = "https://sihcypapi.herokuapp.com/";
-  final String _diseaseDetectionApiURL =
-      "https://sihcypapi.herokuapp.com/image2";
+  static const String _yieldPredictionApiURL =
+      "https://sihapiv3.herokuapp.com/";
+  static const String _yieldInfectedPlantApiURL =
+      "https://sihapiv3.herokuapp.com/dis";
+  static const String _diseaseDetectionApiURL =
+      "https://sihapiv3.herokuapp.com/image";
 
-  Future<double> getYieldPrediction(String crop, String district, String year,
-      String season, String fieldArea) async {
+  static Future<double> getYieldPrediction(String crop, String district,
+      String year, String season, String fieldArea) async {
     var requestBody = {
       'DISTRICT': district,
       'YEAR': year,
@@ -33,7 +36,7 @@ class ApiHelper {
     }
   }
 
-  Future<String> detectDisease(String img) async {
+  static Future<String> detectDisease(String img) async {
     try {
 //    print('imgString: ${img.length} ,$img');  // Debugging
 //    print('Post request'); // Debugging

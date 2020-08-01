@@ -1,6 +1,7 @@
 import 'package:farmhelper/screens/ChatScreen.dart';
 import 'package:farmhelper/screens/addDetails.dart';
 import 'package:farmhelper/screens/cropdetails.dart';
+import 'package:farmhelper/screens/diseaseYield.dart';
 import 'package:farmhelper/screens/disease_detection_screen.dart';
 import 'package:farmhelper/screens/estimationScreen.dart';
 import 'package:farmhelper/screens/get_otp_screen.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         AddDetails.id: (context) => AddDetails(),
         ChatScreen.id: (context) => ChatScreen(),
         DiseaseDetectionScreen.id: (context) => DiseaseDetectionScreen(),
+        DiseaseYield.id: (context) => DiseaseYield()
       },
     );
   }

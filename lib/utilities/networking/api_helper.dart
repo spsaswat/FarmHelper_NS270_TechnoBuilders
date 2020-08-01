@@ -56,4 +56,29 @@ class ApiHelper {
       return null;
     }
   }
+
+  static Future<double> getYieldForInfectedPlant(
+      {String disease, String areaAffected, String stage}) async {
+    var requestBody = {
+      'disease': disease,
+      'area_affected': areaAffected,
+      'stage': stage,
+    };
+    print(jsonEncode(requestBody));
+    try {
+      var responseData = await http.post(
+        _yieldInfectedPlantApiURL,
+        body: jsonEncode(requestBody),
+      );
+      if (responseData.statusCode == 200) {
+        return jsonDecode(responseData.body);
+      } else {
+        print(responseData.statusCode);
+        return null;
+      }
+    } catch (e) {
+      print('api_helper.dart: getYieldForInfectedPlant -> $e');
+      return null;
+    }
+  }
 }

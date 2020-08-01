@@ -1,4 +1,5 @@
 import 'package:farmhelper/utilities/constants.dart';
+import 'package:farmhelper/utilities/firebase/database_helper.dart';
 import 'package:farmhelper/utilities/networking/api_helper.dart';
 import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/common_appBar.dart';
@@ -279,6 +280,14 @@ class _EstimateYieldState extends State<EstimateYield> {
                               crop, district, year.toString(), season, area);
                       toggleSpinner();
                       if (predictedYield != null) {
+                        addYieldPredictedWithoutDisease(
+                          crop,
+                          district,
+                          year.toString(),
+                          season,
+                          area,
+                          predictedYield.toString(),
+                        );
                         Alert(
                           context: context,
                           title: 'Predicted Yield',

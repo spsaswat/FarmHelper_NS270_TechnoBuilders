@@ -18,3 +18,16 @@ class FailureCollection {
   static String fieldEstimatedYield = 'estimatedYield';
   static String fieldReason = 'reason';
 }
+
+// Yield Prediction without Disease
+class YPwoDCollection {
+  static String collectionName = 'yieldWithoutDisease';
+  static String fieldUserPhoneNumber = 'registeredPhoneNumber';
+  static String fieldCreated = 'created';
+  static String fieldCrop = 'crop';
+  static String fieldDistrict = 'district';
+  static String fieldYear = 'year';
+  static String fieldSeason = 'season';
+  static String fieldArea = 'area';
+  static String fieldPredictedYield = 'predictedYield';
+}

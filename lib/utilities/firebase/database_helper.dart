@@ -18,7 +18,10 @@ Future<bool> doesPhoneNumberExists(String phoneNumber) async {
 
 void addRegisteredUserDetails(String phoneNumber, String district) async {
   if (await doesPhoneNumberExists(phoneNumber) == false) {
-    _firestore.collection(UsersCollection.collectionName).add({
+    _firestore
+        .collection(UsersCollection.collectionName)
+        .document('$phoneNumber')
+        .setData({
       UsersCollection.fieldPhoneNumber: phoneNumber,
       UsersCollection.fieldDistrict: district,
       UsersCollection.fieldCreated: FieldValue.serverTimestamp(),
@@ -36,6 +39,24 @@ void reportFailure(
     FailureCollection.fieldReason: fails,
     FailureCollection.fieldUserPhoneNumber: user.phoneNumber,
     FailureCollection.fieldCreated: FieldValue.serverTimestamp(),
+  });
+}
+
+void addYieldPredictedWithoutDisease(String crop, String district, String year,
+    String season, String area, String predictedYield) async {
+  FirebaseUser user = await _auth.currentUser();
+  _firestore
+      .collection(
+          '${UsersCollection.collectionName}/${user.phoneNumber}/${YPwoDCollection.collectionName}')
+      .add({
+    YPwoDCollection.fieldUserPhoneNumber: user.phoneNumber,
+    YPwoDCollection.fieldCrop: crop,
+    YPwoDCollection.fieldDistrict: district,
+    YPwoDCollection.fieldYear: year,
+    YPwoDCollection.fieldArea: area,
+    YPwoDCollection.fieldSeason: season,
+    YPwoDCollection.fieldPredictedYield: predictedYield,
+    YPwoDCollection.fieldCreated: FieldValue.serverTimestamp(),
   });
 }
 

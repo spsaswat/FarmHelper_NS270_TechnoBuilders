@@ -1,4 +1,5 @@
 import 'package:farmhelper/utilities/constants.dart';
+import 'package:farmhelper/utilities/cropDisease.dart';
 import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/common_appBar.dart';
 import 'package:farmhelper/widgets/nav_bar.dart';
@@ -7,7 +8,6 @@ import 'package:flutter/material.dart';
 
 class DiseaseYield extends StatefulWidget {
   final String diseaseName;
-
   DiseaseYield({this.diseaseName});
 
   static const String id = 'dis';
@@ -18,8 +18,13 @@ class DiseaseYield extends StatefulWidget {
 
 class _DiseaseYieldState extends State<DiseaseYield> {
   String area, stage;
+  CropDisease _cropDisease;
 
-  _DiseaseYieldState();
+  @override
+  void initState() {
+    super.initState();
+    _cropDisease = CropDisease(packedCropDiseaseDetails: widget.diseaseName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +42,23 @@ class _DiseaseYieldState extends State<DiseaseYield> {
               vertical: 8.0,
             ),
             child: TextField(
-              keyboardType: TextInputType.text,
-              enabled: false,
+              readOnly: true,
               textAlign: TextAlign.center,
-//              onChanged: (value) {
-//                area = value;
-//              },
               decoration: kBoxfield.copyWith(
-                hintText: widget.diseaseName,
+                hintText: _cropDisease.crop,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 35.0,
+              vertical: 8.0,
+            ),
+            child: TextField(
+              readOnly: true,
+              textAlign: TextAlign.center,
+              decoration: kBoxfield.copyWith(
+                hintText: _cropDisease.disease,
               ),
             ),
           ),

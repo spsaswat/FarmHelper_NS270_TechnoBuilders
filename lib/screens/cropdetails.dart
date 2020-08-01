@@ -5,10 +5,11 @@ import 'package:farmhelper/widgets/nav_bar.dart';
 import 'package:farmhelper/utilities/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:farmhelper/widgets/round_button.dart';
-import 'package:farmhelper/widgets/cropsContent.dart';
-import 'package:farmhelper/screens/addDetails.dart';
 
-InformationBrain objct = InformationBrain();
+import 'package:farmhelper/screens/addDetails.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
 
 class CropDetails extends StatefulWidget {
   static const String id = 'crops';
@@ -18,34 +19,12 @@ class CropDetails extends StatefulWidget {
 
 class _CropDetailsState extends State<CropDetails> {
 
-  List<CropCards> cardkeeper = [];
+
   @override
   void initState() {
 
-    details();
+//    details();
     super.initState();
-  }
-  void details()
-  {
-
-    int i = objct.totaldet();
-    for(int j=0;j<i;j++)
-      {
-
-        cardkeeper.add(
-            CropCards(
-              crp: objct.getCrop(),
-              f: objct.getfertilizer(),
-              sesn: objct.getSeason(),
-              p: objct.getPest(),
-              q: objct.getQuality(),
-              m: objct.getManure(),
-              ar: objct.getArea(),
-              stts: objct.getstatus(),
-            )
-        );
-      }
-
   }
 
 
@@ -65,10 +44,8 @@ class _CropDetailsState extends State<CropDetails> {
               textAlign: TextAlign.center,
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: cardkeeper,
-          ),
+
+        cardstreamer(),
           RoundButton(
            icon: FontAwesomeIcons.plus,
             onPress: (){
@@ -81,5 +58,4 @@ class _CropDetailsState extends State<CropDetails> {
     );
   }
 }
-
 

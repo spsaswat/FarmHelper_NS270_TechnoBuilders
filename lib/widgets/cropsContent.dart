@@ -8,8 +8,8 @@ class CropCards extends StatelessWidget {
   CropCards({this.crp,this.f,this.sesn,this.stts,this.p,this.m,this.q,this.ar});
 
   final String crp,sesn,stts,f;
-  final bool p,m,q;
-  final double ar;
+  final String p,m,q;
+  final String ar;
 
   @override
   Widget build(BuildContext context) {

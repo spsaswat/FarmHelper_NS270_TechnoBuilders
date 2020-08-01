@@ -4,8 +4,10 @@ import 'package:farmhelper/widgets/common_appBar.dart';
 import 'package:farmhelper/widgets/nav_bar.dart';
 import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/snackbar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:farmhelper/screens/homescreen.dart';
 
-
+final _firestore = Firestore.instance;
 class AddDetails extends StatefulWidget {
   static const String id = 'addDetail';
   @override
@@ -13,6 +15,7 @@ class AddDetails extends StatefulWidget {
 }
 
 class _AddDetailsState extends State<AddDetails> {
+
   String crop,area,fertilizer,season,p,m,q,sttus;
 
   DropdownButton<String> cropsDropdown() {
@@ -101,7 +104,7 @@ class _AddDetailsState extends State<AddDetails> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              'Report a crop faliure',
+              'Add crop',
               style: kOptionstyles2,
               textAlign: TextAlign.center,
             ),
@@ -134,7 +137,7 @@ class _AddDetailsState extends State<AddDetails> {
                 area = value;
               },
               decoration: kBoxfield.copyWith(
-                hintText: 'Total Area ',
+                hintText: 'Total Area in acres',
               ),
             ),
           ),
@@ -144,7 +147,7 @@ class _AddDetailsState extends State<AddDetails> {
               vertical: 8.0,
             ),
             child: TextField(
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
               textAlign: TextAlign.center,
               onChanged: (value) {
                 fertilizer = value;
@@ -177,13 +180,13 @@ class _AddDetailsState extends State<AddDetails> {
               vertical: 8.0,
             ),
             child: TextField(
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
               textAlign: TextAlign.center,
               onChanged: (value) {
                 p = value;
               },
               decoration: kBoxfield.copyWith(
-                hintText: 'Yes/NO Pesticides Used',
+                hintText: 'Yes/No Pesticides Used',
               ),
             ),
           ),
@@ -193,7 +196,7 @@ class _AddDetailsState extends State<AddDetails> {
               vertical: 8.0,
             ),
             child: TextField(
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
               textAlign: TextAlign.center,
               onChanged: (value) {
                 m = value;
@@ -209,7 +212,7 @@ class _AddDetailsState extends State<AddDetails> {
               vertical: 8.0,
             ),
             child: TextField(
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
               textAlign: TextAlign.center,
               onChanged: (value) {
                 q = value;
@@ -268,6 +271,21 @@ class _AddDetailsState extends State<AddDetails> {
                       backgroundColor: kSnackBarWarningColor,
                     );
                   }
+                  else
+                    { //crop,area,fertilizer,season,p,m,q,sttus;
+                      _firestore.collection('cropdetail').add({
+                        'Area': area,
+                        'Crop':crop,
+                        'Fertilizers': fertilizer,
+                        'Manure': m,
+                        'Pesticides': p,
+                        'Quality': q,
+                        'Season': season,
+                        'Status': sttus,
+                      });
+                      print('Working');
+                     Navigator.popUntil(context, ModalRoute.withName(HomeScreen.id));
+                    }
                 },
               ),
             ),

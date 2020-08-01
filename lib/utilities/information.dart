@@ -1,9 +1,9 @@
 class Information{
   String cropName,fertilizer,status,season;
-  double area;
-  bool pesticide,manure,quality;
+  int area;
+  String pesticide,manure,quality;
 
-  Information(String s1,String s2,String s3,String s4,bool b1,bool b2,bool b3,double ar){
+  Information(String s1,String s2,String s3,String s4,String b1,String b2,String b3,int ar){
     cropName = s1;
     fertilizer = s2;
     status = s3;

@@ -15,7 +15,7 @@ class PhoneNumberScreen extends StatefulWidget {
 }
 
 class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
-  String phoneNumber = '';
+  String phoneNumber = '', district;
   String s1 = 'Enter your phone number';
   String s2 = 'Register';
   String phoneNumberValidation =
@@ -52,13 +52,36 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
     }
   }
 
+  DropdownButton<String> districtsDropdown() {
+    List<DropdownMenuItem<String>> districtsItems = [];
+
+    for (String s in kDistricts) {
+      var newItem = DropdownMenuItem(
+        child: Text(s),
+        value: s,
+      );
+      districtsItems.add(newItem);
+    }
+
+    return DropdownButton<String>(
+      value: district,
+      hint: Text("Select your District"),
+      underline: SizedBox(),
+      items: districtsItems,
+      onChanged: (value) {
+        setState(() {
+          district = value;
+        });
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFE0FFFF),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
-
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -72,16 +95,38 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                 ),
               ),
             ),
-            TextField(
-              keyboardType: TextInputType.phone,
-              textAlign: TextAlign.center,
-              autofocus: true,
-              onChanged: (value) {
-                phoneNumber = value;
-              },
-              decoration: kBoxfield.copyWith(
-                hintText: '$s1',
-                prefixText: kCountryCode,
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 35.0,
+                vertical: 8.0,
+              ),
+              child: TextField(
+                keyboardType: TextInputType.phone,
+                textAlign: TextAlign.center,
+                autofocus: true,
+                onChanged: (value) {
+                  phoneNumber = value;
+                },
+                decoration: kBoxfield.copyWith(
+                  hintText: '$s1',
+                  prefixText: kCountryCode,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 35.0,
+                vertical: 8.0,
+              ),
+              child: Container(
+                child: districtsDropdown(),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.lightBlueAccent,
+                  ),
+                  borderRadius: BorderRadius.circular(32.0),
+                ),
               ),
             ),
             Builder(
@@ -94,7 +139,6 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   buttonColor: Colors.lightBlueAccent,
                   buttonText: '$s2',
                   onPress: () {
-
                     if (phoneNumber.length != kPhoneNumberLength) {
                       showSnackBarMessage(
                         context: context,
@@ -102,9 +146,16 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                         backgroundColor: Colors.redAccent,
                       );
                       return;
+                    } else if (district == null) {
+                      showSnackBarMessage(
+                        context: context,
+                        snackBarText: 'Please select your District',
+                        backgroundColor: kSnackBarWarningColor,
+                      );
+                      return;
                     }
-                    registerWithPhoneNumber(
-                        kCountryCode + phoneNumber, widget.nm ,context);
+                    registerWithPhoneNumber(kCountryCode + phoneNumber,
+                        district, widget.nm, context);
                   },
                 );
               },

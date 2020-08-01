@@ -1,18 +1,21 @@
 import 'package:farmhelper/utilities/constants.dart';
-import 'package:flutter/material.dart';
+import 'package:farmhelper/utilities/firebase/database_helper.dart'
+    show reportFailure;
+import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/common_appBar.dart';
 import 'package:farmhelper/widgets/nav_bar.dart';
-import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/snackbar.dart';
+import 'package:flutter/material.dart';
 
 class ReportScreen extends StatefulWidget {
   static const String id = 'report';
+
   @override
   _ReportScreenState createState() => _ReportScreenState();
 }
 
 class _ReportScreenState extends State<ReportScreen> {
-  String crop,area,yield,fails;
+  String crop, area, yield, fails;
 
   DropdownButton<String> cropsDropdown() {
     List<DropdownMenuItem<String>> cropItems = [];
@@ -38,7 +41,6 @@ class _ReportScreenState extends State<ReportScreen> {
     );
   }
 
-
   DropdownButton<String> failureDropdown() {
     List<DropdownMenuItem<String>> cropItems = [];
 
@@ -63,17 +65,14 @@ class _ReportScreenState extends State<ReportScreen> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: commonAppBar,
       bottomNavigationBar: NavBar(),
       backgroundColor: Color(0xFFebedeb),
-
       body: ListView(
         children: <Widget>[
-
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
@@ -174,10 +173,17 @@ class _ReportScreenState extends State<ReportScreen> {
                   } else if (fails == null) {
                     showSnackBarMessage(
                       context: context,
-                      snackBarText:
-                      'Please Specify a reason for your faliure',
+                      snackBarText: 'Please Specify a reason for your faliure',
                       backgroundColor: kSnackBarWarningColor,
                     );
+                  } else {
+                    reportFailure(
+                      area: area,
+                      crop: crop,
+                      fails: fails,
+                      estimatedYield: yield,
+                    );
+                    Navigator.pop(context, 'true');
                   }
                 },
               ),
@@ -185,8 +191,6 @@ class _ReportScreenState extends State<ReportScreen> {
           ),
         ],
       ),
-
     );
   }
 }
-

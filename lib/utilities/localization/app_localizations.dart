@@ -32,8 +32,11 @@ class AppLocalizations {
   }
 
   // This method will be called from every widget which needs a localized text
-  String translate(String key) {
-    return _localizedStrings[key];
+  String translate(String key, [List<String> arguments]) {
+    String translatedText = _localizedStrings[key];
+    while (translatedText.contains('{}') && arguments.length != 0)
+      translatedText = translatedText.replaceFirst('{}', arguments.removeAt(0));
+    return translatedText;
   }
 
   // Static member to have a simple access to the delegate from the MaterialApp

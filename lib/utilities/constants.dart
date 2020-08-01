@@ -173,7 +173,7 @@ const kCardDecoration = BoxDecoration(
   gradient: LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
-    colors: [Color(0xffa8ff78),Color(0xff78ffd6)],
+    colors: [Color(0xffa8ff78), Color(0xff78ffd6)],
   ),
   borderRadius: BorderRadius.all(Radius.circular(10.0)),
 );
@@ -192,6 +192,11 @@ const Color kSnackBarWarningColor = Colors.redAccent;
 const Color kSnackBarErrorColor = Colors.orangeAccent;
 // </editor-fold>
 
+// <editor-fold desc="Slider Colors" defaultState="collapsed">
+const Color kSliderActiveColor = Color(0xFFFF5E5E);
+const Color kSliderInactiveColor = Colors.white70;
+// </editor-fold>
+
 const List<String> kFaliures = [
   'Drought',
   'Disease',
@@ -201,7 +206,6 @@ const List<String> kFaliures = [
   'Not Listed Here',
 ];
 
-
 const List<String> kCropStatus = [
   'Sowing',
   'Irrigation',
@@ -209,10 +213,7 @@ const List<String> kCropStatus = [
   'Harvesting',
 ];
 
-
 const kChatBot = TextStyle(
   fontSize: 25,
   backgroundColor: Colors.black12,
-
 );
-

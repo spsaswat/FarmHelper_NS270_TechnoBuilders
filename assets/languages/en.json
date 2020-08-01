@@ -25,6 +25,8 @@
   "diseaseYield.yield.alert.title": "Predicted Yield",
   "diseaseYield.yield.alert.desc": "Predicted yield is {}%.\nYield loss due to disease is {}%.",
 
+  "profile.nameTextHint": "Enter your name",
+
   "error.districtSnackbar": "Please select your District",
   "error.phoneValidationSnackbar": "Length of Phone Number must be {}",
   "error.otpValidationSnackbar": "The length of the OTP must be {}",

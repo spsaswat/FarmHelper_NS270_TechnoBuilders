@@ -1,5 +1,6 @@
 import 'package:farmhelper/screens/ChatScreen.dart';
 import 'package:farmhelper/screens/homescreen.dart';
+import 'package:farmhelper/screens/profile_screen.dart';
 import 'package:farmhelper/screens/reportscreen.dart';
 import 'package:farmhelper/utilities/constants.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +26,15 @@ class NavBar extends StatelessWidget {
             icon: Icon(Icons.home),
           ),
           IconButton(
-            onPressed: () {},
-            color: kInactiveIcon,
+            onPressed: () {
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                ProfileScreen.id,
+                ModalRoute.withName(HomeScreen.id),
+              );
+            },
+            color:
+                currentRoute == ProfileScreen.id ? kActiveIcon : kInactiveIcon,
             iconSize: 25,
             icon: Icon(Icons.account_circle),
           ),

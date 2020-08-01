@@ -23,7 +23,8 @@ Future registerWithPhoneNumber(
       _auth.signInWithCredential(authCredential).then((AuthResult result) {
         // Add User data to Database
         addRegisteredUserDetails(mobile, district);
-        Navigator.pushReplacementNamed(context, HomeScreen.id);
+        Navigator.pushNamedAndRemoveUntil(
+            context, HomeScreen.id, (route) => false);
       }).catchError((e) {
         print(e);
         showSnackBarMessage(
@@ -43,11 +44,9 @@ Future registerWithPhoneNumber(
     },
     codeSent: (String verificationId, [int forceResendingToken]) {
       verificationID = verificationId;
-      Navigator.push(
+      Navigator.pushNamed(
         context,
-        MaterialPageRoute(
-          builder: (context) => GetOTPScreen(),
-        ),
+        GetOTPScreen.id,
       );
     },
     codeAutoRetrievalTimeout: (String verificationId) {
@@ -71,7 +70,7 @@ void verifyCodeSent(String smsCode, BuildContext context) {
   auth.signInWithCredential(_credential).then((AuthResult result) {
     // Add User data to Database for users with failed code retrieval
     addRegisteredUserDetails(mobileNumber, districtName);
-    Navigator.pushReplacementNamed(context, HomeScreen.id);
+    Navigator.pushNamedAndRemoveUntil(context, HomeScreen.id, (route) => false);
   }).catchError((e) {
     print(e);
     showSnackBarMessage(

@@ -144,6 +144,10 @@ const List<String> kSupportedLanguages = [
   'en',
   'hi',
 ];
+const List<String> kLanguageNames = [
+  'English',
+  'हिन्दी',
+];
 // </editor-fold>
 
 // UI

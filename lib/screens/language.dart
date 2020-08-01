@@ -1,44 +1,35 @@
 import 'package:farmhelper/screens/phonenumber.dart';
-import 'package:flutter/material.dart';
-import 'package:farmhelper/utilities/button.dart';
 import 'package:farmhelper/utilities/translator.dart';
-import 'package:farmhelper/screens/phonenumber.dart';
+import 'package:farmhelper/widgets/button.dart';
+import 'package:flutter/material.dart';
 
-class langs extends StatefulWidget {
-  static const String id = 'langs';
+class LanguageScreen extends StatefulWidget {
+  static const String id = 'language';
   @override
-  _langsState createState() => _langsState();
+  _LanguageScreenState createState() => _LanguageScreenState();
 }
 
-class _langsState extends State<langs> {
-
-  String hindi='Loading..';
+class _LanguageScreenState extends State<LanguageScreen> {
+  String hindi = 'Loading..';
   var f;
 
   @override
   void initState() {
     change();
     super.initState();
-
   }
 
-  void change() async
-  {
-    trans objct = trans();
-    var data =  await objct.hindi('Hindi');
+  void change() async {
+    Translator objct = Translator();
+    var data = await objct.hindi('Hindi');
     setState(() {
-      if(data == 'null'){
+      if (data == 'null') {
         hindi = 'Loading...';
-      }
-      else{
+      } else {
         hindi = data;
       }
     });
-
-
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -50,24 +41,35 @@ class _langsState extends State<langs> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            button1(clr: Colors.lightBlueAccent,ttl: 'English',onpres: (){
-              //do something
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) => phone(
-                  nm: 0,
-                ),
-              ));
-            },),
-            button1(clr: Colors.blueAccent,ttl:hindi,onpres: (){
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) => phone(
-                  nm: 1,
-                ),
-              ));
-              //do something
-            },),
-
-        ],
+            Button(
+              buttonColor: Colors.lightBlueAccent,
+              buttonText: 'English',
+              onPress: () {
+                //do something
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PhoneNumberScreen(
+                        nm: 0,
+                      ),
+                    ));
+              },
+            ),
+            Button(
+              buttonColor: Colors.blueAccent,
+              buttonText: hindi,
+              onPress: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PhoneNumberScreen(
+                        nm: 1,
+                      ),
+                    ));
+                //do something
+              },
+            ),
+          ],
         ),
       ),
     );

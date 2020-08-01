@@ -1,62 +1,54 @@
+import 'package:farmhelper/utilities/constants.dart';
+import 'package:farmhelper/utilities/translator.dart';
+import 'package:farmhelper/widgets/button.dart';
+import 'package:farmhelper/widgets/snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:farmhelper/utilities/button.dart';
-import 'package:farmhelper/utilities/translator.dart';
-import 'package:farmhelper/utilities/constants.dart';
 
-class phone extends StatefulWidget {
-  phone({this.nm});
-  static const String id = 'phone';
+class PhoneNumberScreen extends StatefulWidget {
   final int nm;
+  PhoneNumberScreen({this.nm});
+  static const String id = 'phone';
   @override
-  _phoneState createState() => _phoneState(n: nm);
+  _PhoneNumberScreenState createState() => _PhoneNumberScreenState();
 }
 
-class _phoneState extends State<phone> {
-
-  _phoneState({this.n});
-  String num;
-  final int n;
+class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
+  String phoneNumber = '';
   String s1 = 'Enter your phone number';
   String s2 = 'Register';
+  String phoneNumberValidation =
+      'Length of Phone Number must be $kPhoneNumberLength';
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    if(n == 1){
-      change1(s1);
-      change2(s2);
+    int n = widget.nm;
+    if (n == 1) {
+      changeLanguage();
     }
-
   }
-  void change1(String k) async
-  {
-    trans objct = trans();
-    var data =  await objct.hindi(k);
-    setState(() {
-      if(data == 'null'){
-        s1 = 'Loading...';
-      }
-      else{
-        s1 = data;
-      }
-    });
 
+  void changeLanguage() async {
+    String t1 = await getLanguage(s1);
+    String t2 = await getLanguage(s2);
+    String t3 = await getLanguage(phoneNumberValidation);
+    setState(() {
+      s1 = t1;
+      s2 = t2;
+      phoneNumberValidation = t3;
+    });
   }
-  void change2(String k) async
-  {
-    trans objct = trans();
-    var data =  await objct.hindi(k);
-    setState(() {
-      if(data == 'null'){
-        s2 = 'Loading...';
-      }
-      else{
-        s2 = data;
-      }
-    });
 
+  Future<String> getLanguage(String k) async {
+    Translator translator = Translator();
+    var data = await translator.hindi(k);
+    if (data == 'null') {
+      return 'Loading...';
+    } else {
+      return data;
+    }
   }
 
   @override
@@ -65,7 +57,6 @@ class _phoneState extends State<phone> {
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(15.0),
-
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -74,16 +65,32 @@ class _phoneState extends State<phone> {
               keyboardType: TextInputType.phone,
               textAlign: TextAlign.center,
               onChanged: (value) {
-                num = value;
+                phoneNumber = value;
               },
-              decoration: kBoxfield.copyWith(
-                  hintText: '$s1'
-              ),
+              decoration: kBoxfield.copyWith(hintText: '$s1'),
             ),
-            button1(clr: Colors.lightBlueAccent,ttl: '$s2',
-              onpres: (){
-              //do something on pressing the register button
-            },),
+            Builder(
+              /*
+                Reason for adding Builder:
+                https://api.flutter.dev/flutter/material/Scaffold/of.html#material.Scaffold.of.2
+              */
+              builder: (context) {
+                return Button(
+                  buttonColor: Colors.lightBlueAccent,
+                  buttonText: '$s2',
+                  onPress: () {
+                    if (phoneNumber.length != kPhoneNumberLength) {
+                      showSnackBarMessage(
+                        context: context,
+                        snackBarText: phoneNumberValidation,
+                        backgroundColor: Colors.redAccent,
+                      );
+                      return;
+                    }
+                  },
+                );
+              },
+            ),
           ],
         ),
       ),

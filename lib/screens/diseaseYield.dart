@@ -54,17 +54,21 @@ class _DiseaseYieldState extends State<DiseaseYield> {
         bottomNavigationBar: NavBar(),
         body: ListView(
           children: <Widget>[
+
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 35.0,
                 vertical: 8.0,
               ),
-              child: TextField(
-                readOnly: true,
-                textAlign: TextAlign.center,
-                decoration: kBoxfield.copyWith(
-                  hintText:
-                      locale.translate('detectedDisease.' + _cropDisease.crop),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text(locale.translate('detectedDisease.' + _cropDisease.crop),
+                    style: kOptionstyles2,textAlign: TextAlign.center,),
                 ),
               ),
             ),
@@ -73,12 +77,16 @@ class _DiseaseYieldState extends State<DiseaseYield> {
                 horizontal: 35.0,
                 vertical: 8.0,
               ),
-              child: TextField(
-                readOnly: true,
-                textAlign: TextAlign.center,
-                decoration: kBoxfield.copyWith(
-                  hintText: locale.translate(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text(locale.translate(
                       'detectedDisease.' + _cropDisease.diseaseCode.toString()),
+                    style: kOptionstyles2,textAlign: TextAlign.center,),
                 ),
               ),
             ),

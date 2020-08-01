@@ -1,5 +1,6 @@
 import 'package:farmhelper/utilities/constants.dart';
 import 'package:farmhelper/utilities/firebase/database_helper.dart';
+import 'package:farmhelper/utilities/localization/app_localizations.dart';
 import 'package:farmhelper/utilities/networking/api_helper.dart';
 import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/common_appBar.dart';
@@ -31,12 +32,13 @@ class _EstimateYieldState extends State<EstimateYield> {
     });
   }
 
+  //region cropsDropdown
   DropdownButton<String> cropsDropdown() {
     List<DropdownMenuItem<String>> cropItems = [];
 
     for (String s in kCropList) {
       var newItem = DropdownMenuItem(
-        child: Text(s),
+        child: Text(AppLocalizations.of(context).translate('kCrops.' + s)),
         value: s,
       );
       cropItems.add(newItem);
@@ -46,7 +48,7 @@ class _EstimateYieldState extends State<EstimateYield> {
       value: crop,
       items: cropItems,
       underline: SizedBox(),
-      hint: Text("Select Crop Type"),
+      hint: Text(AppLocalizations.of(context).translate('kCrops.default')),
       onChanged: (value) {
         setState(() {
           crop = value;
@@ -54,13 +56,15 @@ class _EstimateYieldState extends State<EstimateYield> {
       },
     );
   }
+  //endregion
 
+  //region seasonDropdown
   DropdownButton<String> seasonDropdown() {
     List<DropdownMenuItem<String>> seasonItems = [];
 
     for (String s in kSeasons) {
       var newItem = DropdownMenuItem(
-        child: Text(s),
+        child: Text(AppLocalizations.of(context).translate('kSeasons.' + s)),
         value: s,
       );
       seasonItems.add(newItem);
@@ -68,7 +72,7 @@ class _EstimateYieldState extends State<EstimateYield> {
 
     return DropdownButton<String>(
       value: season,
-      hint: Text("Select Season"),
+      hint: Text(AppLocalizations.of(context).translate('kSeasons.default')),
       underline: SizedBox(),
       items: seasonItems,
       onChanged: (value) {
@@ -78,13 +82,15 @@ class _EstimateYieldState extends State<EstimateYield> {
       },
     );
   }
+  //endregion
 
+  //region districtsDropdown
   DropdownButton<String> districtsDropdown() {
     List<DropdownMenuItem<String>> districtsItems = [];
 
     for (String s in kDistricts) {
       var newItem = DropdownMenuItem(
-        child: Text(s),
+        child: Text(AppLocalizations.of(context).translate('kDistricts.' + s)),
         value: s,
       );
       districtsItems.add(newItem);
@@ -92,7 +98,7 @@ class _EstimateYieldState extends State<EstimateYield> {
 
     return DropdownButton<String>(
       value: district,
-      hint: Text("Select your District"),
+      hint: Text(AppLocalizations.of(context).translate('kDistricts.default')),
       underline: SizedBox(),
       items: districtsItems,
       onChanged: (value) {
@@ -102,6 +108,7 @@ class _EstimateYieldState extends State<EstimateYield> {
       },
     );
   }
+  //endregion
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +125,8 @@ class _EstimateYieldState extends State<EstimateYield> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                'Estimate Crop Yield',
+                AppLocalizations.of(context)
+                    .translate('estimationScreen.title'),
                 style: kOptionstyles,
                 textAlign: TextAlign.center,
               ),
@@ -166,7 +174,8 @@ class _EstimateYieldState extends State<EstimateYield> {
                   child: Column(
                     children: <Widget>[
                       Text(
-                        'Year',
+                        AppLocalizations.of(context)
+                            .translate('estimationScreen.year'),
                         style: TextStyle(color: Colors.white),
                       ),
                       Row(
@@ -226,58 +235,39 @@ class _EstimateYieldState extends State<EstimateYield> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 35.0,
-                vertical: 8.0,
-              ),
-              child: TextField(
-                keyboardType: TextInputType.number,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  area = value;
-                },
-                decoration: kBoxfield.copyWith(
-                  hintText: 'Enter Field Area',
-                ),
-              ),
-            ),
-            Padding(
               padding: const EdgeInsets.only(left: 35, right: 35),
               child: Builder(
                 builder: (context) => Button(
                   buttonColor: Color(0xFF53d45b),
-                  buttonText: 'Estimate Yield',
+                  buttonText: AppLocalizations.of(context)
+                      .translate('estimationScreen.estimate'),
                   onPress: () async {
                     if (crop == null) {
                       showSnackBarMessage(
                         context: context,
-                        snackBarText: 'Please select the Crop Type',
+                        snackBarText: AppLocalizations.of(context)
+                            .translate('error.cropSnackbar'),
                         backgroundColor: kSnackBarWarningColor,
                       );
                     } else if (district == null) {
                       showSnackBarMessage(
                         context: context,
-                        snackBarText: 'Please select your District',
+                        snackBarText: AppLocalizations.of(context)
+                            .translate('error.districtSnackbar'),
                         backgroundColor: kSnackBarWarningColor,
                       );
                     } else if (season == null) {
                       showSnackBarMessage(
                         context: context,
-                        snackBarText: 'Please select the Season',
-                        backgroundColor: kSnackBarWarningColor,
-                      );
-                    } else if (area == null) {
-                      showSnackBarMessage(
-                        context: context,
-                        snackBarText:
-                            'Please select Field Area greater than Zero',
+                        snackBarText: AppLocalizations.of(context)
+                            .translate('error.seasonSnackbar'),
                         backgroundColor: kSnackBarWarningColor,
                       );
                     } else {
                       toggleSpinner();
                       double predictedYield =
                           await ApiHelper.getYieldPrediction(
-                              crop, district, year.toString(), season, area);
+                              crop, district, year.toString(), season, '1000');
                       toggleSpinner();
                       if (predictedYield != null) {
                         addYieldPredictedWithoutDisease(
@@ -285,13 +275,16 @@ class _EstimateYieldState extends State<EstimateYield> {
                           district,
                           year.toString(),
                           season,
-                          area,
+                          '1000',
                           predictedYield.toString(),
                         );
                         Alert(
                           context: context,
-                          title: 'Predicted Yield',
-                          desc: predictedYield.toString(),
+                          title: AppLocalizations.of(context)
+                              .translate('estimationScreen.yield.alert.title'),
+                          desc: AppLocalizations.of(context).translate(
+                              'estimationScreen.yield.alert.desc',
+                              [predictedYield.toStringAsFixed(2)]),
                           type: AlertType.success,
                           buttons: [],
                           closeFunction: () {},
@@ -299,8 +292,8 @@ class _EstimateYieldState extends State<EstimateYield> {
                       } else {
                         showSnackBarMessage(
                           context: context,
-                          snackBarText:
-                              'Something went wrong! Please try again',
+                          snackBarText: AppLocalizations.of(context)
+                              .translate('error.oops'),
                           backgroundColor: kSnackBarErrorColor,
                         );
                       }

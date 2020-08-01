@@ -4,6 +4,9 @@ import 'package:farmhelper/utilities/localization/app_localizations.dart';
 import 'package:farmhelper/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+FirebaseAuth _auth = FirebaseAuth.instance;
 
 class ProfileScreen extends StatefulWidget {
   static String id = 'profile';
@@ -13,6 +16,17 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  FirebaseUser user;
+  String s;
+  void getuser ()async
+  {
+    user = await _auth.currentUser();
+    setState(() {
+      s=(user.phoneNumber);
+    });
+
+  }
+
   String district;
   List<bool> isSelected = List.filled(kSupportedLanguages.length, false);
 
@@ -39,8 +53,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       },
     );
   }
-
+  void initState() {
+    super.initState();
+    getuser();
+  }
   @override
+
   Widget build(BuildContext context) {
     var appLanguage = Provider.of<AppLanguage>(context);
     isSelected[kSupportedLanguages.indexOf(appLanguage.appLocal.languageCode)] =
@@ -77,6 +95,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   color: Colors.lightBlueAccent,
                 ),
                 borderRadius: BorderRadius.circular(32.0),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 35.0,
+              vertical: 8.0,
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text("Phone: $s",style: kOptionstyles2,textAlign: TextAlign.center,),
               ),
             ),
           ),

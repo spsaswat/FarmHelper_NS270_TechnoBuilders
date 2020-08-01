@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:farmhelper/utilities/constants.dart';
 
 
 class CropCards extends StatelessWidget {
 
-  CropCards({this.crp,this.f,this.sesn,this.stts,this.p,this.m,this.q,this.ar});
+  CropCards({this.crp,this.f,this.sesn,this.p,this.m,this.q});
 
-  final String crp,sesn,stts,f;
+  final String crp,sesn,f;
   final String p,m,q;
-  final String ar;
+  final FlutterTts flutterTts = FlutterTts();
 
   @override
   Widget build(BuildContext context) {
+
+    Future _speaker() async{
+      await flutterTts.setLanguage("en-IN");
+      await flutterTts.speak(crp+". Fertilizers: "+f+". Season: "+sesn+". Pesticides: "+p+". Manure: "+m+". Watering: "+q);
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 35.0,
@@ -26,13 +33,13 @@ class CropCards extends StatelessWidget {
               content: Column(
                 children: <Widget>[
 
-                  Text('Area : $ar'),
-                  Text('Fertilizer: $f'),
-                  Text('Season: $sesn'),
-                  Text('Pesticides Used: $p'),
-                  Text('Manure Used: $m'),
-                  Text('Quality of Seeds: $q'),
-                  Text('Current Status: $stts')
+
+                  Text('Fertilizers : $f'),
+                  Text('Seasons : $sesn'),
+                  Text('Pesticides : $p'),
+                  Text('Manure : $m'),
+                  Text('Watering : $q'),
+
 
                 ],
               ),
@@ -45,9 +52,11 @@ class CropCards extends StatelessWidget {
                   ),
                 ),
                 DialogButton(
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: (){
+                    _speaker();
+                  },
                   child: Text(
-                    "Update",
+                    "Listen",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 )
@@ -72,13 +81,7 @@ class CropCards extends StatelessWidget {
                 ),
               ),
 
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Status : $stts',
-                  style: kOptionstyles,
-                ),
-              ),
+
 
             ],
           ),

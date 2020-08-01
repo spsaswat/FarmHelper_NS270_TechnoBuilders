@@ -20,14 +20,14 @@ class cardstreamer extends StatelessWidget {
         final details = snapshot.data.documents;
         List<CropCards> cardkeeper = [];
         for(var detl in details){
-          final area = detl.data['Area'];
+//          final area = detl.data['Area'];
           final crp = detl.data['Crop'];
           final Fertilizers = detl.data['Fertilizers'];
           final Manure = detl.data['Manure'];
           final Pesticides = detl.data['Pesticides'];
           final Quality = detl.data['Quality'];
           final Season = detl.data['Season'];
-          final Status = detl.data['Status'];
+//          final Status = detl.data['Status'];
 //                print(crp);
           final wiget =CropCards(
             crp: crp,
@@ -36,8 +36,7 @@ class cardstreamer extends StatelessWidget {
             p: Pesticides,
             q: Quality,
             m: Manure,
-            ar: area.toString(),
-            stts: Status,
+
           );
 
           cardkeeper.add(wiget);

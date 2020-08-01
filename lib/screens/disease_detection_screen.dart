@@ -5,6 +5,7 @@ import 'dart:typed_data' show Uint8List;
 import 'package:farmhelper/screens/diseaseYield.dart';
 import 'package:farmhelper/utilities/constants.dart';
 import 'package:farmhelper/utilities/cropDisease.dart';
+import 'package:farmhelper/utilities/localization/app_localizations.dart';
 import 'package:farmhelper/utilities/networking/api_helper.dart';
 import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/snackbar.dart';
@@ -38,7 +39,7 @@ class _DiseaseDetectionScreenState extends State<DiseaseDetectionScreen> {
   }
 
   Text get getInitialText => Text(
-        'Click a picture of the leaf of the plant or select an image from the Gallery',
+        AppLocalizations.of(context).translate('diseaseDetectionScreen.help'),
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 24.0,
@@ -102,7 +103,8 @@ class _DiseaseDetectionScreenState extends State<DiseaseDetectionScreen> {
                   child: Builder(
                     builder: (context) => Button(
                       buttonColor: Color(0xFF53d45b),
-                      buttonText: 'Detect Disease',
+                      buttonText: AppLocalizations.of(context)
+                          .translate('diseaseDetectionScreen.detect'),
                       onPress: () async {
                         toggleSpinner();
                         Uint8List bytesImg = _imageFile.readAsBytesSync();
@@ -132,8 +134,8 @@ class _DiseaseDetectionScreenState extends State<DiseaseDetectionScreen> {
                         } else {
                           showSnackBarMessage(
                             context: context,
-                            snackBarText:
-                                'Something went wrong! Please try again',
+                            snackBarText: AppLocalizations.of(context)
+                                .translate('error.oops'),
                             backgroundColor: kSnackBarErrorColor,
                           );
                         }

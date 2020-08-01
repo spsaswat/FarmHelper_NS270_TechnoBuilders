@@ -1,6 +1,7 @@
 import 'package:farmhelper/utilities/constants.dart';
 import 'package:farmhelper/utilities/cropDisease.dart';
 import 'package:farmhelper/utilities/firebase/database_helper.dart';
+import 'package:farmhelper/utilities/localization/app_localizations.dart';
 import 'package:farmhelper/utilities/networking/api_helper.dart';
 import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/common_appBar.dart';
@@ -42,6 +43,7 @@ class _DiseaseYieldState extends State<DiseaseYield> {
 
   @override
   Widget build(BuildContext context) {
+    AppLocalizations locale = AppLocalizations.of(context);
     return ModalProgressHUD(
       inAsyncCall: _showSpinner,
       child: Scaffold(
@@ -61,7 +63,8 @@ class _DiseaseYieldState extends State<DiseaseYield> {
                 readOnly: true,
                 textAlign: TextAlign.center,
                 decoration: kBoxfield.copyWith(
-                  hintText: _cropDisease.crop,
+                  hintText:
+                      locale.translate('detectedDisease.' + _cropDisease.crop),
                 ),
               ),
             ),
@@ -74,7 +77,8 @@ class _DiseaseYieldState extends State<DiseaseYield> {
                 readOnly: true,
                 textAlign: TextAlign.center,
                 decoration: kBoxfield.copyWith(
-                  hintText: _cropDisease.disease,
+                  hintText: locale.translate(
+                      'detectedDisease.' + _cropDisease.diseaseCode.toString()),
                 ),
               ),
             ),
@@ -90,7 +94,7 @@ class _DiseaseYieldState extends State<DiseaseYield> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Text(
-                      'Field Area Affected',
+                      locale.translate('diseaseYield.areaSlider'),
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.red),
                     ),
@@ -153,15 +157,30 @@ class _DiseaseYieldState extends State<DiseaseYield> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('Stage 1'),
+                      child: Text(
+                        locale.translate(
+                          'diseaseYield.stage',
+                          ['1'],
+                        ),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('Stage 2'),
+                      child: Text(
+                        locale.translate(
+                          'diseaseYield.stage',
+                          ['2'],
+                        ),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('Stage 3'),
+                      child: Text(
+                        locale.translate(
+                          'diseaseYield.stage',
+                          ['3'],
+                        ),
+                      ),
                     ),
                   ],
                   onPressed: (int index) {
@@ -187,19 +206,12 @@ class _DiseaseYieldState extends State<DiseaseYield> {
               child: Builder(
                 builder: (context) => Button(
                   buttonColor: Color(0xFF53d45b),
-                  buttonText: 'Estimate Yield',
+                  buttonText: locale.translate('diseaseYield.estimate'),
                   onPress: () async {
-                    if (area == 0) {
+                    if (stage < 0) {
                       showSnackBarMessage(
                         context: context,
-                        snackBarText:
-                            'Please select Area greater than Zero percent',
-                        backgroundColor: kSnackBarWarningColor,
-                      );
-                    } else if (stage < 0) {
-                      showSnackBarMessage(
-                        context: context,
-                        snackBarText: 'Please select the Stage Type',
+                        snackBarText: locale.translate('error.stageSnackbar'),
                         backgroundColor: kSnackBarWarningColor,
                       );
                     } else {
@@ -207,7 +219,7 @@ class _DiseaseYieldState extends State<DiseaseYield> {
                       double predictedYield =
                           await ApiHelper.getYieldForInfectedPlant(
                         disease: _cropDisease.diseaseCode.toString(),
-                        areaAffected: (area.toDouble() / 100.0).toString(),
+                        areaAffected: area.toStringAsFixed(1),
                         stage: stage.toString(),
                       );
                       toggleSpinner();
@@ -217,7 +229,7 @@ class _DiseaseYieldState extends State<DiseaseYield> {
                           _cropDisease.crop,
                           _cropDisease.disease,
                           _cropDisease.diseaseCode.toString(),
-                          (area.toDouble() / 100.0).toString(),
+                          area.toStringAsFixed(1),
                           stage.toString(),
                           predictedYield.toString(),
                         );
@@ -227,8 +239,15 @@ class _DiseaseYieldState extends State<DiseaseYield> {
 
                         Alert(
                           context: context,
-                          title: 'Predicted Yield',
-                          desc: predictedYield.toString(),
+                          title: locale
+                              .translate('diseaseYield.yield.alert.title'),
+                          desc: locale.translate(
+                            'diseaseYield.yield.alert.desc',
+                            [
+                              predictedYield.toStringAsFixed(1),
+                              (100.0 - predictedYield).toStringAsFixed(1),
+                            ],
+                          ),
                           type: AlertType.success,
                           buttons: [],
                           closeFunction: () {},
@@ -236,8 +255,7 @@ class _DiseaseYieldState extends State<DiseaseYield> {
                       } else {
                         showSnackBarMessage(
                           context: context,
-                          snackBarText:
-                              'Something went wrong! Please try again',
+                          snackBarText: locale.translate('error.oops'),
                           backgroundColor: kSnackBarErrorColor,
                         );
                       }

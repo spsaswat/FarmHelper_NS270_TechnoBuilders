@@ -3,6 +3,7 @@ import 'package:farmhelper/screens/disease_detection_screen.dart';
 import 'package:farmhelper/screens/estimationScreen.dart';
 import 'package:farmhelper/screens/reportscreen.dart';
 import 'package:farmhelper/utilities/constants.dart';
+import 'package:farmhelper/utilities/localization/app_localizations.dart';
 import 'package:farmhelper/widgets/cardsButton.dart';
 import 'package:farmhelper/widgets/common_appBar.dart';
 import 'package:farmhelper/widgets/iconContent.dart';
@@ -70,13 +71,13 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context);
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -111,7 +112,8 @@ class _HomeScreenState extends State<HomeScreen>
                       ),
                     ),
                     Text(
-                      'Welcome, Username',
+                      appLocalizations.translate('homescreen.welcome') +
+                          'Username',
                       style: kOptionstyles,
                     ),
                   ],
@@ -147,7 +149,8 @@ class _HomeScreenState extends State<HomeScreen>
                             child: CardButton(
                               cardChild: IconContent(
                                 icon: Icons.assignment,
-                                label: 'Add/View Crop Details',
+                                label: appLocalizations
+                                    .translate('homescreen.cropDetailsLabel'),
                               ),
                               clr1: animation1.value,
                               clr2: animation2.value,
@@ -160,7 +163,8 @@ class _HomeScreenState extends State<HomeScreen>
                             child: CardButton(
                               cardChild: IconContent(
                                 icon: Icons.mail,
-                                label: 'Report Crop Failure',
+                                label: appLocalizations
+                                    .translate('homescreen.reportFailureLabel'),
                               ),
                               clr1: a3.value,
                               clr2: a4.value,
@@ -169,18 +173,20 @@ class _HomeScreenState extends State<HomeScreen>
                                   closeFunction: () {},
                                   buttons: [],
                                   context: context,
-                                  title: 'Need Assistance ?',
-                                  desc:
-                                      "Click on the call button in the bottom to avail any support immediately.",
+                                  title: appLocalizations.translate(
+                                      'homescreen.assistance.alert.title'),
+                                  desc: appLocalizations.translate(
+                                      'homescreen.assistance.alert.desc'),
                                 ).show();
                                 final reportAdded = await Navigator.pushNamed(
                                     context, ReportScreen.id);
                                 if (reportAdded != null) {
                                   Alert(
                                     context: context,
-                                    title: 'Reported Failure',
-                                    desc:
-                                        "Your report has been noted will reach you soon",
+                                    title: appLocalizations.translate(
+                                        'homescreen.reportFailure.alert.title'),
+                                    desc: appLocalizations.translate(
+                                        'homescreen.reportFailure.alert.desc'),
                                     type: AlertType.success,
                                     buttons: [],
                                     closeFunction: () {},
@@ -199,7 +205,8 @@ class _HomeScreenState extends State<HomeScreen>
                             child: CardButton(
                               cardChild: IconContent(
                                 icon: Icons.system_update_alt,
-                                label: 'Estimated Crop Yield',
+                                label: appLocalizations
+                                    .translate('homescreen.estimateYieldLabel'),
                               ),
                               clr1: a5.value,
                               clr2: a6.value,
@@ -212,19 +219,26 @@ class _HomeScreenState extends State<HomeScreen>
                             child: CardButton(
                               cardChild: IconContent(
                                 icon: Icons.nature,
-                                label: 'Check Crop for Disease',
+                                label: appLocalizations
+                                    .translate('homescreen.detectDiseaseLabel'),
                               ),
                               clr1: a7.value,
                               clr2: a8.value,
                               onPress: () async {
-                                final detectedDisease =
-                                    await Navigator.pushNamed(
-                                        context, DiseaseDetectionScreen.id);
-                                if (detectedDisease == false) {
+                                final detectedCrop = await Navigator.pushNamed(
+                                    context, DiseaseDetectionScreen.id);
+                                if (detectedCrop != null) {
                                   Alert(
                                     context: context,
-                                    title: 'Crop Status',
-                                    desc: 'Healthy!\nNo worries!',
+                                    title: appLocalizations.translate(
+                                        'homescreen.detectDisease.alert.title'),
+                                    desc: appLocalizations.translate(
+                                      'homescreen.detectDisease.alert.desc',
+                                      [
+                                        appLocalizations.translate(
+                                            'detectedDisease.' + detectedCrop)
+                                      ],
+                                    ),
                                     type: AlertType.success,
                                     buttons: [],
                                     closeFunction: () {},

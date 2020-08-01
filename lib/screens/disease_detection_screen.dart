@@ -114,10 +114,11 @@ class _DiseaseDetectionScreenState extends State<DiseaseDetectionScreen> {
                         toggleSpinner();
 
                         if (detectedDisease != null) {
+                          print(detectedDisease);
                           CropDisease cropDisease = CropDisease(
                               packedCropDiseaseDetails: detectedDisease);
                           if (cropDisease.diseaseCode < 0) {
-                            Navigator.pop(context, false);
+                            Navigator.pop(context, cropDisease.crop);
                           } else {
                             Navigator.push(
                               context,

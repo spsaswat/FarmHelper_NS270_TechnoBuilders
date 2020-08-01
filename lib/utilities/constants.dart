@@ -23,3 +23,54 @@ const kBoxfield = InputDecoration(
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
 );
+
+const kOptionstyles = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+);
+
+const kCardDecoration =  BoxDecoration(
+  color: Color(0xFFb6bab7),
+  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+);
+
+
+const kLargeText = TextStyle(
+  fontSize: 40,
+  fontWeight: FontWeight.w900,
+  color: Colors.white,
+);
+
+
+const kActiveIcon = Color(0xFF6eeb60);
+const kInactiveIcon = Color(0xFFb0b0b0);
+
+
+const List<String> cropList = [
+  'wheat',
+  'rice',
+  'barley',
+  'banana'
+];
+
+const List<String> months = [
+  'JAN',
+  'FEB',
+  'MAR',
+  'APR',
+  'MAY',
+  'JUN',
+  'JUL',
+  'AUG',
+  'SEP',
+  'OCT',
+  'NOV',
+  'DEC'
+];
+
+const List<String> season = [
+  'Summer',
+  'Winter',
+  'Rainy'
+];

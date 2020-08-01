@@ -1,4 +1,6 @@
+import 'package:farmhelper/screens/estimationScreen.dart';
 import 'package:farmhelper/screens/get_otp_screen.dart';
+import 'package:farmhelper/screens/homescreen.dart';
 import 'package:farmhelper/screens/language.dart';
 import 'package:farmhelper/screens/phonenumber.dart';
 import 'package:flutter/material.dart';
@@ -11,30 +13,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: LanguageScreen.id,
+      initialRoute: Homescreen.id,
       routes: {
         LanguageScreen.id: (context) => LanguageScreen(),
         PhoneNumberScreen.id: (context) => PhoneNumberScreen(),
         GetOTPScreen.id: (context) => GetOTPScreen(),
+        Homescreen.id: (context) => Homescreen(),
+        EstimateYield.id: (context) => EstimateYield(),
       },
     );
   }
 }
 
-//void main() => runApp(FlashChat());
-//
-//class FlashChat extends StatelessWidget {
-//  @override
-//  Widget build(BuildContext context) {
-//    return MaterialApp(
-//
-//      initialRoute: WelcomeScreen.id,
-//      routes: {
-//        WelcomeScreen.id: (context) => WelcomeScreen(),
-//        LoginScreen.id: (context) => LoginScreen(),
-//        RegistrationScreen.id: (context) => RegistrationScreen(),
-//        ChatScreen.id: (context) => ChatScreen(),
-//      },
-//    );
-//  }
-//}

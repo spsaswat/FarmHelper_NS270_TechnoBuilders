@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 String verificationID;
 
-Future registerWithPhoneNumber(String mobile, BuildContext context) async {
+Future registerWithPhoneNumber(String mobile, int n,BuildContext context) async {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   _auth.verifyPhoneNumber(
@@ -38,7 +38,7 @@ Future registerWithPhoneNumber(String mobile, BuildContext context) async {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => GetOTPScreen(),
+          builder: (context) => GetOTPScreen(lang: n,),
         ),
       );
     },

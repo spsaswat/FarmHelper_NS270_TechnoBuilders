@@ -55,13 +55,23 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFE0FFFF),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Flexible(
+              child: Hero(
+                tag: 'img1',
+                child: Container(
+                  child: Image.asset('images/farm.png'),
+                  height: 300.0,
+                ),
+              ),
+            ),
             TextField(
               keyboardType: TextInputType.phone,
               textAlign: TextAlign.center,
@@ -84,6 +94,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   buttonColor: Colors.lightBlueAccent,
                   buttonText: '$s2',
                   onPress: () {
+
                     if (phoneNumber.length != kPhoneNumberLength) {
                       showSnackBarMessage(
                         context: context,
@@ -93,7 +104,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                       return;
                     }
                     registerWithPhoneNumber(
-                        kCountryCode + phoneNumber, context);
+                        kCountryCode + phoneNumber, widget.nm ,context);
                   },
                 );
               },

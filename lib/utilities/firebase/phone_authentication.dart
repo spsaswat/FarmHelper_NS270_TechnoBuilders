@@ -8,13 +8,14 @@ import 'package:flutter/material.dart';
 
 import 'database_helper.dart';
 
-String verificationID, mobileNumber, districtName;
+String verificationID, mobileNumber, districtName, userName;
 
 Future registerWithPhoneNumber(
-    String mobile, String district, BuildContext context) async {
+    String mobile, String name, String district, BuildContext context) async {
   FirebaseAuth _auth = FirebaseAuth.instance;
   mobileNumber = mobile;
   districtName = district;
+  userName = name;
 
   _auth.verifyPhoneNumber(
     phoneNumber: mobile,
@@ -22,7 +23,7 @@ Future registerWithPhoneNumber(
     verificationCompleted: (AuthCredential authCredential) {
       _auth.signInWithCredential(authCredential).then((AuthResult result) {
         // Add User data to Database
-        addRegisteredUserDetails(mobile, district);
+        addRegisteredUserDetails(mobile, userName, district);
         Navigator.pushNamedAndRemoveUntil(
             context, HomeScreen.id, (route) => false);
       }).catchError((e) {
@@ -69,7 +70,7 @@ void verifyCodeSent(String smsCode, BuildContext context) {
       verificationId: verificationID, smsCode: smsCode);
   auth.signInWithCredential(_credential).then((AuthResult result) {
     // Add User data to Database for users with failed code retrieval
-    addRegisteredUserDetails(mobileNumber, districtName);
+    addRegisteredUserDetails(mobileNumber, userName, districtName);
     Navigator.pushNamedAndRemoveUntil(context, HomeScreen.id, (route) => false);
   }).catchError((e) {
     print(e);

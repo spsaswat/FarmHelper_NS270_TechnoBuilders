@@ -16,17 +16,41 @@ Future<bool> doesPhoneNumberExists(String phoneNumber) async {
   return documents.length > 0;
 }
 
-void addRegisteredUserDetails(String phoneNumber, String district) async {
+void addRegisteredUserDetails(
+    String phoneNumber, String userName, String district) async {
   if (await doesPhoneNumberExists(phoneNumber) == false) {
     _firestore
         .collection(UsersCollection.collectionName)
         .document('$phoneNumber')
         .setData({
       UsersCollection.fieldPhoneNumber: phoneNumber,
+      UsersCollection.fieldName: userName,
+      UsersCollection.fieldArea: '1000',
       UsersCollection.fieldDistrict: district,
       UsersCollection.fieldCreated: FieldValue.serverTimestamp(),
     });
+  } else {
+    updateRegisteredUserDetails(
+      phoneNumber,
+      userName: userName,
+      district: district,
+    );
   }
+}
+
+void updateRegisteredUserDetails(String phoneNumber,
+    {String userName, String district, String area}) async {
+  Map<String, dynamic> updatedData = {};
+  if (userName != null)
+    updatedData.addAll({UsersCollection.fieldName: userName});
+  if (district != null)
+    updatedData.addAll({UsersCollection.fieldDistrict: district});
+  if (area != null) updatedData.addAll({UsersCollection.fieldArea: area});
+
+  _firestore
+      .collection(UsersCollection.collectionName)
+      .document('$phoneNumber')
+      .updateData(updatedData);
 }
 
 void reportFailure(

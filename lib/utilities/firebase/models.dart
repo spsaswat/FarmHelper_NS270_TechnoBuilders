@@ -5,6 +5,8 @@ class UsersCollection {
   static String collectionName = 'users';
   static String fieldCreated = 'created';
   static String fieldDistrict = 'district';
+  static String fieldName = 'name';
+  static String fieldArea = 'area';
   static String fieldPhoneNumber = 'registeredPhoneNumber';
 }
 

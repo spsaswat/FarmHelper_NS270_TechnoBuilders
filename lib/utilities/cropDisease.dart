@@ -1,71 +1,71 @@
 class CropDisease {
   final Map<String, List> _diseaseDetails = {
-    'Tomato___Tomato_Yellow_Leaf_Curl_Virus': [
+    'Tomato__Tomato_Yellow_Leaf_Curl_Virus': [
       'Tomato',
       'Yellow Leaf Curl Virus',
       0.0,
     ],
-    'Tomato__Late_blight': [
+    'Tomato_Late_blight': [
       'Tomato',
       'Late Blight',
       1.0,
     ],
-    'Tomato___Septoria_leaf_spot': [
+    'Tomato_Septoria_leaf_spot': [
       'Tomato',
       'Septoria Leaf Spot',
       2.0,
     ],
-    'Tomato___Tomato_mosaic_virus': [
+    'Tomato_Tomato_mosaic_virus': [
       'Tomato',
       'Mosaic Virus',
       3.0,
     ],
-    'Tomato___Spider_mites Two-spotted_spider_mite': [
+    'Tomato_Spider_mites Two-spotted_spider_mite': [
       'Tomato',
       'Spider mites Two-spotted spider mite',
       4.0,
     ],
-    'Tomato___Leaf_Mold': [
+    'Tomato_Leaf_Mold': [
       'Tomato',
       'Leaf Mold',
       5.0,
     ],
-    'Tomato___Early_blight': [
+    'Tomato_Early_blight': [
       'Tomato',
       'Early Blight',
       6.0,
     ],
-    'Tomato___Bacterial_spot': [
+    'Tomato_Bacterial_spot': [
       'Tomato',
       'Bacterial Spot',
       7.0,
     ],
-    'Tomato___Target_spot': [
+    'Tomato_Target_Spot': [
       'Tomato',
       'Target Spot',
       8.0,
     ],
-    'Potato__Late_blight': [
+    'Potato_Late_blight': [
       'Potato',
       'Late Blight',
       9.0,
     ],
-    'Potato__Early_blight': [
+    'Potato_Early_blight': [
       'Potato',
       'Early Blight',
       10.0,
     ],
-    'Corn_(maize)___Northern_Leaf_Blight': [
+    'Corn(maize)__Northern_Leaf_Blight': [
       'Corn(maize)',
       'Northern Leaf Blight',
       11.0,
     ],
-    'Corn_(maize)___Common_rust': [
+    'Corn(maize)__Common_rust': [
       'Corn(maize)',
       'Common Rust',
       12.0,
     ],
-    'Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot': [
+    'Corn_(maize)__Cercospora_leaf_spot Gray_leaf_spot': [
       'Corn(maize)',
       'Cercospora Leaf Spot Gray Leaf Spot',
       13.0,

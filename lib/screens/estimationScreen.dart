@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class EstimateYield extends StatefulWidget {
@@ -19,10 +20,15 @@ class EstimateYield extends StatefulWidget {
 }
 
 class _EstimateYieldState extends State<EstimateYield> {
-  String crop, season, district;
+  String crop, season, district, area;
   int year = DateTime.now().year;
-  int start = 0;
-  String area;
+  bool showSpinner = false;
+
+  void toggleSpinner() {
+    setState(() {
+      showSpinner = !showSpinner;
+    });
+  }
 
   DropdownButton<String> cropsDropdown() {
     List<DropdownMenuItem<String>> cropItems = [];
@@ -104,184 +110,198 @@ class _EstimateYieldState extends State<EstimateYield> {
       //color: Color(0xFFebedeb),
       appBar: commonAppBar,
       bottomNavigationBar: NavBar(),
-      body: ListView(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'Estimate Crop Yield',
-              style: kOptionstyles,
-              textAlign: TextAlign.center,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 35.0,
-              vertical: 8.0,
-            ),
-            child: Container(
-              child: cropsDropdown(),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.lightBlueAccent,
-                ),
-                borderRadius: BorderRadius.circular(32.0),
+      body: ModalProgressHUD(
+        inAsyncCall: showSpinner,
+        child: ListView(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Estimate Crop Yield',
+                style: kOptionstyles,
+                textAlign: TextAlign.center,
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 35.0,
-              vertical: 8.0,
-            ),
-            child: Container(
-              child: districtsDropdown(),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.lightBlueAccent,
-                ),
-                borderRadius: BorderRadius.circular(32.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 35.0,
+                vertical: 8.0,
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 25.0,
-              vertical: 8.0,
-            ),
-            child: Container(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      'Year',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          year.toString(),
-                          style: kLargeText,
-                          textAlign: TextAlign.center,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            RoundButton(
-                              onPress: () {
-                                setState(() {
-                                  year--;
-                                });
-                              },
-                              icon: FontAwesomeIcons.minus,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            RoundButton(
-                              onPress: () {
-                                setState(() {
-                                  year++;
-                                });
-                              },
-                              icon: FontAwesomeIcons.plus,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+              child: Container(
+                child: cropsDropdown(),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.lightBlueAccent,
+                  ),
+                  borderRadius: BorderRadius.circular(32.0),
                 ),
               ),
-              decoration: kCardDecoration,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 35.0,
-              vertical: 8.0,
-            ),
-            child: Container(
-              child: seasonDropdown(),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.lightBlueAccent,
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 35.0,
+                vertical: 8.0,
+              ),
+              child: Container(
+                child: districtsDropdown(),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.lightBlueAccent,
+                  ),
+                  borderRadius: BorderRadius.circular(32.0),
                 ),
-                borderRadius: BorderRadius.circular(32.0),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 35.0,
-              vertical: 8.0,
-            ),
-            child: TextField(
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
-              onChanged: (value) {
-                area = value;
-              },
-              decoration: kBoxfield.copyWith(
-                hintText: 'Enter Field Area',
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 25.0,
+                vertical: 8.0,
+              ),
+              child: Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        'Year',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            year.toString(),
+                            style: kLargeText,
+                            textAlign: TextAlign.center,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RoundButton(
+                                onPress: () {
+                                  setState(() {
+                                    year--;
+                                  });
+                                },
+                                icon: FontAwesomeIcons.minus,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              RoundButton(
+                                onPress: () {
+                                  setState(() {
+                                    year++;
+                                  });
+                                },
+                                icon: FontAwesomeIcons.plus,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                decoration: kCardDecoration,
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 35, right: 35),
-            child: Builder(
-              builder: (context) => Button(
-                buttonColor: Color(0xFF53d45b),
-                buttonText: 'Estimate Yield',
-                onPress: () async {
-                  if (crop == null) {
-                    showSnackBarMessage(
-                      context: context,
-                      snackBarText: 'Please select the Crop Type',
-                      backgroundColor: kSnackBarWarningColor,
-                    );
-                  } else if (district == null) {
-                    showSnackBarMessage(
-                      context: context,
-                      snackBarText: 'Please select your District',
-                      backgroundColor: kSnackBarWarningColor,
-                    );
-                  } else if (season == null) {
-                    showSnackBarMessage(
-                      context: context,
-                      snackBarText: 'Please select the Season',
-                      backgroundColor: kSnackBarWarningColor,
-                    );
-                  } else if (area == null) {
-                    showSnackBarMessage(
-                      context: context,
-                      snackBarText:
-                          'Please select Field Area greater than Zero',
-                      backgroundColor: kSnackBarWarningColor,
-                    );
-                  } else {
-                    double predictedYield = await ApiHelper()
-                        .getYieldPrediction(
-                            crop, district, year.toString(), season, area);
-                    Alert(
-                      context: context,
-                      title: 'Predicted Yield',
-                      desc: predictedYield.toString(),
-                      type: AlertType.success,
-                      buttons: [],
-                      closeFunction: () {},
-                    ).show();
-                  }
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 35.0,
+                vertical: 8.0,
+              ),
+              child: Container(
+                child: seasonDropdown(),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.lightBlueAccent,
+                  ),
+                  borderRadius: BorderRadius.circular(32.0),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 35.0,
+                vertical: 8.0,
+              ),
+              child: TextField(
+                keyboardType: TextInputType.number,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  area = value;
                 },
+                decoration: kBoxfield.copyWith(
+                  hintText: 'Enter Field Area',
+                ),
               ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(left: 35, right: 35),
+              child: Builder(
+                builder: (context) => Button(
+                  buttonColor: Color(0xFF53d45b),
+                  buttonText: 'Estimate Yield',
+                  onPress: () async {
+                    if (crop == null) {
+                      showSnackBarMessage(
+                        context: context,
+                        snackBarText: 'Please select the Crop Type',
+                        backgroundColor: kSnackBarWarningColor,
+                      );
+                    } else if (district == null) {
+                      showSnackBarMessage(
+                        context: context,
+                        snackBarText: 'Please select your District',
+                        backgroundColor: kSnackBarWarningColor,
+                      );
+                    } else if (season == null) {
+                      showSnackBarMessage(
+                        context: context,
+                        snackBarText: 'Please select the Season',
+                        backgroundColor: kSnackBarWarningColor,
+                      );
+                    } else if (area == null) {
+                      showSnackBarMessage(
+                        context: context,
+                        snackBarText:
+                            'Please select Field Area greater than Zero',
+                        backgroundColor: kSnackBarWarningColor,
+                      );
+                    } else {
+                      toggleSpinner();
+                      double predictedYield = await ApiHelper()
+                          .getYieldPrediction(
+                              crop, district, year.toString(), season, area);
+                      toggleSpinner();
+                      if (predictedYield != null) {
+                        Alert(
+                          context: context,
+                          title: 'Predicted Yield',
+                          desc: predictedYield.toString(),
+                          type: AlertType.success,
+                          buttons: [],
+                          closeFunction: () {},
+                        ).show();
+                      } else {
+                        showSnackBarMessage(
+                          context: context,
+                          snackBarText:
+                              'Something went wrong! Please try again',
+                          backgroundColor: kSnackBarErrorColor,
+                        );
+                      }
+                    }
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

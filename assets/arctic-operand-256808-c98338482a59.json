@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "arctic-operand-256808",
+  "private_key_id": "c98338482a5941bba2f3c50298c8c48d24f29a54",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCcY0kitrRDZ6px\nOFe5pJNKca//7ZlzR4QaKwcSAtK+gRgs0nIUjl9cVMNOrg+6E1gDZOJcmHmCcv19\n+X5yCO0V9Wpc/IsZXxrJ0SZgxL3rTzUhvk3zfAqFA5fnlimb052DmE8Wu5MFeuJT\nzonnyP8iBa6iBKnBcR5vm09gVt8nQsUy8lUHT+cM+A7k150AfF3PBPqpaMfbtM3o\nyidBPyisWwn7MmGdGsu9Mc+LJtpFQyHXlmcxLHO9tIAxMpMHvcl9L+42lSvevxND\n4C82wRHsqE9u5odISISX+3IhwOvWyeQTa0mR7CJD4ptcW5a9L4HbD0McQVj+fv9X\nKxzTvNdfAgMBAAECggEAOLjwTXV8Q5iFoyQ++VgejllW71pkFoKBgSZLHbbFbpCP\nTq6T7y3Gm8wovNB4ZtLeUPjV+6TYKb8Af6EvQjhHmffWONzmrPCoXDwOkfm6Mu+b\nQ15tkptSi3VGsxpthBYIozLquMGXLV0pWyFmNppaI6Jw+VX8pmubkPqBm11W+jt1\nt9C2ZARYxe0ZOgr2+vmAvyVuvVv9fHJIMsZQKGhN2yxdnHg3Q4B4S/VMmOfpHwsG\nW6EO3BWV55U/GcBTSBRYT/ISaBXFrKRJVi//bTnTVwpIS2esdnM82XMXsB+4R/Gf\nUZgH78ma4oMwOUPXPXXjszgbIXEGd3ZTpEv0H3Kw+QKBgQDUbaU4ARXerNJbX2wD\nY/y8nZvdMhExZXgGs8epn+vVVN+B+b3ysWAn2ocZG+RTVpyJDWJ/1tiVu1fMiQAm\nTc5sgDtZNhfUyK/Xs/eSXtcnJlkSXf3jLqaUoWM14TlT/muxBpTnFhn5AYNdAFgj\nj/Za5lrfkyagFxRZ7cMwPGdciQKBgQC8dwXTq3UfZ04aGb+oLCvYQxOHqD1Akbaa\nVxAwwmkHaRlsDKg41rLkwdcEtMtGQW4cb7jw/Blgmwf0E2H6Th/CARpbseVqUPmt\nbLAzM5URU3iuk38a8SAxMAkE4KjCYjAwSnED2OnR+xIenGpQ8SuXaVINgG7h+WNS\nWBZbD9kqpwKBgF/m3EcrXkc4OIOd0bK6Kjiw4tP6rX5ic8x6z3IJy7t05K7WI+X0\nJBf59THlwK/LE0Jgc46JXSBEAsBJPXMNf1rGjYSaAipDK/eyvNssy+9VxbKgEmXF\nAtlo/tQtSOddnhq+gOzOso0THM4YwLHVZX/mLTJwSWjO4pYy3ALj0joZAoGBAIgP\nncNNG4eKe1ZYlIeDLDw7YNQlX+NHz37psCSjllPlSpc5JBG03v5L+0HIjKCyCB67\ngddpCaE3C6zoeWnOERts1GyyqB/zSe4sc6DjcpFJo+zVS4RV5JneRgShdPSxEn0q\noSDX7ybLji9PWWoKUyBCxxw8RtEZzNzb/3fKn0wtAoGAUDeUF5dmovmsZLG+W9bG\naxPI6IJ9yp4A94S/u34IPxgvgX9cv6QH1Z1Ahzb+p/88DJh4m2BvJEumKr/SXhAz\no5P5jwR7jEy+fUh7VcgUMZITNMfCzYiy18z+Fvz17ybpeC9ZvthB2X2bOnMob8GS\np7fPVD0y9lBFpk5uM8Y0n88=\n-----END PRIVATE KEY-----\n",
+  "client_email": "dialogflow-ankctv@arctic-operand-256808.iam.gserviceaccount.com",
+  "client_id": "101939576213833593403",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dialogflow-ankctv%40arctic-operand-256808.iam.gserviceaccount.com"
+}

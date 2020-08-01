@@ -195,3 +195,18 @@ const List<String> kFaliures = [
   'Animal Destruction',
   'Not Listed Here',
 ];
+
+
+const List<String> kCropStatus = [
+  'Sowing',
+  'Irrigation',
+  'Ploughing',
+  'Harvesting',
+];
+
+
+const kChatBot = TextStyle(
+  fontSize: 25,
+  backgroundColor: Colors.black12,
+
+);

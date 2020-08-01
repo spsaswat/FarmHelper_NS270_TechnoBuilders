@@ -1,3 +1,4 @@
+import 'package:farmhelper/screens/cropdetails.dart';
 import 'package:farmhelper/screens/estimationScreen.dart';
 import 'package:farmhelper/screens/reportscreen.dart';
 import 'package:farmhelper/utilities/constants.dart';
@@ -66,23 +67,27 @@ class HomeScreen extends StatelessWidget {
                               icon: Icons.assignment,
                               label: 'Add/View Crop Details',
                             ),
-                            onPress: () {},
+                            onPress: () {
+                              Navigator.pushNamed(context, CropDetails.id);
+                            },
                           ),
                         ),
                         Expanded(
                           child: CardButton(
                             cardChild: IconContent(
                               icon: Icons.mail,
-                              label: 'Report Crop Faliure',
+                              label: 'Report Crop Failure',
                             ),
                             onPress: () {
                               Navigator.pushNamed(context, ReportScreen.id);
                               Alert(
+                                closeFunction: () {},
+                                buttons: [],
                                 context: context,
                                 title: 'Need Assistance ?',
-                                desc: "Click on the call button in the bottom to avail any support immediately.",
+                                desc:
+                                    "Click on the call button in the bottom to avail any support immediately.",
                               ).show();
-
                             },
                           ),
                         ),

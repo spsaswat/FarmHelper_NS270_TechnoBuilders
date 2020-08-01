@@ -1,4 +1,6 @@
+import 'package:farmhelper/screens/ChatScreen.dart';
 import 'package:farmhelper/screens/homescreen.dart';
+import 'package:farmhelper/screens/reportscreen.dart';
 import 'package:farmhelper/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -26,19 +28,22 @@ class NavBar extends StatelessWidget {
             onPressed: () {},
             color: kInactiveIcon,
             iconSize: 25,
-            icon: Icon(Icons.location_on),
+            icon: Icon(Icons.account_circle),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, ChatScreen.id);
+            },
             color: kInactiveIcon,
             iconSize: 25,
-            icon: Icon(Icons.chat),
+            icon: Icon(Icons.headset_mic),
           ),
           IconButton(
             onPressed: () {
               launch("tel://7003814954");
             },
-            color: kInactiveIcon,
+            color:
+                currentRoute == ReportScreen.id ? kActiveIcon : kInactiveIcon,
             iconSize: 25,
             icon: Icon(Icons.phone),
           ),

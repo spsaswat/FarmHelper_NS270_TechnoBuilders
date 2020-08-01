@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 // Data
 const int kPhoneNumberLength = 10;
 const int kOTPLength = 6;
+const String kCountryCode = '+91';
 
 // UI
-const double kPinBoxSide = 50.0;
+const double kPinBoxSide = 45.0;
 
 const kBoxfield = InputDecoration(
   hintText: 'Enter your email',

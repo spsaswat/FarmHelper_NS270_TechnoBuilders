@@ -1,3 +1,4 @@
+import 'package:farmhelper/screens/get_otp_screen.dart';
 import 'package:farmhelper/screens/language.dart';
 import 'package:farmhelper/screens/phonenumber.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
       routes: {
         LanguageScreen.id: (context) => LanguageScreen(),
         PhoneNumberScreen.id: (context) => PhoneNumberScreen(),
+        GetOTPScreen.id: (context) => GetOTPScreen(),
       },
     );
   }

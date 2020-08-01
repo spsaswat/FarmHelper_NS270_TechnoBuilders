@@ -1,4 +1,5 @@
 import 'package:farmhelper/utilities/constants.dart';
+import 'package:farmhelper/utilities/firebase/phone_authentication.dart';
 import 'package:farmhelper/utilities/translator.dart';
 import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/snackbar.dart';
@@ -64,10 +65,14 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
             TextField(
               keyboardType: TextInputType.phone,
               textAlign: TextAlign.center,
+              autofocus: true,
               onChanged: (value) {
                 phoneNumber = value;
               },
-              decoration: kBoxfield.copyWith(hintText: '$s1'),
+              decoration: kBoxfield.copyWith(
+                hintText: '$s1',
+                prefixText: kCountryCode,
+              ),
             ),
             Builder(
               /*
@@ -87,6 +92,8 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                       );
                       return;
                     }
+                    registerWithPhoneNumber(
+                        kCountryCode + phoneNumber, context);
                   },
                 );
               },

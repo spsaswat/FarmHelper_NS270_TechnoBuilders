@@ -23,6 +23,7 @@ class _ChatScreenState extends State<ChatScreen> {
     setState(() {
       spinner = true;
     });
+
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     String lcode = _prefs.getString('language_code');
     final obj = GoogleTranslator();

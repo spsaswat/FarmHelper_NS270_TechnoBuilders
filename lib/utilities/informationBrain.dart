@@ -51,5 +51,3 @@ class cardstreamer extends StatelessWidget {
     );
   }
 }
-
-

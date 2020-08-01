@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:farmhelper/utilities/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:translator/translator.dart';
 
 
 class CropCards extends StatelessWidget {
@@ -16,8 +18,23 @@ class CropCards extends StatelessWidget {
   Widget build(BuildContext context) {
 
     Future _speaker() async{
-      await flutterTts.setLanguage("en-IN");
-      await flutterTts.speak(crp+". Fertilizers: "+f+". Season: "+sesn+". Pesticides: "+p+". Manure: "+m+". Watering: "+q);
+      SharedPreferences _prefs = await SharedPreferences.getInstance();
+      String lcode = _prefs.getString('language_code');
+      if(lcode == "en" || lcode == null)
+        {
+          await flutterTts.setLanguage("en-IN");
+          await flutterTts.speak(crp+". Fertilizers: "+f+". Season: "+sesn+". Pesticides: "+p+". Manure: "+m+". Watering: "+q);
+        }
+      else
+        {
+          final obj = GoogleTranslator();
+          await flutterTts.setLanguage("hi-IN");
+          String tl = crp+". Fertilizers: "+f+". Season: "+sesn+". Pesticides: "+p+". Manure: "+m+". Watering: "+q;
+          var trans = await obj.translate(tl, to: 'hi');
+          String s = trans.toString();
+          await flutterTts.speak(s);
+        }
+
     }
 
     return Padding(

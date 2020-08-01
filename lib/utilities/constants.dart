@@ -138,6 +138,13 @@ const List<String> kDistricts = [
 ];
 // </editor-fold>
 
+// <editor-fold desc="kSupportedLanguages" default="collapsed">
+const List<String> kSupportedLanguages = [
+  'en',
+  'hi',
+];
+// </editor-fold>
+
 // UI
 const double kPinBoxSide = 45.0;
 
@@ -192,7 +199,7 @@ const Color kSnackBarWarningColor = Colors.redAccent;
 const Color kSnackBarErrorColor = Colors.orangeAccent;
 // </editor-fold>
 
-// <editor-fold desc="Slider Colors" defaultState="collapsed">
+// <editor-fold desc="Slider Colors" default="collapsed">
 const Color kSliderActiveColor = Color(0xFFFF5E5E);
 const Color kSliderInactiveColor = Colors.white70;
 // </editor-fold>

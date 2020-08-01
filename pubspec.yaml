@@ -50,6 +50,12 @@ dependencies:
   firebase_auth: ^0.16.1
   cloud_firestore: ^0.13.7
 
+  # Localization
+  provider: ^4.3.1
+  shared_preferences: ^0.5.8
+  flutter_localizations:
+    sdk: flutter
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -69,6 +75,7 @@ flutter:
   assets:
     - assets/arctic-operand-256808-c98338482a59.json
     - images/
+    - assets/languages/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

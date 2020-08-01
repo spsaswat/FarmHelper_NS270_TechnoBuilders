@@ -34,6 +34,7 @@ class AppLocalizations {
   // This method will be called from every widget which needs a localized text
   String translate(String key, [List<String> arguments]) {
     String translatedText = _localizedStrings[key];
+    if (translatedText == null) return "Localized key not found";
     while (translatedText.contains('{}') && arguments.length != 0)
       translatedText = translatedText.replaceFirst('{}', arguments.removeAt(0));
     return translatedText;

@@ -1,6 +1,7 @@
 import 'package:farmhelper/screens/get_otp_screen.dart';
 import 'package:farmhelper/screens/homescreen.dart';
 import 'package:farmhelper/utilities/constants.dart';
+import 'package:farmhelper/utilities/localization/app_localizations.dart';
 import 'package:farmhelper/widgets/snackbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ import 'database_helper.dart';
 String verificationID, mobileNumber, districtName;
 
 Future registerWithPhoneNumber(
-    String mobile, String district, int n, BuildContext context) async {
+    String mobile, String district, BuildContext context) async {
   FirebaseAuth _auth = FirebaseAuth.instance;
   mobileNumber = mobile;
   districtName = district;
@@ -27,7 +28,7 @@ Future registerWithPhoneNumber(
         print(e);
         showSnackBarMessage(
           context: context,
-          snackBarText: 'Oops! Something went wrong. Please try again.',
+          snackBarText: AppLocalizations.of(context).translate('error.oops'),
           backgroundColor: kSnackBarErrorColor,
         );
       });
@@ -36,7 +37,7 @@ Future registerWithPhoneNumber(
       print(authException.message);
       showSnackBarMessage(
         context: context,
-        snackBarText: 'Oops! Something went wrong. Please try again.',
+        snackBarText: AppLocalizations.of(context).translate('error.oops'),
         backgroundColor: kSnackBarErrorColor,
       );
     },
@@ -45,9 +46,7 @@ Future registerWithPhoneNumber(
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => GetOTPScreen(
-            lang: n,
-          ),
+          builder: (context) => GetOTPScreen(),
         ),
       );
     },
@@ -56,7 +55,8 @@ Future registerWithPhoneNumber(
       print("Timeout");
       showSnackBarMessage(
         context: context,
-        snackBarText: 'Code retrieval timeout! Please register again.',
+        snackBarText: AppLocalizations.of(context)
+            .translate('error.codeRetrievalTimeout'),
         backgroundColor: kSnackBarErrorColor,
       );
     },
@@ -66,13 +66,18 @@ Future registerWithPhoneNumber(
 void verifyCodeSent(String smsCode, BuildContext context) {
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  // Add User data to Database for users with failed code retrieval
-  addRegisteredUserDetails(mobileNumber, districtName);
   AuthCredential _credential = PhoneAuthProvider.getCredential(
       verificationId: verificationID, smsCode: smsCode);
   auth.signInWithCredential(_credential).then((AuthResult result) {
+    // Add User data to Database for users with failed code retrieval
+    addRegisteredUserDetails(mobileNumber, districtName);
     Navigator.pushReplacementNamed(context, HomeScreen.id);
   }).catchError((e) {
     print(e);
+    showSnackBarMessage(
+      context: context,
+      snackBarText: AppLocalizations.of(context).translate('error.oops'),
+      backgroundColor: kSnackBarErrorColor,
+    );
   });
 }

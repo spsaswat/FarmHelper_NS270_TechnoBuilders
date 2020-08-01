@@ -1,14 +1,12 @@
 import 'package:farmhelper/utilities/constants.dart';
 import 'package:farmhelper/utilities/firebase/phone_authentication.dart';
-import 'package:farmhelper/utilities/translator.dart';
+import 'package:farmhelper/utilities/localization/app_localizations.dart';
 import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
-  final int nm;
-  PhoneNumberScreen({this.nm});
   static const String id = 'phone';
   @override
   _PhoneNumberScreenState createState() => _PhoneNumberScreenState();
@@ -16,48 +14,13 @@ class PhoneNumberScreen extends StatefulWidget {
 
 class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
   String phoneNumber = '', district;
-  String s1 = 'Enter your phone number';
-  String s2 = 'Register';
-  String phoneNumberValidation =
-      'Length of Phone Number must be $kPhoneNumberLength';
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    int n = widget.nm;
-    if (n == 1) {
-      changeLanguage();
-    }
-  }
-
-  void changeLanguage() async {
-    String t1 = await getLanguage(s1);
-    String t2 = await getLanguage(s2);
-    String t3 = await getLanguage(phoneNumberValidation);
-    setState(() {
-      s1 = t1;
-      s2 = t2;
-      phoneNumberValidation = t3;
-    });
-  }
-
-  Future<String> getLanguage(String k) async {
-    Translator translator = Translator();
-    var data = await translator.hindi(k);
-    if (data == 'null') {
-      return 'Loading...';
-    } else {
-      return data;
-    }
-  }
 
   DropdownButton<String> districtsDropdown() {
     List<DropdownMenuItem<String>> districtsItems = [];
 
     for (String s in kDistricts) {
       var newItem = DropdownMenuItem(
-        child: Text(s),
+        child: Text(AppLocalizations.of(context).translate('kDistricts.' + s)),
         value: s,
       );
       districtsItems.add(newItem);
@@ -65,7 +28,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
 
     return DropdownButton<String>(
       value: district,
-      hint: Text("Select your District"),
+      hint: Text(AppLocalizations.of(context).translate('kDistricts.default')),
       underline: SizedBox(),
       items: districtsItems,
       onChanged: (value) {
@@ -78,6 +41,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
 
   @override
   Widget build(BuildContext context) {
+    AppLocalizations _appLocalizations = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: Color(0xFFE0FFFF),
       body: Padding(
@@ -108,7 +72,8 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   phoneNumber = value;
                 },
                 decoration: kBoxfield.copyWith(
-                  hintText: '$s1',
+                  hintText: _appLocalizations
+                      .translate('phonenumber.phoneNumberHint'),
                   prefixText: kCountryCode,
                 ),
               ),
@@ -137,25 +102,29 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
               builder: (context) {
                 return Button(
                   buttonColor: Colors.lightBlueAccent,
-                  buttonText: '$s2',
+                  buttonText:
+                      _appLocalizations.translate('phonenumber.register'),
                   onPress: () {
                     if (phoneNumber.length != kPhoneNumberLength) {
                       showSnackBarMessage(
                         context: context,
-                        snackBarText: phoneNumberValidation,
+                        snackBarText: _appLocalizations.translate(
+                            'error.phoneValidationSnackbar',
+                            [kPhoneNumberLength.toString()]),
                         backgroundColor: Colors.redAccent,
                       );
                       return;
                     } else if (district == null) {
                       showSnackBarMessage(
                         context: context,
-                        snackBarText: 'Please select your District',
+                        snackBarText: _appLocalizations
+                            .translate('error.districtSnackbar'),
                         backgroundColor: kSnackBarWarningColor,
                       );
                       return;
                     }
-                    registerWithPhoneNumber(kCountryCode + phoneNumber,
-                        district, widget.nm, context);
+                    registerWithPhoneNumber(
+                        kCountryCode + phoneNumber, district, context);
                   },
                 );
               },

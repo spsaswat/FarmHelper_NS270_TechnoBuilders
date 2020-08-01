@@ -8,8 +8,11 @@
   "homescreen.estimateYieldLabel": "Estimated Crop Yield",
   "homescreen.detectDiseaseLabel": "Check Crop for Disease",
 
+  "get_otp_screen.verify": "Verify",
+
   "error.districtSnackbar": "Please select your District",
   "error.phoneValidationSnackbar": "Length of Phone Number must be {}",
+  "error.otpValidationSnackbar": "The length of the OTP must be {}",
   "error.oops": "Oops! Something went wrong. Please try again.",
   "error.codeRetrievalTimeout": "Code retrieval timeout! Please register again.",
 

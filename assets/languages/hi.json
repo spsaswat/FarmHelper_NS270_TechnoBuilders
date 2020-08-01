@@ -8,8 +8,11 @@
   "homescreen.estimateYieldLabel": "अनुमानित फसल उपज",
   "homescreen.detectDiseaseLabel": "रोग के लिए फसल की जाँच करें",
 
+  "get_otp_screen.verify": "सत्यापित करें",
+
   "error.districtSnackbar": "कृपया अपने जिले का चयन करें",
   "error.phoneValidationSnackbar": "फोन नंबर की लंबाई {} होनी चाहिए",
+  "error.otpValidationSnackbar": "OTP की लंबाई {} होनी चाहिए",
   "error.oops": "गड़बड़ हो गया। कृपया पुन: प्रयास करें।",
   "error.codeRetrievalTimeout": "कोड पुनर्प्राप्ति समयबाह्य! फिर से रजिस्टर करें।",
 

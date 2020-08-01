@@ -1,18 +1,14 @@
 import 'package:farmhelper/utilities/constants.dart';
 import 'package:farmhelper/utilities/firebase/phone_authentication.dart';
+import 'package:farmhelper/utilities/localization/app_localizations.dart';
 import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
 
 class GetOTPScreen extends StatelessWidget {
-  GetOTPScreen({this.lang});
   static const String id = 'getOTP';
-  final int lang;
   final _codeController = TextEditingController();
-  final String _otpValidation = 'The length of the OTP must be $kOTPLength';
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +31,6 @@ class GetOTPScreen extends StatelessWidget {
             ),
             Row(
               children: <Widget>[
-
                 Expanded(
                   child: PinCodeTextField(
                     maxLength: kOTPLength,
@@ -61,13 +56,17 @@ class GetOTPScreen extends StatelessWidget {
               builder: (context) {
                 return Button(
                   buttonColor: Colors.lightBlueAccent,
-                  buttonText: 'Verify',
+                  buttonText: AppLocalizations.of(context)
+                      .translate('get_otp_screen.verify'),
                   onPress: () {
                     String otp = _codeController.text.trim();
                     if (otp.length != kOTPLength) {
                       showSnackBarMessage(
                         context: context,
-                        snackBarText: _otpValidation,
+                        snackBarText: AppLocalizations.of(context).translate(
+                          'error.otpValidationSnackbar',
+                          [kOTPLength.toString()],
+                        ),
                         backgroundColor: kSnackBarWarningColor,
                       );
                       return;

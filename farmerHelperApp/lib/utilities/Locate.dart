@@ -22,7 +22,7 @@ class Location {
     }
   }
 
-  void locate() async {
+  Future<void> locate() async {
     try {
       Position position = await Geolocator()
           .getCurrentPosition(desiredAccuracy: LocationAccuracy.best);

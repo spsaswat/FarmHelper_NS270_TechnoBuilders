@@ -36,8 +36,11 @@ App, Website and APIs to help farmers for estimation of their yield
 <br>
 
 <b>Datasets</b>
+<br>
 <a href="https://drive.google.com/drive/folders/1RMjG4Vvg5aGCGlSS5KjTpWaOlPDuQrMw?usp=sharing">Dataset Link For Disease Detection</a>
+<br>
 <a href="https://drive.google.com/file/d/1RtQu52iitkpbUriVzpJcN_4wwuNycA80/view?usp=sharing">Dataset Link For Diseased Crop Yield Prediction</a>
-<a href="https://aps.dac.gov.in/APY/Public_Re"></a>
+<br>
+<a href="https://aps.dac.gov.in/APY/Public_Re">Dataset Link For Healthy Crop Yield Prediction</a>
 
 

@@ -32,6 +32,13 @@
   "diseaseYield.yield.alert.title": "अनुमानित उपज",
   "diseaseYield.yield.alert.desc": "अनुमानित उपज {}% है।\nरोग के कारण उपज का नुकसान {}% है।",
 
+  "report.title": "Report a crop failure",
+  "report.areaSliderTitle": "Total Area Affected",
+  "report.areaUnits": "हेक्टेयर",
+  "report.yield": "Your Yield",
+  "report.yieldUnits": "टन प्रति हेक्टेयर",
+  "report.btnReport": "Report",
+
   "profile.nameTextHint": "अपना नाम दर्ज करें",
   "profile.areaTextHint": "क्षेत्र का क्षेत्रफल दर्ज करें",
   "profile.areaUnits": "हेक्टेयर",
@@ -49,6 +56,9 @@
   "error.oops": "गड़बड़ हो गया। कृपया पुन: प्रयास करें।",
   "error.codeRetrievalTimeout": "कोड पुनर्प्राप्ति समयबाह्य! फिर से रजिस्टर करें।",
   "error.stageSnackbar": "कृपया चरण प्रकार चुनें",
+  "error.areaAffectedSnackbar": "Please select area affected",
+  "error.yieldSnackbar": "Please specify your yield",
+  "error.failureReasonSnackbar": "Please specify a reason for your failure",
 
   "detectedDisease.Tomato": "टमाटर",
   "detectedDisease.Potato": "आलू",
@@ -174,6 +184,14 @@
   "kSeasons.WINTER": "सर्दी",
   "kSeasons.TOTAL ": "संपूर्ण ",
   "kSeasons.WHOLE YEAR": "पूरा साल",
+
+  "kFailureReasons.default": "Select Reason for Damage",
+  "kFailureReasons.Drought": "Drought",
+  "kFailureReasons.Disease": "Disease",
+  "kFailureReasons.Floods": "Floods",
+  "kFailureReasons.Insects": "Insects",
+  "kFailureReasons.Animal Destruction": "Animal Destruction",
+  "kFailureReasons.Not Listed Here": "Not Listed Here",
 
   "test": "test"
 }

@@ -32,6 +32,13 @@
   "diseaseYield.yield.alert.title": "Predicted Yield",
   "diseaseYield.yield.alert.desc": "Predicted yield is {}%.\nYield loss due to disease is {}%.",
 
+  "report.title": "Report a crop failure",
+  "report.areaSliderTitle": "Total Area Affected",
+  "report.areaUnits": "hectare",
+  "report.yield": "Your Yield",
+  "report.yieldUnits": "tonnes/hectare",
+  "report.btnReport": "Report",
+
   "profile.nameTextHint": "Enter your name",
   "profile.areaTextHint": "Enter the Field Area",
   "profile.areaUnits": "hectares",
@@ -49,6 +56,9 @@
   "error.oops": "Oops! Something went wrong. Please try again.",
   "error.codeRetrievalTimeout": "Code retrieval timeout! Please register again.",
   "error.stageSnackbar": "Please select the Stage Type.",
+  "error.areaAffectedSnackbar": "Please select area affected",
+  "error.yieldSnackbar": "Please specify your yield",
+  "error.failureReasonSnackbar": "Please specify a reason for your failure",
 
   "detectedDisease.Tomato": "Tomato",
   "detectedDisease.Potato": "Potato",
@@ -174,6 +184,14 @@
   "kSeasons.WINTER": "WINTER",
   "kSeasons.TOTAL ": "TOTAL ",
   "kSeasons.WHOLE YEAR": "WHOLE YEAR",
+
+  "kFailureReasons.default": "Select Reason for Damage",
+  "kFailureReasons.Drought": "Drought",
+  "kFailureReasons.Disease": "Disease",
+  "kFailureReasons.Floods": "Floods",
+  "kFailureReasons.Insects": "Insects",
+  "kFailureReasons.Animal Destruction": "Animal Destruction",
+  "kFailureReasons.Not Listed Here": "Not Listed Here",
 
   "test": "test"
 }

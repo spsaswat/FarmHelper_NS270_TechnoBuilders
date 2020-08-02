@@ -1,41 +1,39 @@
+import 'package:farmhelper/screens/homescreen.dart';
 import 'package:farmhelper/utilities/constants.dart';
 import 'package:farmhelper/utilities/firebase/database_helper.dart'
     show reportFailure;
+import 'package:farmhelper/utilities/localization/app_localizations.dart';
 import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/common_appBar.dart';
 import 'package:farmhelper/widgets/nav_bar.dart';
 import 'package:farmhelper/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
-import 'package:farmhelper/screens/homescreen.dart';
 
 class ReportScreen extends StatefulWidget {
   static const String id = 'report';
-  ReportScreen({this.lati,this.long});
-  final List<double> lati;
-  final List<double> long;
+  ReportScreen({this.lat, this.lon});
+  final List<double> lat;
+  final List<double> lon;
   @override
   _ReportScreenState createState() => _ReportScreenState();
 }
 
 class _ReportScreenState extends State<ReportScreen> {
   String crop, area, yield, fails;
-  List<double> _lati;
-  List<double> _long;
-  void initState()
-  {
+  List<double> _latitude;
+  List<double> _longitude;
+  void initState() {
     super.initState();
-    _lati = widget.lati;
-    _long = widget.long;
-
+    _latitude = widget.lat;
+    _longitude = widget.lon;
   }
-
 
   DropdownButton<String> cropsDropdown() {
     List<DropdownMenuItem<String>> cropItems = [];
 
     for (String s in kCropList) {
       var newItem = DropdownMenuItem(
-        child: Text(s),
+        child: Text(AppLocalizations.of(context).translate('kCrops.' + s)),
         value: s,
       );
       cropItems.add(newItem);
@@ -45,7 +43,7 @@ class _ReportScreenState extends State<ReportScreen> {
       value: crop,
       items: cropItems,
       underline: SizedBox(),
-      hint: Text("Select Crop Type"),
+      hint: Text(AppLocalizations.of(context).translate('kCrops.default')),
       onChanged: (value) {
         setState(() {
           crop = value;
@@ -57,9 +55,10 @@ class _ReportScreenState extends State<ReportScreen> {
   DropdownButton<String> failureDropdown() {
     List<DropdownMenuItem<String>> cropItems = [];
 
-    for (String s in kFaliures) {
+    for (String s in kFailureReasons) {
       var newItem = DropdownMenuItem(
-        child: Text(s),
+        child: Text(
+            AppLocalizations.of(context).translate('kFailureReasons.' + s)),
         value: s,
       );
       cropItems.add(newItem);
@@ -69,7 +68,8 @@ class _ReportScreenState extends State<ReportScreen> {
       value: fails,
       items: cropItems,
       underline: SizedBox(),
-      hint: Text("Select Reason for Damage"),
+      hint: Text(
+          AppLocalizations.of(context).translate('kFailureReasons.default')),
       onChanged: (value) {
         setState(() {
           fails = value;
@@ -89,7 +89,7 @@ class _ReportScreenState extends State<ReportScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              'Report a crop failure',
+              AppLocalizations.of(context).translate('report.title'),
               style: kOptionstyles2,
               textAlign: TextAlign.center,
             ),
@@ -122,7 +122,10 @@ class _ReportScreenState extends State<ReportScreen> {
                 area = value;
               },
               decoration: kBoxfield.copyWith(
-                hintText: 'Total Area Affected',
+                hintText: AppLocalizations.of(context)
+                    .translate('report.areaSliderTitle'),
+                suffixText:
+                    AppLocalizations.of(context).translate('report.areaUnits'),
               ),
             ),
           ),
@@ -138,7 +141,10 @@ class _ReportScreenState extends State<ReportScreen> {
                 yield = value;
               },
               decoration: kBoxfield.copyWith(
-                hintText: 'Your Estimated Yield',
+                hintText:
+                    AppLocalizations.of(context).translate('report.yield'),
+                suffixText:
+                    AppLocalizations.of(context).translate('report.yieldUnits'),
               ),
             ),
           ),
@@ -163,30 +169,35 @@ class _ReportScreenState extends State<ReportScreen> {
             child: Builder(
               builder: (context) => Button(
                 buttonColor: Color(0xFF53d45b),
-                buttonText: 'Report',
+                buttonText:
+                    AppLocalizations.of(context).translate('report.btnReport'),
                 onPress: () {
                   if (crop == null) {
                     showSnackBarMessage(
                       context: context,
-                      snackBarText: 'Please select the Crop Type',
+                      snackBarText: AppLocalizations.of(context)
+                          .translate('error.cropSnackbar'),
                       backgroundColor: kSnackBarWarningColor,
                     );
                   } else if (area == null) {
                     showSnackBarMessage(
                       context: context,
-                      snackBarText: 'Please select area affected',
+                      snackBarText: AppLocalizations.of(context)
+                          .translate('error.areaAffectedSnackbar'),
                       backgroundColor: kSnackBarWarningColor,
                     );
                   } else if (yield == null) {
                     showSnackBarMessage(
                       context: context,
-                      snackBarText: 'Please specify your estimated yield',
+                      snackBarText: AppLocalizations.of(context)
+                          .translate('error.yieldSnackbar'),
                       backgroundColor: kSnackBarWarningColor,
                     );
                   } else if (fails == null) {
                     showSnackBarMessage(
                       context: context,
-                      snackBarText: 'Please Specify a reason for your failure',
+                      snackBarText: AppLocalizations.of(context)
+                          .translate('error.failureReasonSnackbar'),
                       backgroundColor: kSnackBarWarningColor,
                     );
                   } else {
@@ -195,10 +206,11 @@ class _ReportScreenState extends State<ReportScreen> {
                       crop: crop,
                       fails: fails,
                       estimatedYield: yield,
-                      latt: _lati,
-                      lonn: _long,
+                      latt: _latitude,
+                      lonn: _longitude,
                     );
-                    Navigator.popUntil(context, ModalRoute.withName(HomeScreen.id));
+                    Navigator.popUntil(
+                        context, ModalRoute.withName(HomeScreen.id));
                   }
                 },
               ),

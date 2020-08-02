@@ -31,3 +31,5 @@ An app that can be used by farmers and volunteers
 </ul>
 
 <a href="https://www.figma.com/file/mhtGuzwvJvB26OuOdnlS8b/SIH_PRO_2?node-id=0%3A1">Figma Design for App</a>
+
+<a href="https://drive.google.com/drive/folders/19iBT22t-asQ0j0iyeWdhZZv0NbuT0YDi?usp=sharing">Drive Link For Code, Video, PPT and APKS</a>

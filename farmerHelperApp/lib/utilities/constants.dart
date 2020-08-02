@@ -8,6 +8,7 @@ const String kFirstTimeUserSharedPrefsKey = 'firstTimeUser';
 const String kUserNameSharedPrefsKey = 'userName';
 const String kDistrictSharedPrefsKey = 'district';
 const String kFieldAreaSharedPrefsKey = 'fieldArea';
+const String kFirebaseStorageBucket = 'gs://farmers-gcpxee.appspot.com';
 
 // <editor-fold desc="kCropList" default="collapsed">
 const List<String> kCropList = [

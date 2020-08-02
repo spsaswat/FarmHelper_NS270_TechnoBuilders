@@ -31,8 +31,8 @@ class _ImageCollectState extends State<ImageCollect> {
     );
     Location obj = Location();
     await obj.locate();
-    print(obj.lat);
-    print(obj.long);
+//    print(obj.lat);
+//    print(obj.long);
     latitudes.add(obj.lat);
     longitudes.add(obj.long);
 
@@ -101,8 +101,11 @@ class _ImageCollectState extends State<ImageCollect> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                ReportScreen(lat: latitudes, lon: longitudes),
+                            builder: (context) => ReportScreen(
+                              lat: latitudes,
+                              lon: longitudes,
+                              imageFiles: pickedImagePaths,
+                            ),
                           ),
                         );
                       },

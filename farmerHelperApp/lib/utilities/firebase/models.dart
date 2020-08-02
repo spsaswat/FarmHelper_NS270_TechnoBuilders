@@ -17,7 +17,7 @@ class FailureCollection {
   static String fieldCreated = 'created';
   static String fieldArea = 'area';
   static String fieldCrop = 'crop';
-  static String fieldEstimatedYield = 'estimatedYield';
+  static String fieldYield = 'yield';
   static String fieldReason = 'reason';
   static String fieldStatus = 'status';
   static String fieldLat1 = 'latitude1';

@@ -1,3 +1,5 @@
+import 'dart:io' show File;
+
 import 'package:farmhelper/screens/homescreen.dart';
 import 'package:farmhelper/utilities/constants.dart';
 import 'package:farmhelper/utilities/firebase/database_helper.dart'
@@ -11,22 +13,16 @@ import 'package:flutter/material.dart';
 
 class ReportScreen extends StatefulWidget {
   static const String id = 'report';
-  ReportScreen({this.lat, this.lon});
+  ReportScreen({this.lat, this.lon, this.imageFiles});
   final List<double> lat;
   final List<double> lon;
+  final List<File> imageFiles;
   @override
   _ReportScreenState createState() => _ReportScreenState();
 }
 
 class _ReportScreenState extends State<ReportScreen> {
   String crop, area, yield, fails;
-  List<double> _latitude;
-  List<double> _longitude;
-  void initState() {
-    super.initState();
-    _latitude = widget.lat;
-    _longitude = widget.lon;
-  }
 
   DropdownButton<String> cropsDropdown() {
     List<DropdownMenuItem<String>> cropItems = [];
@@ -205,9 +201,9 @@ class _ReportScreenState extends State<ReportScreen> {
                       area: area,
                       crop: crop,
                       fails: fails,
-                      estimatedYield: yield,
-                      latt: _latitude,
-                      lonn: _longitude,
+                      givenYield: yield,
+                      latitudes: widget.lat,
+                      longitudes: widget.lon,
                     );
                     Navigator.popUntil(
                         context, ModalRoute.withName(HomeScreen.id));

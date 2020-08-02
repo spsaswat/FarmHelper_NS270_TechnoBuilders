@@ -1,5 +1,5 @@
-# FarmersApp
-An app that can be used by farmers and volunteers
+# Farmer Helper
+App, Website and APIs to help farmers for estimation of their yield
 
 
 

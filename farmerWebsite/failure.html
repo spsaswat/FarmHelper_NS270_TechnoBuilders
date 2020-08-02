@@ -88,6 +88,19 @@ db.collection("failure").get().then(function(querySnapshot) {
         let x = document.getElementById('mainbody')
         let dat = new Date(doc.data()['created'].seconds * 1000).toDateString();
         if(doc.data()['status'] == 'f'){
+
+	let lat1 = doc.data()['Lattitude1']
+	let lon1 = doc.data()['Longittude1']
+	let lat2 = doc.data()['Lattitude2']
+	let lon2 = doc.data()['Longittude2']
+	let lat3 = doc.data()['Lattitude3']
+	let lon3 = doc.data()['Longittude3']
+    let dis1 = distance(lat1,lon1, lat2,lon2, 'K')
+    let dis2 = distance(lat2,lon2, lat3,lon3, 'K')
+
+console.log(dis1*dis2)
+
+
         x.innerHTML += `
         <div class="single-job-items mb-30"  style="border-style: solid;border-width:0.5px;border-color:#656b65;">
                                     <div class="job-items">
@@ -100,9 +113,10 @@ db.collection("failure").get().then(function(querySnapshot) {
                                             </a>
                                             <ul>
                                                 
-                                                <li style="font-size:20px;"><i style="color:#f7253e;font-size:25px;" class="fas fa-map-marker-alt"></i>${doc.data()['area']}</li>
-                                                <li style="font-size:20px;"><i style="color:#369c11;font-size:25px;" class="fa fa-leaf"></i>${doc.data()['crop']}</li>
-                                                <li style="font-size:20px;"><i style="color:#1525d6;font-size:25px;" class="fa fa-medkit"></i>${doc.data()['estimatedYield']}</li>
+                                                <li style="font-size:20px;"><i style="color:#f7253e;font-size:25px;" class="fas fa-map-marker-alt"></i>Area : ${doc.data()['area']}</li>
+<li style="font-size:20px;"><i style="color:#f7253e;font-size:25px;" class="fas fa-map-marker-alt"></i>ActualArea : ${dis1*dis2} km.sq</li>
+                                                <li style="font-size:20px;"><i style="color:#369c11;font-size:25px;" class="fa fa-leaf"></i>Crop : ${doc.data()['crop']}</li>
+                                                <li style="font-size:20px;"><i style="color:#1525d6;font-size:25px;" class="fa fa-medkit"></i>Yield : ${doc.data()['estimatedYield']}</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -120,18 +134,67 @@ db.collection("failure").get().then(function(querySnapshot) {
     
 
 
+function distance(lat1, lon1, lat2, lon2, unit) {
+	if ((lat1 == lat2) && (lon1 == lon2)) {
+		return 0;
+	}
+	else {
+		var radlat1 = Math.PI * lat1/180;
+		var radlat2 = Math.PI * lat2/180;
+		var theta = lon1-lon2;
+		var radtheta = Math.PI * theta/180;
+		var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+		if (dist > 1) {
+			dist = 1;
+		}
+		dist = Math.acos(dist);
+		dist = dist * 180/Math.PI;
+		dist = dist * 60 * 1.1515;
+		if (unit=="K") { dist = dist * 1.609344 }
+		if (unit=="N") { dist = dist * 0.8684 }
+		return dist;
+	}
+}
+
+
+
+function area(){
+
+
+console.log(lat1)
+console.log(lon1)
+console.log(lat2)
+console.log(lon2)
+console.log(lat3)
+console.log(lon3)
+
+    let dis1 = distance(lat1,lon1, lat2,lon2, 'K')
+    let dis2 = distance(lat2,lon2, lat3,lon3, 'K')
+
+    let p = document.getElementById('ans')
+    p.innerHTML = `your area is : ${dis1 * dis2} km.sq`
+}
+
+
+
 
 </script>
 
 <script>
 
 function fun(id2){
-    console.log(id2)
-        db.collection('failure').doc(id2).update({
+  let ver = JSON.parse(sessionStorage.getItem("verify"));
+  if(ver=='true'){
+    db.collection('failure').doc(id2).update({
         status: 't'
 }).then(() => location.reload());
-    }
+  }
+  else{
+    window.location.replace("./login.html")
+  }
 
+    }
+    // 
 </script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -9,6 +9,7 @@ import 'package:farmhelper/widgets/button.dart';
 import 'package:farmhelper/widgets/common_appBar.dart';
 import 'package:farmhelper/widgets/nav_bar.dart';
 import 'package:farmhelper/widgets/snackbar.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class ReportScreen extends StatefulWidget {
@@ -23,6 +24,27 @@ class ReportScreen extends StatefulWidget {
 
 class _ReportScreenState extends State<ReportScreen> {
   String crop, area, yield, fails;
+  FirebaseStorage _storage =
+      FirebaseStorage(storageBucket: kFirebaseStorageBucket);
+  List<StorageUploadTask> _uploadTask;
+
+  //region addImagesToFirebaseStorage
+  void addImagesToFirebaseStorage() {
+    /*
+    The reason behind keeping this function here, instead of in database_helper.dart
+    is that a visual representation of the uploading process is required.
+    That can be easily achieved by keeping the said function in UI section.
+     */
+    _uploadTask = List<StorageUploadTask>(widget.imageFiles.length);
+    for (int i = 0; i < _uploadTask.length; i++) {
+      String filePath = '/failure_images/${DateTime.now()}.png';
+      setState(() {
+        _uploadTask[i] =
+            _storage.ref().child(filePath).putFile(widget.imageFiles[i]);
+      });
+    }
+  }
+  //endregion
 
   DropdownButton<String> cropsDropdown() {
     List<DropdownMenuItem<String>> cropItems = [];
@@ -205,6 +227,7 @@ class _ReportScreenState extends State<ReportScreen> {
                       latitudes: widget.lat,
                       longitudes: widget.lon,
                     );
+                    addImagesToFirebaseStorage();
                     Navigator.popUntil(
                         context, ModalRoute.withName(HomeScreen.id));
                   }

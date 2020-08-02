@@ -153,6 +153,26 @@ const List<String> kLanguageNames = [
 ];
 // </editor-fold>
 
+//<editor-fold desc="kFailureReasons">
+const List<String> kFailureReasons = [
+  'Drought',
+  'Disease',
+  'Floods',
+  'Insects',
+  'Animal Destruction',
+  'Not Listed Here',
+];
+//</editor-fold>
+
+//<editor-fold desc="kCropStatus">
+const List<String> kCropStatus = [
+  'Sowing',
+  'Irrigation',
+  'Ploughing',
+  'Harvesting',
+];
+//</editor-fold>
+
 // UI
 const double kPinBoxSide = 45.0;
 
@@ -211,22 +231,6 @@ const Color kSnackBarErrorColor = Colors.orangeAccent;
 const Color kSliderActiveColor = Color(0xFFFF5E5E);
 const Color kSliderInactiveColor = Colors.white70;
 // </editor-fold>
-
-const List<String> kFaliures = [
-  'Drought',
-  'Disease',
-  'Floods',
-  'Insects',
-  'Animal Destruction',
-  'Not Listed Here',
-];
-
-const List<String> kCropStatus = [
-  'Sowing',
-  'Irrigation',
-  'Ploughing',
-  'Harvesting',
-];
 
 const kChatBot = TextStyle(
   fontSize: 25,

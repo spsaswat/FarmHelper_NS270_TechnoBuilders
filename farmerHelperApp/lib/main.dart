@@ -6,6 +6,7 @@ import 'package:farmhelper/screens/disease_detection_screen.dart';
 import 'package:farmhelper/screens/estimationScreen.dart';
 import 'package:farmhelper/screens/get_otp_screen.dart';
 import 'package:farmhelper/screens/homescreen.dart';
+import 'package:farmhelper/screens/imageCollector.dart';
 import 'package:farmhelper/screens/language.dart';
 import 'package:farmhelper/screens/phonenumber.dart';
 import 'package:farmhelper/screens/profile_screen.dart';
@@ -59,6 +60,7 @@ class MyApp extends StatelessWidget {
               DiseaseDetectionScreen.id: (context) => DiseaseDetectionScreen(),
               DiseaseYield.id: (context) => DiseaseYield(),
               ProfileScreen.id: (context) => ProfileScreen(),
+              ImageCollect.id: (context) => ImageCollect(),
             },
             // List all of the app's supported locales here
             supportedLocales: [

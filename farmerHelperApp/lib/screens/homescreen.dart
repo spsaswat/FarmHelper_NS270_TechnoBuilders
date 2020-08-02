@@ -1,6 +1,7 @@
 import 'package:farmhelper/screens/cropdetails.dart';
 import 'package:farmhelper/screens/disease_detection_screen.dart';
 import 'package:farmhelper/screens/estimationScreen.dart';
+import 'package:farmhelper/screens/imageCollector.dart';
 import 'package:farmhelper/screens/reportscreen.dart';
 import 'package:farmhelper/utilities/constants.dart';
 import 'package:farmhelper/utilities/localization/app_localizations.dart';
@@ -178,20 +179,22 @@ class _HomeScreenState extends State<HomeScreen>
                                   desc: appLocalizations.translate(
                                       'homescreen.assistance.alert.desc'),
                                 ).show();
-                                final reportAdded = await Navigator.pushNamed(
-                                    context, ReportScreen.id);
-                                if (reportAdded != null) {
-                                  Alert(
-                                    context: context,
-                                    title: appLocalizations.translate(
-                                        'homescreen.reportFailure.alert.title'),
-                                    desc: appLocalizations.translate(
-                                        'homescreen.reportFailure.alert.desc'),
-                                    type: AlertType.success,
-                                    buttons: [],
-                                    closeFunction: () {},
-                                  ).show();
-                                }
+//                                final reportAdded = await Navigator.pushNamed(
+//                                    context, ReportScreen.id);
+//                                if (reportAdded != null) {
+//                                  Alert(
+//                                    context: context,
+//                                    title: appLocalizations.translate(
+//                                        'homescreen.reportFailure.alert.title'),
+//                                    desc: appLocalizations.translate(
+//                                        'homescreen.reportFailure.alert.desc'),
+//                                    type: AlertType.success,
+//                                    buttons: [],
+//                                    closeFunction: () {},
+//                                  ).show();
+//                                }
+                                Navigator.pushNamed(
+                                    context, ImageCollect.id);
                               },
                             ),
                           ),

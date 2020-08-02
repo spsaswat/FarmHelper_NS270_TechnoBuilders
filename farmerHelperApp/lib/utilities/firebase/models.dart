@@ -20,6 +20,14 @@ class FailureCollection {
   static String fieldEstimatedYield = 'estimatedYield';
   static String fieldReason = 'reason';
   static String fieldStatus = 'status';
+  static String fieldLat1 = 'Lattitude1';
+  static String fieldLat2 = 'Lattitude2';
+  static String fieldLat3 = 'Lattitude3';
+  static String fieldLat4 = 'Lattitude4';
+  static String fieldLon1 = 'Longittude1';
+  static String fieldLon2 = 'Longittude2';
+  static String fieldLon3 = 'Longittude3';
+  static String fieldLon4 = 'Longittude4';
 }
 
 // Yield Prediction without Disease

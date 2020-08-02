@@ -6,16 +6,29 @@ import 'package:farmhelper/widgets/common_appBar.dart';
 import 'package:farmhelper/widgets/nav_bar.dart';
 import 'package:farmhelper/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
+import 'package:farmhelper/screens/homescreen.dart';
 
 class ReportScreen extends StatefulWidget {
   static const String id = 'report';
-
+  ReportScreen({this.lati,this.long});
+  final List<double> lati;
+  final List<double> long;
   @override
   _ReportScreenState createState() => _ReportScreenState();
 }
 
 class _ReportScreenState extends State<ReportScreen> {
   String crop, area, yield, fails;
+  List<double> _lati;
+  List<double> _long;
+  void initState()
+  {
+    super.initState();
+    _lati = widget.lati;
+    _long = widget.long;
+
+  }
+
 
   DropdownButton<String> cropsDropdown() {
     List<DropdownMenuItem<String>> cropItems = [];
@@ -182,8 +195,10 @@ class _ReportScreenState extends State<ReportScreen> {
                       crop: crop,
                       fails: fails,
                       estimatedYield: yield,
+                      latt: _lati,
+                      lonn: _long,
                     );
-                    Navigator.pop(context, 'true');
+                    Navigator.popUntil(context, ModalRoute.withName(HomeScreen.id));
                   }
                 },
               ),

@@ -54,7 +54,7 @@ void updateRegisteredUserDetails(String phoneNumber,
 }
 
 void reportFailure(
-    {String crop, String area, String estimatedYield, String fails}) async {
+    {String crop, String area, String estimatedYield, String fails, List<double> latt,List<double> lonn}) async {
   FirebaseUser user = await _auth.currentUser();
   _firestore.collection(FailureCollection.collectionName).add({
     FailureCollection.fieldArea: area,
@@ -64,6 +64,14 @@ void reportFailure(
     FailureCollection.fieldUserPhoneNumber: user.phoneNumber,
     FailureCollection.fieldStatus: 'f',
     FailureCollection.fieldCreated: FieldValue.serverTimestamp(),
+    FailureCollection.fieldLat1:latt[0],
+    FailureCollection.fieldLat2:latt[1],
+    FailureCollection.fieldLat3:latt[2],
+    FailureCollection.fieldLat4:latt[3],
+    FailureCollection.fieldLon1:lonn[0],
+    FailureCollection.fieldLon2:lonn[1],
+    FailureCollection.fieldLon3:lonn[2],
+    FailureCollection.fieldLon4:lonn[3],
   });
 }
 

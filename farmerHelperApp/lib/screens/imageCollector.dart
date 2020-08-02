@@ -3,6 +3,8 @@ import 'dart:io' show File;
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:farmhelper/widgets/button.dart';
+import 'package:farmhelper/utilities/Locate.dart';
+import 'package:farmhelper/screens/reportscreen.dart';
 
 class ImageCollect extends StatefulWidget {
   static const String id = 'imagescollect';
@@ -15,6 +17,8 @@ class _ImageCollectState extends State<ImageCollect> {
   bool _showSpinner = false;
   int l=4;
   List<File> arr = [];
+  List<double> lati = [];
+  List<double> lon = [];
   /// Select an image via gallery or camera
   Future<void> _pickImage(ImageSource source) async {
     PickedFile selected = await ImagePicker().getImage(
@@ -23,6 +27,13 @@ class _ImageCollectState extends State<ImageCollect> {
 //      maxHeight: 224,
 //      maxWidth: 224,
     );
+    Location obj = Location();
+    await obj.locate();
+//    print(obj.lat);
+//    print(obj.long);
+    lati.add(obj.lat);
+    lon.add(obj.long);
+
 
     setState(() {
 
@@ -89,7 +100,13 @@ class _ImageCollectState extends State<ImageCollect> {
                     builder: (context) => Button(
                       buttonColor: Color(0xFF53d45b),
                       buttonText: "Proceed",
-                      onPress: (){},
+                      onPress: (){
+                        Navigator.push(context,
+                        MaterialPageRoute(
+                          builder: (context)=> ReportScreen(lati: lati,long:lon)
+                        )  ,
+                        );
+                      },
                     ),
                   ),
                 ),

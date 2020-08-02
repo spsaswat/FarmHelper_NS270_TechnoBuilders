@@ -53,25 +53,31 @@ void updateRegisteredUserDetails(String phoneNumber,
       .updateData(updatedData);
 }
 
-void reportFailure(
-    {String crop, String area, String estimatedYield, String fails, List<double> latt,List<double> lonn}) async {
+void reportFailure({
+  String crop,
+  String area,
+  String givenYield,
+  String fails,
+  List<double> latitudes,
+  List<double> longitudes,
+}) async {
   FirebaseUser user = await _auth.currentUser();
   _firestore.collection(FailureCollection.collectionName).add({
     FailureCollection.fieldArea: area,
     FailureCollection.fieldCrop: crop,
-    FailureCollection.fieldEstimatedYield: estimatedYield,
+    FailureCollection.fieldYield: givenYield,
     FailureCollection.fieldReason: fails,
     FailureCollection.fieldUserPhoneNumber: user.phoneNumber,
     FailureCollection.fieldStatus: 'f',
     FailureCollection.fieldCreated: FieldValue.serverTimestamp(),
-    FailureCollection.fieldLat1:latt[0],
-    FailureCollection.fieldLat2:latt[1],
-    FailureCollection.fieldLat3:latt[2],
-    FailureCollection.fieldLat4:latt[3],
-    FailureCollection.fieldLon1:lonn[0],
-    FailureCollection.fieldLon2:lonn[1],
-    FailureCollection.fieldLon3:lonn[2],
-    FailureCollection.fieldLon4:lonn[3],
+    FailureCollection.fieldLat1: latitudes[0],
+    FailureCollection.fieldLat2: latitudes[1],
+    FailureCollection.fieldLat3: latitudes[2],
+    FailureCollection.fieldLat4: latitudes[3],
+    FailureCollection.fieldLon1: longitudes[0],
+    FailureCollection.fieldLon2: longitudes[1],
+    FailureCollection.fieldLon3: longitudes[2],
+    FailureCollection.fieldLon4: longitudes[3],
   });
 }
 

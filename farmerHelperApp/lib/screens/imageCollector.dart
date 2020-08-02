@@ -1,13 +1,14 @@
-import 'package:flutter/material.dart';
 import 'dart:io' show File;
+
+import 'package:farmhelper/screens/reportscreen.dart';
+import 'package:farmhelper/utilities/Locate.dart';
+import 'package:farmhelper/widgets/button.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:farmhelper/widgets/button.dart';
-import 'package:farmhelper/utilities/Locate.dart';
-import 'package:farmhelper/screens/reportscreen.dart';
 
 class ImageCollect extends StatefulWidget {
-  static const String id = 'imagescollect';
+  static const String id = 'imagesCollect';
   @override
   _ImageCollectState createState() => _ImageCollectState();
 }
@@ -15,10 +16,11 @@ class ImageCollect extends StatefulWidget {
 class _ImageCollectState extends State<ImageCollect> {
   File _imageFile;
   bool _showSpinner = false;
-  int l=4;
-  List<File> arr = [];
-  List<double> lati = [];
-  List<double> lon = [];
+  int numberOfImagesRequired = 4;
+  List<File> pickedImagePaths = [];
+  List<double> latitudes = [];
+  List<double> longitudes = [];
+
   /// Select an image via gallery or camera
   Future<void> _pickImage(ImageSource source) async {
     PickedFile selected = await ImagePicker().getImage(
@@ -29,38 +31,31 @@ class _ImageCollectState extends State<ImageCollect> {
     );
     Location obj = Location();
     await obj.locate();
-//    print(obj.lat);
-//    print(obj.long);
-    lati.add(obj.lat);
-    lon.add(obj.long);
-
+    print(obj.lat);
+    print(obj.long);
+    latitudes.add(obj.lat);
+    longitudes.add(obj.long);
 
     setState(() {
-
       _imageFile = File(selected.path);
-      l--;
-      arr.add(_imageFile);
+      numberOfImagesRequired--;
+      pickedImagePaths.add(_imageFile);
     });
   }
 
-  Text get getInitialText => Text("You have to upload $l number of images to proceed. You can click one by one.",
-    textAlign: TextAlign.center,
-    style: TextStyle(
-      fontSize: 24.0,
-      color: Colors.black54,
-    ),
-  );
+  Text get getInitialText => Text(
+        "You have to upload $numberOfImagesRequired number of images to proceed. You can click one by one.",
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 24.0,
+          color: Colors.black54,
+        ),
+      );
 
   Image get getImageWidget => Image.file(
-    _imageFile,
-  );
+        _imageFile,
+      );
 
-  /// Toggle spinner visibility
-  void toggleSpinner() {
-    setState(() {
-      _showSpinner = !_showSpinner;
-    });
-  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -89,22 +84,26 @@ class _ImageCollectState extends State<ImageCollect> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
                       child: ClipRect(
-                        child: l>0?getInitialText:getImageWidget,
+                        child: numberOfImagesRequired > 0
+                            ? getInitialText
+                            : getImageWidget,
                       ),
                     ),
                   ),
                 ),
                 Visibility(
-                  visible: l == 0,
+                  visible: numberOfImagesRequired == 0,
                   child: Builder(
                     builder: (context) => Button(
                       buttonColor: Color(0xFF53d45b),
                       buttonText: "Proceed",
-                      onPress: (){
-                        Navigator.push(context,
-                        MaterialPageRoute(
-                          builder: (context)=> ReportScreen(lati: lati,long:lon)
-                        )  ,
+                      onPress: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                ReportScreen(lat: latitudes, lon: longitudes),
+                          ),
                         );
                       },
                     ),
@@ -115,7 +114,6 @@ class _ImageCollectState extends State<ImageCollect> {
           ),
         ),
       ),
-
     );
   }
 }

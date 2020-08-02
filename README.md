@@ -19,5 +19,15 @@ An app that can be used by farmers and volunteers
   <li>Bera Rahul Dilip</li>
 </ul>
 <br>
+<br>
+<b>Technology Stack</b>
+
+<ul>
+  <li>Mobile App (Used by farmers)</li>
+  <li>Web Interface (Used by government officials (DOA))</li>
+  <li>Machine Learning model for Crop Yield Estimation</li>
+  <li>Machine Learning model for Disease prediction</li>
+  <li>Machine Learning model for Disease Based Yield Prediction</li>
+</ul>
 
 <a href="https://www.figma.com/file/mhtGuzwvJvB26OuOdnlS8b/SIH_PRO_2?node-id=0%3A1">Figma Design for App</a>

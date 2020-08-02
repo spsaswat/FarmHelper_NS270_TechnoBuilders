@@ -37,12 +37,12 @@ class _CropDetailsState extends State<CropDetails> {
             ),
           ),
           cardstreamer(),
-          RoundButton(
-            icon: FontAwesomeIcons.plus,
-            onPress: () {
-              Navigator.pushNamed(context, AddDetails.id);
-            },
-          ),
+//          RoundButton(
+//            icon: FontAwesomeIcons.plus,
+//            onPress: () {
+//              Navigator.pushNamed(context, AddDetails.id);
+//            },
+//          ),
         ],
       ),
     );

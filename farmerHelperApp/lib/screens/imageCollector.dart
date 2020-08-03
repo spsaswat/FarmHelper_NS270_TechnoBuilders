@@ -29,6 +29,14 @@ class _ImageCollectState extends State<ImageCollect> {
 //      maxHeight: 224,
 //      maxWidth: 224,
     );
+    setState(() {
+      numberOfImagesRequired--;
+      _imageFile = File(selected.path);
+
+      pickedImagePaths.add(_imageFile);
+      _showSpinner = true;
+
+    });
     Location obj = Location();
     await obj.locate();
 //    print(obj.lat);
@@ -37,9 +45,9 @@ class _ImageCollectState extends State<ImageCollect> {
     longitudes.add(obj.long);
 
     setState(() {
-      _imageFile = File(selected.path);
-      numberOfImagesRequired--;
-      pickedImagePaths.add(_imageFile);
+
+      _showSpinner = false;
+
     });
   }
 

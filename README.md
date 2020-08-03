@@ -19,7 +19,7 @@ App, Website and APIs to help farmers for estimation of their yield
   <li>Bera Rahul Dilip</li>
 </ul>
 <br>
-<br>
+
 <b>Technology Stack</b>
 
 <ul>
@@ -58,7 +58,7 @@ App, Website and APIs to help farmers for estimation of their yield
 <li>View history of diseased crop yield estimation by farmers</li>
 </ul>
 
-Outputs for Disease Crop Yield Estimation
+<h4>Outputs for Disease Crop Yield Estimation</h4>
 <br>
 ![Softwares and Technologies Used](Outputs/Disease_based_yield1.png)
 ![Softwares and Technologies Used](Outputs/Disease_based_yield2.png)

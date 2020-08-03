@@ -51,7 +51,7 @@ App, Website and APIs to help farmers for estimation of their yield
 </ul>
 
 
-<h2><a href="https://abhishek-st.github.io/failure.html">Website</a> Features</h2>
+<h2><a href="https://abhishek-st.github.io/">Website</a> Features</h2>
 <ul>
 <li>View all crop failure reports from farmers</li>
 <li>Resolve feature for crop failure reports that have been resolved</li>

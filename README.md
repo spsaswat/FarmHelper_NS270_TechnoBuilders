@@ -58,8 +58,8 @@ App, Website and APIs to help farmers for estimation of their yield
 <li>View history of diseased crop yield estimation by farmers</li>
 </ul>
 
-<h4>Outputs for Disease Crop Yield Estimation</h4>
-<br>
+<h4>Outputs for Disease Crop Yield Estimation
+
 ![Softwares and Technologies Used](Outputs/Disease_based_yield1.png)
 ![Softwares and Technologies Used](Outputs/Disease_based_yield2.png)
 ![Softwares and Technologies Used](Outputs/Disease_based_yield3.png)

@@ -1,4 +1,6 @@
+import 'dart:convert' show base64Url;
 import 'dart:io' show File;
+import 'dart:math' show Random;
 
 import 'package:farmhelper/screens/homescreen.dart';
 import 'package:farmhelper/utilities/constants.dart';
@@ -23,13 +25,29 @@ class ReportScreen extends StatefulWidget {
 }
 
 class _ReportScreenState extends State<ReportScreen> {
-  String crop, area, yield, fails;
+  String crop, area, givenYield, fails;
   FirebaseStorage _storage =
       FirebaseStorage(storageBucket: kFirebaseStorageBucket);
   List<StorageUploadTask> _uploadTask;
+  List<String> imageFileNames;
+
+  @override
+  void initState() {
+    super.initState();
+    //region Generate Random File Name for images
+    imageFileNames = List(widget.imageFiles.length);
+    for (int i = 0; i < imageFileNames.length; i++)
+      imageFileNames[i] = base64Url.encode(
+        List<int>.generate(
+          16,
+          (k) => Random.secure().nextInt(256),
+        ),
+      );
+    //endregion
+  }
 
   //region addImagesToFirebaseStorage
-  void addImagesToFirebaseStorage() {
+  Future<void> addImagesToFirebaseStorage() async {
     /*
     The reason behind keeping this function here, instead of in database_helper.dart
     is that a visual representation of the uploading process is required.
@@ -37,11 +55,13 @@ class _ReportScreenState extends State<ReportScreen> {
      */
     _uploadTask = List<StorageUploadTask>(widget.imageFiles.length);
     for (int i = 0; i < _uploadTask.length; i++) {
-      String filePath = '/failure_images/${DateTime.now()}.png';
+      String filePath = '/failure_images/${imageFileNames[i]}.png';
       setState(() {
         _uploadTask[i] =
             _storage.ref().child(filePath).putFile(widget.imageFiles[i]);
       });
+      imageFileNames[i] =
+          await (await _uploadTask[i].onComplete).ref.getDownloadURL();
     }
   }
   //endregion
@@ -156,7 +176,7 @@ class _ReportScreenState extends State<ReportScreen> {
               keyboardType: TextInputType.number,
               textAlign: TextAlign.center,
               onChanged: (value) {
-                yield = value;
+                givenYield = value;
               },
               decoration: kBoxfield.copyWith(
                 hintText:
@@ -189,7 +209,7 @@ class _ReportScreenState extends State<ReportScreen> {
                 buttonColor: Color(0xFF53d45b),
                 buttonText:
                     AppLocalizations.of(context).translate('report.btnReport'),
-                onPress: () {
+                onPress: () async {
                   if (crop == null) {
                     showSnackBarMessage(
                       context: context,
@@ -204,7 +224,7 @@ class _ReportScreenState extends State<ReportScreen> {
                           .translate('error.areaAffectedSnackbar'),
                       backgroundColor: kSnackBarWarningColor,
                     );
-                  } else if (yield == null) {
+                  } else if (givenYield == null) {
                     showSnackBarMessage(
                       context: context,
                       snackBarText: AppLocalizations.of(context)
@@ -219,15 +239,16 @@ class _ReportScreenState extends State<ReportScreen> {
                       backgroundColor: kSnackBarWarningColor,
                     );
                   } else {
+                    await addImagesToFirebaseStorage();
                     reportFailure(
                       area: area,
                       crop: crop,
                       fails: fails,
-                      givenYield: yield,
+                      givenYield: givenYield,
                       latitudes: widget.lat,
                       longitudes: widget.lon,
+                      imageFileNames: imageFileNames,
                     );
-                    addImagesToFirebaseStorage();
                     Navigator.popUntil(
                         context, ModalRoute.withName(HomeScreen.id));
                   }

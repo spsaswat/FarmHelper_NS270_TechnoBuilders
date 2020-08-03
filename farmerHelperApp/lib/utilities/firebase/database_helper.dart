@@ -60,6 +60,7 @@ void reportFailure({
   String fails,
   List<double> latitudes,
   List<double> longitudes,
+  List<String> imageFileNames,
 }) async {
   FirebaseUser user = await _auth.currentUser();
   _firestore.collection(FailureCollection.collectionName).add({
@@ -78,6 +79,10 @@ void reportFailure({
     FailureCollection.fieldLon2: longitudes[1],
     FailureCollection.fieldLon3: longitudes[2],
     FailureCollection.fieldLon4: longitudes[3],
+    FailureCollection.fieldImg1: imageFileNames[0],
+    FailureCollection.fieldImg2: imageFileNames[1],
+    FailureCollection.fieldImg3: imageFileNames[2],
+    FailureCollection.fieldImg4: imageFileNames[3],
   });
 }
 

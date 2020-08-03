@@ -66,6 +66,9 @@ App, Website and APIs to help farmers for estimation of their yield
 ![Softwares and Technologies Used](Outputs/Disease_based_yield2.png)
 ![Softwares and Technologies Used](Outputs/Disease_based_yield3.png)
 
+<a href="https://abhishek-st.github.io/">Website link</a>
+<a href="https://github.com/Abhishek-st/Abhishek-st.github.io/">Website github link</a>
+
 <a href="https://www.figma.com/file/mhtGuzwvJvB26OuOdnlS8b/SIH_PRO_2?node-id=0%3A1">Figma Design for App</a>
 <br>
 <a href="https://drive.google.com/drive/folders/19iBT22t-asQ0j0iyeWdhZZv0NbuT0YDi?usp=sharing">Drive Link For Code, Video, PPT and APKS</a>

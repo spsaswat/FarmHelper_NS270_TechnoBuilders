@@ -30,6 +30,40 @@ App, Website and APIs to help farmers for estimation of their yield
   <li>Machine Learning model for Disease Based Yield Prediction</li>
 </ul>
 
+
+<h2>Softwares and Technologies Used</h2>
+
+![Softwares and Technologies Used](Outputs/softwares.png)
+
+<h2>Mobile App Features</h2>
+<ul>
+<li>Healthy Crop Yield Estimation</li>
+<li>Disease Prediction</li>
+<li>Report Crop Failure</li>
+<li>Voice Chatbot</li>
+<li>Hindi to English and English to Hindi</li>
+<li>Call for Assistance</li>
+<li>Add/Update Crop details</li>
+<li>View Crop details</li>
+<li>OTP Verification</li>
+</ul>
+
+
+<h2>Website Features</h2>
+<ul>
+<li>View all crop failure reports from farmers</li>
+<li>Resolve feature for crop failure reports that have been resolved</li>
+<li>View all registered users</li>
+<li>View history of crop yield estimation by farmers</li>
+<li>View history of diseased crop yield estimation by farmers</li>
+</ul>
+
+Outputs for Disease Crop Yield Estimation
+<br>
+![Softwares and Technologies Used](Outputs/Disease_based_yield1.png)
+![Softwares and Technologies Used](Outputs/Disease_based_yield2.png)
+![Softwares and Technologies Used](Outputs/Disease_based_yield3.png)
+
 <a href="https://www.figma.com/file/mhtGuzwvJvB26OuOdnlS8b/SIH_PRO_2?node-id=0%3A1">Figma Design for App</a>
 <br>
 <a href="https://drive.google.com/drive/folders/19iBT22t-asQ0j0iyeWdhZZv0NbuT0YDi?usp=sharing">Drive Link For Code, Video, PPT and APKS</a>

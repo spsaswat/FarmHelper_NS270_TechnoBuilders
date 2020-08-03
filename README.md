@@ -19,8 +19,10 @@ App, Website and APIs to help farmers for estimation of their yield
   <li>Bera Rahul Dilip</li>
 </ul>
 <br>
-
-<b>Technology Stack</b>
+<h3>View our comprehensive Project Report at the link below</h3>
+<a href="https://online.flippingbook.com/view/17195/">Click Here to View our Full Project Report as a Flipbook!</a>
+<br>
+<h2>Technology Stack</h2>
 
 <ul>
   <li>Mobile App (Used by farmers)</li>

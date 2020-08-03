@@ -3,6 +3,7 @@ import 'dart:io' show File;
 import 'package:farmhelper/screens/reportscreen.dart';
 import 'package:farmhelper/utilities/Locate.dart';
 import 'package:farmhelper/widgets/button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -17,7 +18,7 @@ class _ImageCollectState extends State<ImageCollect> {
   File _imageFile;
   bool _showSpinner = false;
   int numberOfImagesRequired = 4;
-  List<File> pickedImagePaths = [];
+  List<File> pickedImagePaths = List.generate(4, (index) => null);
   List<double> latitudes = [];
   List<double> longitudes = [];
 
@@ -30,12 +31,11 @@ class _ImageCollectState extends State<ImageCollect> {
 //      maxWidth: 224,
     );
     setState(() {
-      numberOfImagesRequired--;
       _imageFile = File(selected.path);
 
-      pickedImagePaths.add(_imageFile);
+      pickedImagePaths[4 - numberOfImagesRequired] = _imageFile;
+      numberOfImagesRequired--;
       _showSpinner = true;
-
     });
     Location obj = Location();
     await obj.locate();
@@ -45,9 +45,7 @@ class _ImageCollectState extends State<ImageCollect> {
     longitudes.add(obj.long);
 
     setState(() {
-
       _showSpinner = false;
-
     });
   }
 
@@ -94,7 +92,7 @@ class _ImageCollectState extends State<ImageCollect> {
                       child: ClipRect(
                         child: numberOfImagesRequired > 0
                             ? getInitialText
-                            : getImageWidget,
+                            : Text('Done!'),
                       ),
                     ),
                   ),
@@ -120,6 +118,101 @@ class _ImageCollectState extends State<ImageCollect> {
                     ),
                   ),
                 ),
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Center(
+                        child: Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+                          child: pickedImagePaths[1] != null
+                              ? Image.file(
+                                  pickedImagePaths[1],
+                                  height: 150.0,
+                                )
+                              : CircularProgressIndicator(
+                                  backgroundColor: (numberOfImagesRequired == 3)
+                                      ? Colors.red
+                                      : Colors.yellow,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    Colors.yellow,
+                                  ),
+                                ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Center(
+                        child: Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+                          child: pickedImagePaths[2] != null
+                              ? Image.file(
+                                  pickedImagePaths[2],
+                                  height: 150.0,
+                                )
+                              : CircularProgressIndicator(
+                                  backgroundColor: (numberOfImagesRequired == 2)
+                                      ? Colors.red
+                                      : Colors.yellow,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    Colors.yellow,
+                                  ),
+                                ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Center(
+                        child: Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+                          child: pickedImagePaths[0] != null
+                              ? Image.file(
+                                  pickedImagePaths[0],
+                                  height: 150.0,
+                                )
+                              : CircularProgressIndicator(
+                                  backgroundColor: (numberOfImagesRequired == 4)
+                                      ? Colors.red
+                                      : Colors.yellow,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    Colors.yellow,
+                                  ),
+                                ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Center(
+                        child: Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+                          child: pickedImagePaths[3] != null
+                              ? Image.file(
+                                  pickedImagePaths[3],
+                                  height: 150.0,
+                                )
+                              : CircularProgressIndicator(
+                                  backgroundColor: (numberOfImagesRequired == 1)
+                                      ? Colors.red
+                                      : Colors.yellow,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    Colors.yellow,
+                                  ),
+                                ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15.0,
+                )
               ],
             ),
           ),

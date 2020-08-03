@@ -28,6 +28,10 @@ class FailureCollection {
   static String fieldLon2 = 'longitude2';
   static String fieldLon3 = 'longitude3';
   static String fieldLon4 = 'longitude4';
+  static String fieldImg1 = 'img1';
+  static String fieldImg2 = 'img2';
+  static String fieldImg3 = 'img3';
+  static String fieldImg4 = 'img4';
 }
 
 // Yield Prediction without Disease

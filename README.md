@@ -6,7 +6,9 @@ App, Website and APIs to help farmers for estimation of their yield
 ```diff
 -This project is a complete teamwork.
 ```
-
+<b>TechnoBuilders</b>
+<br>
+<b>Winner SIH 2020 - NS270</b>
 <br>
 <b>Team Members</b>
 <br>
@@ -72,7 +74,7 @@ App, Website and APIs to help farmers for estimation of their yield
 <br>
 <a href="https://www.figma.com/file/mhtGuzwvJvB26OuOdnlS8b/SIH_PRO_2?node-id=0%3A1">Figma Design for App</a>
 <br>
-<a href="https://drive.google.com/drive/folders/19iBT22t-asQ0j0iyeWdhZZv0NbuT0YDi?usp=sharing">Drive Link For Code, Video, PPT and APKS</a>
+<a href="https://drive.google.com/drive/folders/19iBT22t-asQ0j0iyeWdhZZv0NbuT0YDi?usp=sharing">Drive Link For Video, PPT and APKS</a>
 <br>
 
 <b>Datasets</b>

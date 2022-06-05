@@ -22,7 +22,7 @@ App, Website and APIs to help farmers for estimation of their yield
 </ul>
 <br>
 <h3>View our comprehensive Project Report at the link below</h3>
-<a href="https://online.flippingbook.com/view/17195/">Click Here to View our Full Project Report as a Flipbook!</a>
+<a href="https://drive.google.com/file/d/15Kvk89CB--xaPHXSJ_n1TiKx8kulXPKd/view?usp=sharing">Click Here to View our Full Project Report</a>
 <br>
 <h2>Technology Stack</h2>
 

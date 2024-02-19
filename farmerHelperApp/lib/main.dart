@@ -1,3 +1,10 @@
+/* This Dart file is the main entry point for the FarmerHelperApp, a Flutter application designed to assist farmers with various features such as chatting, 
+managing crop details, detecting diseases, estimating yields, and more. The app includes a splash screen that leads to other functional screens based on user 
+interaction. It supports localization to cater to a diverse user base, allowing for language selection and adapting to the user's preferred language. The app 
+initializes with necessary setups like fetching the user's locale and determining the initial route based on certain conditions. It uses the Provider package 
+for state management, particularly to manage app-wide language settings, and defines routes for navigation between different screens of the app. Localization 
+support is implemented to provide translations and support for multiple languages, ensuring the app is accessible to users worldwide.*/
+
 import 'package:farmhelper/screens/ChatScreen.dart';
 import 'package:farmhelper/screens/addDetails.dart';
 import 'package:farmhelper/screens/cropdetails.dart';
